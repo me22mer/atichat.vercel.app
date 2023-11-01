@@ -1,3 +1,4 @@
+
 import fs from "fs";
 import Markdown from "markdown-to-jsx";
 import matter from "gray-matter";
@@ -12,7 +13,7 @@ const getPostContent = (slug: string) => {
   return matterResult;
 };
 
-export const generateStaticParams = async () => {
+export const generateStaticParams = () => {
   const posts = getPostBySlug();
   return posts.map((post) => ({
     params: {
