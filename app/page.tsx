@@ -1,5 +1,3 @@
-
-
 import { Header } from "./components/header";
 import Image from "next/image";
 
@@ -34,7 +32,7 @@ export default function Home() {
             <div className="">
               <Image
                 className="mb-8 rounded-md"
-                src="/images/hero/DSC03307.jpg"
+                src=""
                 alt=""
                 style={{ objectFit: "contain" }}
                 loading="lazy"
