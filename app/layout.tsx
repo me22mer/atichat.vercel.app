@@ -20,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className=" antialiased w-full flex flex-col justify-center ">
-        <main >
-          {children}
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );

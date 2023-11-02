@@ -1,64 +1,63 @@
-import { Header } from "./components/header";
 import Image from "next/image";
-
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 export default function Home() {
-  const skills = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Nextjs",
-    "Astro",
-  ];
-
   return (
     <>
       <Header />
       <div className="flex justify-center">
-        <div className="m-6 w-[710px] ">
-          <div>
-            <div>
-              <h1 className="mb-8 text-2xl font-semibold">
-                Hi there, I&apos;m y3sterd4y 😊
-              </h1>
-              <p className="mb-8">
-                I work as a front-end developer. I appreciate the pixelart style
-                and am interested in game creation. I also enjoy playing video
-                games🎮 and watching anime⚔️ and series.
-              </p>
-            </div>
-            <div className="">
+        <div className="m-6 py-8 w-[710px]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
+            <div className="mb-8 aspect-h-2 aspect-w-square">
               <Image
                 className="mb-8 rounded-md"
-                src=""
+                src="/images/DSC02965.jpg"
                 alt=""
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover", objectPosition: "right" }}
                 loading="lazy"
                 width={710}
-                height={500}
+                height={100}
                 quality={90}
-                placeholder="empty"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
-            {/* <div>
-              <h2 className="mb-2.5 text-xl font-semibold">Skill</h2>
-              <ul className="flex gap-2">
-                {skills.map((skill) => (
-                  <li
-                    className="p-2 bg-zinc-200 rounded-md text-black font-medium"
-                    key={skill}
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div> */}
+
+            <div className="mb-8 col-span-2">
+              <h1 className="mb-8 text-[1.25rem] lg:text-3xl font-semibold">
+                Hi there, I&apos;m y3sterd4y 😊
+              </h1>
+              <p className="mb-6 text-[1.05rem] md:text-justify leading-relaxed">
+                I&apos;m currently a student at{" "}
+                <a
+                  href="https://www.spu.ac.th/"
+                  target="_blank"
+                  className="text-pink-400"
+                >
+                  Sripatum University{" "}
+                </a>
+                studying Information and Communication Technology. Even though I
+                prefer to create front-end-only websites, I&apos;ll keep trying.
+                I enjoy finding challenges for myself.
+              </p>
+              <p className="md:text-justify">
+                I like the pixel art aesthetic and would like to make video
+                games. In addition, I like to watch anime ⚔️, play video games
+                🎮, and am a{" "}
+                <a
+                  href="https://www.rockstargames.com/"
+                  target="_blank"
+                  className="text-[#ffab00]"
+                >
+                  RockstarGames💛
+                </a>{" "}
+                fan.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
