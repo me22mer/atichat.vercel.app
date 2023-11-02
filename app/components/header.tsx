@@ -23,7 +23,7 @@ export const Header = () => {
           <Link
             href="/projects"
             className={`link ${
-              pathname === "/projects"
+              pathname === "/projects/"
                 ? "active transition-colors duration-500 hover:text-zinc-300"
                 : "transition-colors duration-500 text-zinc-500 hover:text-white"
             }`}
@@ -31,7 +31,7 @@ export const Header = () => {
             projects
           </Link>
           <Link
-            href="/"
+            href="#"
             className={`link ${
               pathname === "/blog"
                 ? "active transition-colors duration-500 hover:text-zinc-300"
