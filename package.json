@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": ">=18.17.0"
+  },
   "name": "y3sterd4y",
   "version": "0.1.0",
   "private": true,
