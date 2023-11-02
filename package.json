@@ -1,9 +1,6 @@
 {
-  "engines": {
-    "node": ">=18.17.0"
-  },
   "name": "y3sterd4y",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -14,7 +11,8 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.3.2",
-    "next": "14.0.1",
+    "next": "14.0.1", 
+    "node": ">=18.17.0",
     "react": "^18",
     "react-dom": "^18",
     "remark": "^15.0.1",
