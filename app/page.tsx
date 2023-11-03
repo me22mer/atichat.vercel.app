@@ -1,34 +1,38 @@
 import Image from "next/image";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import Section from "./components/section";
 
 export default function Home() {
   return (
     <>
       <Header />
       <div className="flex justify-center">
-        <div className="m-6 py-8 w-[710px]">
+        <div className="m-6 w-[710px]">
           <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
-            <div className="mb-8 aspect-h-2 aspect-w-square">
+            <Section
+              delay={0.7}
+              className="mb-8 aspect-h-2 aspect-w-square overflow-hidden rounded-md"
+            >
               <Image
-                className="mb-8 rounded-md"
-                src="/images/DSC02965.jpg"
+                className="mb-8 rounded-md hover:scale-105 duration-200"
+                src="/images/DSC03307.jpg"
                 alt=""
-                style={{ objectFit: "cover", objectPosition: "right" }}
+                style={{ objectFit: "cover", objectPosition: "65%" }}
                 width={710}
                 height={100}
                 quality={90}
                 priority={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-            </div>
+            </Section>
 
-            <div className="mb-8 col-span-2">
+            <Section delay={0.9} className="mb-8 col-span-2">
               <h1 className="mb-8 text-[1.25rem] lg:text-3xl font-semibold">
-                {` Hi there, I'm y3sterd4y 😊`}
+                Hi there, I&apos;m y3sterd4y 😊
               </h1>
               <p className="mb-6 text-[1.05rem] md:text-justify leading-relaxed">
-                {`I'm currently a student at`}{" "}
+                I&apos;m currently a student at{" "}
                 <a
                   href="https://www.spu.ac.th/"
                   target="_blank"
@@ -36,10 +40,9 @@ export default function Home() {
                 >
                   Sripatum University{" "}
                 </a>
-                {`
                 studying Information and Communication Technology. Even though I
-                prefer to create front-end-only websites, I'll keep trying.
-                I enjoy finding challenges for myself.`}
+                prefer to create front-end-only websites, I&apos;ll keep trying.
+                I enjoy finding challenges for myself.
               </p>
               <p className="md:text-justify">
                 I like the pixel art aesthetic and would like to make video
@@ -54,7 +57,7 @@ export default function Home() {
                 </a>{" "}
                 fan.
               </p>
-            </div>
+            </Section>
           </div>
         </div>
       </div>
