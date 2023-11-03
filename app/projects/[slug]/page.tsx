@@ -4,11 +4,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export function generateStaticParams() {
-  const posts = getSortedPosts()
+  const posts = getSortedPosts();
 
   return posts.map((post) => ({
-      slug: post.id
-  }))
+    slug: post.id,
+  }));
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
@@ -36,15 +36,14 @@ export default async function PostPage({
   const posts = getSortedPosts();
   const { slug } = params;
 
-  if (!posts.find((post) => post.id === slug)) notFound();
-
   const { title, date, subtitle, contentHtml } = await getPost(slug);
+  if (!posts.find((post) => post.id === slug)) notFound();
 
   const pubDate = getFormattedDate(date);
 
   return (
     <div>
-      <nav className="w-full fixed backdrop-blur duration-200 bg-zinc-900/0">
+      <nav className="w-[710px] fixed backdrop-blur duration-200 bg-zinc-900/0">
         <div className="py-6 px-10">
           <Link href="/projects">
             <span>
