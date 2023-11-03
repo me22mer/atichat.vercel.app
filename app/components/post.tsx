@@ -1,5 +1,5 @@
 import { getSortedPosts } from "@/lib/posts";
-import ListItem from "./listitem";
+import ListItem from "./ListItem";
 
 export default function Posts() {
   const posts = getSortedPosts();
