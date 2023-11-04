@@ -32,27 +32,34 @@ export function getSortedPosts() {
 
 export async function getPost(id: string) {
   const fullPath = path.join(projectsDir, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
 
-  const matterResult = matter(fileContents);
+  try {
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const matterResult = matter(fileContents);
 
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
+    const processedContent = await remark()
+      .use(html)
+      .process(matterResult.content);
 
-  const contentHtml = processedContent.toString();
+    const contentHtml = processedContent.toString();
 
-  if (!contentHtml) {
-    return notFound();
+    if (!contentHtml) {
+      notFound();
+    }
+
+    const PostWithHTML: ProjectPost & { contentHtml: string } = {
+      id,
+      title: matterResult.data.title,
+      subtitle: matterResult.data.subtitle,
+      date: matterResult.data.date,
+      contentHtml,
+    };
+    return PostWithHTML;
+  } catch (error) {
+    if (error) {
+      notFound();
+    } else {
+      throw error;
+    }
   }
-  
-  const PostWithHTML: ProjectPost & { contentHtml: string } = {
-    id,
-    title: matterResult.data.title,
-    subtitle: matterResult.data.subtitle,
-    date: matterResult.data.date,
-    contentHtml,
-  };
-
-  return PostWithHTML;
 }

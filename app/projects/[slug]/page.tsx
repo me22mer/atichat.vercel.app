@@ -1,6 +1,5 @@
 import getFormattedDate from "@/lib/getFomattedDate";
 import { getSortedPosts, getPost } from "@/lib/posts";
-import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export function generateStaticParams() {
@@ -33,11 +32,9 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const posts = getSortedPosts();
   const { slug } = params;
 
   const { title, date, subtitle, contentHtml } = await getPost(slug);
-  if (!posts.find((post) => post.id === slug)) notFound();
 
   const pubDate = getFormattedDate(date);
 
