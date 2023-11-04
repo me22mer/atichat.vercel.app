@@ -15,12 +15,12 @@
     "@types/mdx": "^2.0.9",
     "framer-motion": "^10.16.4",
     "gray-matter": "^4.0.3",
-    "markdown-to-jsx": "^7.3.2",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",

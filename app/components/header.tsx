@@ -1,9 +1,6 @@
-"use client";
-import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Contact from "./contact";
-import Section from "./section";
 
 export default function Header() {
   const pathname = usePathname();
@@ -11,10 +8,7 @@ export default function Header() {
   return (
     <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg bg-black/20 flex justify-center">
       <div className="w-[710px] mx-6 gap-2 flex justify-between items-center">
-        <Section
-          delay={0.5}
-          className="space-x-4 md:space-x-6 flex justify-start"
-        >
+        <div className="space-x-4 md:space-x-6 flex justify-start">
           <Link
             href="/"
             className={`link ${
@@ -45,10 +39,10 @@ export default function Header() {
           >
             blog
           </Link>
-        </Section>
-        <Section className="" delay={0.7}>
+        </div>
+        <div className="">
           <Contact />
-        </Section>
+        </div>
       </div>
     </nav>
   );

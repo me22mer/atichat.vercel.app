@@ -3,12 +3,14 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Section from "./components/section";
 
-export default function Home() {
+export default async function Home() {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return (
     <>
       <Header />
+
       <div className="flex justify-center">
-        <div className="m-6 w-[710px]">
+        <div className="mt-12 mb-6 mx-6 w-[710px]">
           <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
             <Section
               delay={0.7}
@@ -61,6 +63,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

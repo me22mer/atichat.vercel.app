@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import Posts from "@/components/post";
 import Section from "@/components/section";
+
 export default async function ProjectsPage() {
   return (
     <>
