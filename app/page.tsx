@@ -2,6 +2,7 @@ import Image from "next/image";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Section from "./components/section";
+import profile from "public/images/DSC03307.jpg"
 
 export default async function Home() {
   await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -13,23 +14,23 @@ export default async function Home() {
         <div className="mt-12 mb-6 mx-6 w-[710px]">
           <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
             <Section
-              delay={0.7}
+              delay={0.1}
               className="mb-8 aspect-h-2 aspect-w-square overflow-hidden rounded-md"
             >
               <Image
                 className="mb-8 rounded-md hover:scale-105 duration-200"
-                src="/images/DSC03307.jpg"
+                src={profile}
                 alt=""
                 style={{ objectFit: "cover", objectPosition: "65%" }}
-                width={710}
-                height={100}
-                quality={90}
-                priority={true}
+                quality={75}
+                loading="lazy"
+                placeholder="blur"
+                fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </Section>
 
-            <Section delay={0.9} className="mb-8 col-span-2">
+            <Section delay={0.2} className="mb-8 col-span-2">
               <h1 className="mb-8 text-[1.25rem] lg:text-3xl font-semibold">
                 Hi there, I&apos;m y3sterd4y 😊
               </h1>
