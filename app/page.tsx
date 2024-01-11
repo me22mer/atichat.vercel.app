@@ -5,7 +5,7 @@ import Section from "./components/section";
 import profile from "public/images/DSC03307.jpg"
 
 export default async function Home() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   return (
     <>
       <Header />
