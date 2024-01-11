@@ -2,7 +2,7 @@ import Image from "next/image";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Section from "./components/section";
-import profile from "public/images/DSC03307.jpg"
+import profile from "public/images/DSC03307.avif"
 
 export default async function Home() {
   // await new Promise((resolve) => setTimeout(resolve, 3000));
