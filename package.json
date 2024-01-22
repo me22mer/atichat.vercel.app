@@ -1,6 +1,6 @@
 {
   "name": "y3sterd4y",
-  "version": "0.2.0",
+  "version": "0.2.12",
   "private": true,
   "scripts": {
     "dev": "next dev",
