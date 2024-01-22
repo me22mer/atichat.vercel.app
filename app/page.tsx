@@ -5,7 +5,6 @@ import Section from "./components/section";
 import profile from "public/images/DSC03307.avif"
 
 export default async function Home() {
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
   return (
     <>
       <Header />
@@ -31,23 +30,23 @@ export default async function Home() {
             </Section>
 
             <Section delay={0.2} className="mb-8 col-span-2">
-              <h1 className="mb-8 text-[1.25rem] lg:text-3xl font-semibold">
-                Hi there, I&apos;m y3sterd4y 😊
+              <h1 className="mb-8 text-[1.25rem] lg:text-3xl font-bold">
+                Hi there, I&apos;m Atichat 😊
               </h1>
               <p className="mb-6 text-[1.05rem] md:text-justify leading-relaxed">
                 I&apos;m currently a student at{" "}
                 <a
                   href="https://www.spu.ac.th/"
                   target="_blank"
-                  className="text-pink-400"
+                  className="text-pink-500"
                 >
                   Sripatum University{" "}
                 </a>
                 studying Information and Communication Technology. Even though I
-                prefer to create front-end-only websites, I&apos;ll keep trying.
+                prefer to create front-end websites, I&apos;ll keep trying.
                 I enjoy finding challenges for myself.
               </p>
-              <p className="md:text-justify">
+              <p className="md:text-justify leading-relaxed">
                 I like the pixel art aesthetic and would like to make video
                 games. In addition, I like to watch anime ⚔️, play video games
                 🎮, and am a{" "}

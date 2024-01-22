@@ -22,6 +22,7 @@ export function getSortedPosts() {
       title: matterResult.data.title,
       subtitle: matterResult.data.subtitle,
       date: matterResult.data.date,
+      github: matterResult.data.date,
     };
 
     return projectPost;
@@ -52,6 +53,7 @@ export async function getPost(id: string) {
       title: matterResult.data.title,
       subtitle: matterResult.data.subtitle,
       date: matterResult.data.date,
+      github: matterResult.data.date,
       contentHtml,
     };
     return PostWithHTML;
