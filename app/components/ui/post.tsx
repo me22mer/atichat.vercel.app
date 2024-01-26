@@ -1,8 +1,8 @@
 import { getSortedPosts } from "@/lib/posts";
 import ListItem from "./ListItem";
 
-export default function Posts() {
-  const posts = getSortedPosts();
+export default async function Posts() {
+  const posts = await getSortedPosts();
 
   return (
     <div>
