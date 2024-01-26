@@ -1,7 +1,9 @@
 "use client";
 
+
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { ReactNode } from "react";
+
 
 type Props = {
   children: ReactNode;
@@ -18,7 +20,7 @@ export default function Section({ children, className, delay }: Props) {
         transition={{ duration: 0.8, delay }}
         className={`${className}`}
       >
-        {children}
+       {children}
       </m.div>
     </LazyMotion>
   );

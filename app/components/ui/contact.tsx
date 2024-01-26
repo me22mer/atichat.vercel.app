@@ -1,11 +1,11 @@
-import GithubIcon from "./icons/GithubIcon";
-import XIcon from "./icons/XIcon";
+import GithubIcon from "../icons/Github-Icon";
+import XIcon from "../icons/X-Icon";
 
 export default function Contact() {
   return (
     <div className="flex gap-4 md:gap-6">
-      <XIcon />
       <GithubIcon />
+      <XIcon />
     </div>
   );
 }

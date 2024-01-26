@@ -1,6 +1,6 @@
-import Header from "@/components/header";
-import Posts from "@/components/post";
-import Section from "@/components/section";
+import Header from "@/components/common/header";
+import Posts from "@/components/ui/post";
+import Section from "@/components/ui/section";
 
 
 export default async function ProjectsPage() {
@@ -8,7 +8,7 @@ export default async function ProjectsPage() {
     <>
       <Header />
       <div className="w-full flex justify-center ">
-        <div className="m-6 w-[710px]">
+        <div className="m-7 w-[710px]">
           <div className="mb-16">      
             <h2 className="mb-2 text-3xl font-bold">Projects</h2>
             <p>I&apos;ve done some projects on my own time.</p>

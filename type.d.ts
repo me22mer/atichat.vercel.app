@@ -3,6 +3,8 @@ type ProjectPost = {
   title: string;
   subtitle: string;
   date: string;
-  github: string;
+  repository: string;
+  url: string;
+  category: string;
 };
 

@@ -11,7 +11,7 @@ export default function ListItem({ post }: Props) {
 
   return (
     <li className="max-md:w-full w-[345px] p-6 border border-zinc-600 rounded-xl">
-      <Link href={`/projects/${title}`}>
+      <Link href={`/projects/${id}`}>
         <article className="text-zinc-400 hover:text-zinc-100 transition-colors duration-1000">
           {formattedDate ? (
             <time className="text-xs text-zinc-50">{formattedDate}</time>

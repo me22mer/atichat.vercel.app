@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Contact from "./contact";
+import Contact from "../ui/contact";
 
 export default function Header() {
   const pathname = usePathname();
@@ -32,7 +32,7 @@ export default function Header() {
             projects
           </Link>
           <Link
-            href="/not-found"
+            href="/resume"
             className={`link ${
               pathname === "/resume"
                 ? "active transition-colors duration-500 hover:text-zinc-300"
@@ -40,24 +40,18 @@ export default function Header() {
             }`}
           >
             resume
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-            </span>
+            
           </Link>
           <Link
             href="#"
             className={`link ${
-              pathname === "/blog"
-                ? "active transition-colors duration-500 cursor-not-allowed"
-                : "transition-colors duration-500 text-zinc-400 cursor-default flex"
+              pathname === "#"
+                ? "active transition-colors duration-500hover:text-zinc-300"
+                : "transition-colors duration-500 text-zinc-400 hover:text-white flex"
             }`}
           >
             blog
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-500"></span>
-            </span>
+            
           </Link>
         </div>
         <div className="">

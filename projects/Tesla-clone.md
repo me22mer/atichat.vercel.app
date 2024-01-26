@@ -2,5 +2,7 @@
 title: Tesla-clone
 subtitle: 
 date: ""
-github: 
+repository:
+url:
+catagory: 
 ---

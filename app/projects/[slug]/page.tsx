@@ -1,17 +1,17 @@
-import Navigation from "@/components/navigaton";
+import Navigation from "@/components/ui/navigaton";
 import getFormattedDate from "@/lib/getFomattedDate";
 import { getSortedPosts, getPost } from "@/lib/posts";
 
-export function generateStaticParams() {
-  const posts = getSortedPosts();
+export async function generateStaticParams() {
+  const posts = await getSortedPosts();
 
-  return posts.map((post) => ({
+  return (posts).map((post) => ({
     slug: post.id,
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const posts = getSortedPosts();
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const posts = await getSortedPosts();
   const { slug } = params;
 
   const post = posts.find((post) => post.id === slug);
@@ -33,11 +33,9 @@ export default async function PostPage({
   params: { slug: string };
 }) {
   const { slug } = params;
-
   const { title, date, subtitle, contentHtml } = await getPost(slug);
-
   const pubDate = getFormattedDate(date);
-
+  
   return (
     <div className="min-h-screen bg-white">
       <Navigation Href="/projects" />

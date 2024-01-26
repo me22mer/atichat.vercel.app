@@ -1,32 +1,37 @@
 import Image from "next/image";
-import Header from "./components/header";
-import Footer from "./components/footer";
-import Section from "./components/section";
-import profile from "public/images/DSC03307.avif"
+
+import Header from "./components/common/header";
+import Footer from "./components/common/footer";
+import Section from "./components/ui/section";
+import profile from "public/images/DSC03307.avif";
 
 export default async function Home() {
+
+
   return (
     <>
       <Header />
 
       <div className="flex justify-center">
-        <div className="mt-12 mb-6 mx-6 w-[710px]">
+        <div className="mt-12 mb-6 mx-7 w-[710px]">
           <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
             <Section
               delay={0.1}
               className="mb-8 aspect-h-2 aspect-w-square overflow-hidden rounded-md"
             >
-              <Image
-                className="mb-8 rounded-md hover:scale-105 duration-200"
-                src={profile}
-                alt=""
-                style={{ objectFit: "cover", objectPosition: "65%" }}
-                quality={75}
-                loading="lazy"
-                placeholder="blur"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
+              <figure>
+                <Image
+                  className="mb-8 rounded-md hover:scale-105 duration-200"
+                  src={profile}
+                  alt=""
+                  style={{ objectFit: "cover", objectPosition: "65%" }}
+                  quality={75}
+                  loading="lazy"
+                  placeholder="blur"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </figure>
             </Section>
 
             <Section delay={0.2} className="mb-8 col-span-2">
@@ -43,8 +48,8 @@ export default async function Home() {
                   Sripatum University{" "}
                 </a>
                 studying Information and Communication Technology. Even though I
-                prefer to create front-end websites, I&apos;ll keep trying.
-                I enjoy finding challenges for myself.
+                prefer to create front-end websites, I&apos;ll keep trying. I
+                enjoy finding challenges for myself.
               </p>
               <p className="md:text-justify leading-relaxed">
                 I like the pixel art aesthetic and would like to make video

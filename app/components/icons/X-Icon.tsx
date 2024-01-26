@@ -7,7 +7,7 @@ export default function XIcon({ IconClass }: Props) {
     <a href="https://twitter.com/_Y3sterd4y" target="_blank">
       <span>
         <svg
-          width={16}
+          width={20}
           role="img"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"

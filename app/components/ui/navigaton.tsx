@@ -7,9 +7,9 @@ type Props = {
 export default function Navigation({ Href }: Props) {
   return (
     <nav className="w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0">
-      <div className="py-6 px-10">
+      <div className="p-6">
         <span>
-          <Link href={Href}>
+          <Link href={Href} aria-label="arrow navigator">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
