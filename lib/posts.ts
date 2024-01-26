@@ -69,7 +69,7 @@ export async function getPost(id: string) {
     };
     return PostWithHTML;
   } catch (error) {
-    console.error("Error reading or processing post:", error);
+    // console.error("Error reading or processing post:", error);
     notFound();
   }
 }

@@ -3,7 +3,6 @@
 import Section from "@/components/ui/section";
 import { useRouter, usePathname } from "next/navigation";
 
-
 export default function NotFound() {
   const router = useRouter();
   const pathName = usePathname();
@@ -15,7 +14,7 @@ export default function NotFound() {
           <Section delay={0.5} className="">
             <div className=" px-6 flex flex-col text-center items-center">
               <h1 className="mb-16 text-2xl mb:text-4xl font-bold tracking-tight text-white sm:text-6xl ">
-              Not found : &quot;{pathName}&quot;
+                Not found : &quot;{pathName}&quot;
               </h1>
               <button
                 onClick={() => router.push("/", { scroll: false })}
