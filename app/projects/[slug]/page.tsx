@@ -1,4 +1,4 @@
-import Navigation from "@/components/ui/navigaton";
+import Navigater from "@/components/ui/navigater";
 import getFormattedDate from "@/lib/getFomattedDate";
 import { getSortedPosts, getPost } from "@/lib/posts";
 
@@ -38,7 +38,7 @@ export default async function PostPage({
   
   return (
     <div className="min-h-screen bg-white">
-      <Navigation Href="/projects" />
+      <Navigater Href="/projects" />
       <div className="w-full bg-black">
         <div className="py-24 sm:py-32 flex justify-center bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
           <div className=" px-6 flex flex-col text-center">

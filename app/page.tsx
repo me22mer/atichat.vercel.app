@@ -6,8 +6,6 @@ import Section from "./components/ui/section";
 import profile from "public/images/DSC03307.avif";
 
 export default async function Home() {
-
-
   return (
     <>
       <Header />

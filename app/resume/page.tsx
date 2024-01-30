@@ -1,5 +1,5 @@
 import ListIcon from "@/components/ui/ListIcon";
-import Navigation from "@/components/ui/navigaton";
+import Navigation from "@/components/ui/navigater";
 
 export default function ResumePage() {
   return (
@@ -9,7 +9,7 @@ export default function ResumePage() {
         <div className="my-10">
           <h3 className="mb-6 text-2xl font-semibold">Education</h3>
           <div className="leading-relaxed">
-            <time className="font-semibold">2021 - Present</time>
+            <time className="font-semibold text-yellow-600">2021 - Present</time>
             <h5 className="text-zinc-50">
               Bachelor of Science (Information and Communication Technology)
             </h5>

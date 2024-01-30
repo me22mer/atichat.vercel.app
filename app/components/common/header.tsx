@@ -12,6 +12,7 @@ export default function Header() {
       <div className="w-[710px] mx-6 gap-2 flex justify-between items-center">
         <div className="space-x-4 md:space-x-6 flex justify-start">
           <Link
+            scroll={false}
             href="/"
             className={`link ${
               pathname === "/"
@@ -22,6 +23,7 @@ export default function Header() {
             home
           </Link>
           <Link
+            scroll={false}
             href="/projects"
             className={`link ${
               pathname === "/projects"
@@ -32,6 +34,7 @@ export default function Header() {
             projects
           </Link>
           <Link
+            scroll={false}
             href="/resume"
             className={`link ${
               pathname === "/resume"
@@ -40,9 +43,9 @@ export default function Header() {
             }`}
           >
             resume
-            
           </Link>
           <Link
+            scroll={false}
             href="#"
             className={`link ${
               pathname === "#"
@@ -51,7 +54,6 @@ export default function Header() {
             }`}
           >
             blog
-            
           </Link>
         </div>
         <div className="">
