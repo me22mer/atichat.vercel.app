@@ -21,10 +21,10 @@ export default async function Home() {
                 <Image
                   className="mb-8 rounded-md hover:scale-105 duration-200"
                   src={profile}
-                  alt=""
+                  alt="Picture of the author"
                   style={{ objectFit: "cover", objectPosition: "65%" }}
-                  quality={75}
                   loading="lazy"
+                  quality={100}
                   placeholder="blur"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
