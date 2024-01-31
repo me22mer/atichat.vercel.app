@@ -1,20 +1,20 @@
 import Header from "@/components/common/header";
-import ProjectPosts from "@/components/ui/project/projectPosts";
+import BlogPosts from "@/components/ui/blog/blogPosts";
 import Section from "@/components/ui/section";
 
-export default async function ProjectsPage() {
+export default async function BlogPage() {
   return (
     <>
       <Header />
       <div className="w-full flex justify-center ">
         <div className="m-7 w-[710px]">
           <div className="mb-16">      
-            <h2 className="mb-2 text-3xl font-bold">Projects</h2>
-            <p>I&apos;ve done some projects on my own time.</p>
+            <h2 className="mb-2 text-3xl font-bold">Blog</h2>
+            <p></p>
           </div>
           <hr className=" border-zinc-600" />
           <Section delay={0.3}  className="">
-            <ProjectPosts />
+            <BlogPosts />
           </Section>
         </div>
       </div>

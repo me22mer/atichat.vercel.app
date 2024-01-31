@@ -13,7 +13,5 @@ type BlogPost = {
   title: string;
   subtitle: string;
   date: string;
-  repository: string;
-  url: string;
   tags: string[];
 };

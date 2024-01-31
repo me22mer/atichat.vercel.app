@@ -5,7 +5,7 @@ type Props = {
   post: ProjectPost;
 };
 
-export default function ListItem({ post }: Props) {
+export default function Listproject({ post }: Props) {
   const { id, title, subtitle, date } = post;
   const formattedDate = getFormattedDate(date);
 

@@ -46,9 +46,9 @@ export default function Header() {
           </Link>
           <Link
             scroll={false}
-            href="#"
+            href="/blog"
             className={`link ${
-              pathname === "#"
+              pathname === "blog"
                 ? "active transition-colors duration-500hover:text-zinc-300"
                 : "transition-colors duration-500 text-zinc-400 hover:text-white flex"
             }`}
