@@ -6,7 +6,7 @@ import html from "remark-html";
 import { notFound } from "next/navigation";
 
 const projectsDir = path.join(process.cwd(), "content/projects/");
-const blogsDir = path.join(process.cwd(), "content/blogs/");
+// const blogsDir = path.join(process.cwd(), "content/blogs/");
 const FILE_EXTENSION = ".md";
 
 async function readPostsFromDirectory(baseDir: string): Promise<(ProjectPost | BlogPost)[]> {
@@ -37,29 +37,29 @@ async function readPostsFromDirectory(baseDir: string): Promise<(ProjectPost | B
 
     return posts;
   } catch (error) {
-    // console.error(`Error reading or processing posts from ${baseDir}:`, error);
-    notFound();
+    console.error(`Error reading or processing posts from ${baseDir}:`, error);
+    throw error;
   }
 }
 
 export async function getSortedPosts() {
   try {
-    const [projectPosts, blogPosts] = await Promise.all([
+    const [projectPosts] = await Promise.all([
       readPostsFromDirectory(projectsDir),
-      readPostsFromDirectory(blogsDir),
+      // readPostsFromDirectory(blogsDir),
     ]);
 
-    const allPostsData = [...projectPosts, ...blogPosts];
+    const allPostsData = [...projectPosts];
     
     return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
   } catch (error) {
-    // console.error("Error reading or processing posts:", error);
-    notFound();
+    console.error("Error reading or processing posts:", error);
+    throw error;
   }
 }
 
 export async function getPost(id: string, isProject: boolean = true) {
-  const baseDir = isProject ? projectsDir : blogsDir;
+  const baseDir = projectsDir;
   const fullPath = path.join(baseDir, `${id}${FILE_EXTENSION}`);
 
   try {
