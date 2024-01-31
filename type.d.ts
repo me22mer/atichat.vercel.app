@@ -5,6 +5,13 @@ type ProjectPost = {
   date: string;
   repository: string;
   url: string;
-  category: string;
+  tags: string[];
 };
 
+type BlogPost = {
+  id: string;
+  title: string;
+  subtitle: string;
+  date: string;
+  tags: string[];
+};

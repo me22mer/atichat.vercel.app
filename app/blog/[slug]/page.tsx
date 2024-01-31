@@ -1,18 +1,17 @@
 import Navigater from "@/components/ui/navigater";
 import getFormattedDate from "@/lib/getFomattedDate";
-import { getSortedPosts, getProjectPost } from "@/lib/posts";
-import Link from "next/link";
+import { getSortedPosts, getBlogPost } from "@/lib/posts";
 
 export async function generateStaticParams() {
-  const { projectPosts } = await getSortedPosts();
+  const { blogPosts } = await getSortedPosts();
 
-  const projectSlugs = projectPosts.map((post) => ({
+  const blogSlugs = blogPosts.map((post) => ({
     params: {
       slug: post.id,
     },
   }));
 
-  return [...projectSlugs]
+  return [...blogSlugs];
 }
 
 export async function generateMetadata({
@@ -20,36 +19,34 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const { projectPosts } = await getSortedPosts();
+  const { blogPosts } = await getSortedPosts();
   const { slug } = params;
 
-  const projectPost = projectPosts.find((post) => post.id === slug);
+  const blogPost = blogPosts.find((post) => post.id === slug);
 
-  if (!projectPost) {
+  if (!blogPost) {
     return {
       title: "Post Not Found",
     };
   }
 
   return {
-    title: projectPost.title,
+    title: blogPost.title,
   };
 }
 
-export default async function PostPage({
+export default async function BlogPage({
   params,
 }: {
   params: { slug: string };
 }) {
   const { slug } = params;
-  const { title, date, subtitle, repository, url, contentHtml } = await getProjectPost(
-    slug
-  );
+  const { title, date, subtitle, contentHtml } = await getBlogPost(slug);
   const pubDate = getFormattedDate(date);
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigater Href="/projects" />
+      <Navigater Href="/blog" />
       <div className="w-full bg-black">
         <div className="py-24 sm:py-26 flex flex-col justify-center items-center text-center bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
           <div className=" px-6 flex flex-col ">
@@ -58,22 +55,6 @@ export default async function PostPage({
               {title}
             </h1>
             <p className="mt-6 text-lg leading-8 text-zinc-300">{subtitle}</p>
-          </div>
-          <div className="mt-8 font-semibold space-x-7">
-            {repository && (
-              <Link
-                href={repository}
-                target="_blank"
-                className="after:content-['_↗']"
-              >
-                Github
-              </Link>
-            )}
-            {url && (
-              <Link href={url} target="_blank" className="after:content-['_↗']">
-                Website
-              </Link>
-            )}
           </div>
         </div>
         <div className="bg-white">
