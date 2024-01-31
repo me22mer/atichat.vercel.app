@@ -17,11 +17,11 @@ export default async function Home() {
               delay={0.1}
               className="mb-8 aspect-h-2 aspect-w-square overflow-hidden rounded-md"
             >
-              <figure>
+              <figure title="">
                 <Image
-                  className="mb-8 rounded-md hover:scale-105 duration-200"
+                  className="mb-8 max-md:filter-none rounded-md blur-sm hover:blur-none duration-1000 "
                   src={profile}
-                  alt="Picture of the author"
+                  alt=""
                   style={{ objectFit: "cover", objectPosition: "65%" }}
                   loading="lazy"
                   quality={100}
@@ -36,32 +36,34 @@ export default async function Home() {
               <h1 className="mb-8 text-[1.25rem] lg:text-3xl font-bold">
                 Hi there, I&apos;m Atichat 😊
               </h1>
-              <p className="mb-6 text-[1.05rem] md:text-justify leading-relaxed">
-                I&apos;m currently a student at{" "}
-                <a
-                  href="https://www.spu.ac.th/"
-                  target="_blank"
-                  className="text-pink-500"
-                >
-                  Sripatum University{" "}
-                </a>
-                studying Information and Communication Technology. Even though I
-                prefer to create front-end websites, I&apos;ll keep trying. I
-                enjoy finding challenges for myself.
-              </p>
-              <p className="md:text-justify leading-relaxed">
-                I like the pixel art aesthetic and would like to make video
-                games. In addition, I like to watch anime ⚔️, play video games
-                🎮, and am a{" "}
-                <a
-                  href="https://www.rockstargames.com/"
-                  target="_blank"
-                  className="text-[#ffab00]"
-                >
-                  RockstarGames💛
-                </a>{" "}
-                fan.
-              </p>
+              <div className=" sm:text-justify text-start flex flex-col gap-7 leading-relaxed text-[1.05rem]">
+                <p>
+                  I&apos;m currently a student at{" "}
+                  <a
+                    href="https://www.spu.ac.th/"
+                    target="_blank"
+                    className="text-pink-500"
+                  >
+                    Sripatum University{" "}
+                  </a>
+                  studying Information and Communication Technology. Even though
+                  I prefer to create front-end websites, I&apos;ll keep trying.
+                  I enjoy finding challenges for myself.
+                </p>
+                <p>
+                  I like the pixel art aesthetic and would like to make video
+                  games. In addition, I like to watch anime ⚔️, play video games
+                  🎮, and am a{" "}
+                  <a
+                    href="https://www.rockstargames.com/"
+                    target="_blank"
+                    className="text-[#ffc144]"
+                  >
+                    RockstarGames💛
+                  </a>{" "}
+                  fan.
+                </p>
+              </div>
             </Section>
           </div>
         </div>

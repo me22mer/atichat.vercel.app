@@ -5,34 +5,52 @@ import { remark } from "remark";
 import html from "remark-html";
 import { notFound } from "next/navigation";
 
-const projectsDir = path.join(process.cwd(), "projects/");
+const projectsDir = path.join(process.cwd(), "content/projects/");
+const blogsDir = path.join(process.cwd(), "content/blogs/");
+const FILE_EXTENSION = ".md";
 
-export async function getSortedPosts() {
+async function readPostsFromDirectory(baseDir: string): Promise<(ProjectPost | BlogPost)[]> {
   try {
-    const fileNames = await fs.readdir(projectsDir);
-    const allPostsData = await Promise.all(
+    const fileNames = await fs.readdir(baseDir);
+    
+    const posts = await Promise.all(
       fileNames.map(async (fileName) => {
-        const id = fileName.replace(/\.md$/, "");
-
-        const fullPath = path.join(projectsDir, fileName);
+        const id = fileName.replace(new RegExp(`${FILE_EXTENSION}$`), "");
+        
+        const fullPath = path.join(baseDir, fileName);
         const fileContents = await fs.readFile(fullPath, "utf8");
-
         const matterResult = matter(fileContents);
 
-        const projectPost: ProjectPost = {
+        const post: ProjectPost | BlogPost = {
           id,
           title: matterResult.data.title,
           subtitle: matterResult.data.subtitle,
           date: matterResult.data.date,
           repository: matterResult.data.repository,
           url: matterResult.data.url,
-          category: matterResult.data.category,
+          tags: matterResult.data.tags,
         };
 
-        return projectPost;
+        return post;
       })
     );
 
+    return posts;
+  } catch (error) {
+    console.error(`Error reading or processing posts from ${baseDir}:`, error);
+    throw error;
+  }
+}
+
+export async function getSortedPosts() {
+  try {
+    const [projectPosts, blogPosts] = await Promise.all([
+      readPostsFromDirectory(projectsDir),
+      readPostsFromDirectory(blogsDir),
+    ]);
+
+    const allPostsData = [...projectPosts, ...blogPosts];
+    
     return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
   } catch (error) {
     console.error("Error reading or processing posts:", error);
@@ -40,36 +58,33 @@ export async function getSortedPosts() {
   }
 }
 
-export async function getPost(id: string) {
-  const fullPath = path.join(projectsDir, `${id}.md`);
+export async function getPost(id: string, isProject: boolean = true) {
+  const baseDir = isProject ? projectsDir : blogsDir;
+  const fullPath = path.join(baseDir, `${id}${FILE_EXTENSION}`);
 
   try {
     const fileContents = await fs.readFile(fullPath, "utf8");
     const matterResult = matter(fileContents);
 
-    const processedContent = await remark()
-      .use(html)
-      .process(matterResult.content);
-
+    const processedContent = await remark().use(html).process(matterResult.content);
     const contentHtml = processedContent.toString();
 
     if (!contentHtml) {
       notFound();
     }
 
-    const PostWithHTML: ProjectPost & { contentHtml: string } = {
+    const PostWithHTML: (ProjectPost | BlogPost) & { contentHtml: string } = {
       id,
       title: matterResult.data.title,
       subtitle: matterResult.data.subtitle,
       date: matterResult.data.date,
       repository: matterResult.data.repository,
       url: matterResult.data.url,
-      category: matterResult.data.category,
+      tags: matterResult.data.tags,
       contentHtml,
     };
     return PostWithHTML;
   } catch (error) {
-    // console.error("Error reading or processing post:", error);
     notFound();
   }
 }
