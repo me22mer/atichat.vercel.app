@@ -38,7 +38,7 @@ async function readPostsFromDirectory(baseDir: string): Promise<(ProjectPost | B
     return posts;
   } catch (error) {
     // console.error(`Error reading or processing posts from ${baseDir}:`, error);
-    throw error;
+    notFound();
   }
 }
 
@@ -54,7 +54,7 @@ export async function getSortedPosts() {
     return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
   } catch (error) {
     // console.error("Error reading or processing posts:", error);
-    throw error;
+    notFound();
   }
 }
 
