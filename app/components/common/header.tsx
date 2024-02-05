@@ -33,6 +33,7 @@ export default function Header() {
           >
             projects
           </Link>
+
           <Link
             scroll={false}
             href="/resume"
@@ -46,12 +47,8 @@ export default function Header() {
           </Link>
           <Link
             scroll={false}
-            href="/blog"
-            className={`link ${
-              pathname === "blog"
-                ? "active transition-colors duration-500hover:text-zinc-300"
-                : "transition-colors duration-500 text-zinc-400 hover:text-white flex"
-            }`}
+            href="#"
+            className={`transition-colors duration-500 text-zinc-400 hover:text-white flex after:content-['__↗']`}
           >
             blog
           </Link>
