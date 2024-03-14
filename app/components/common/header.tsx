@@ -2,14 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Contact from "../ui/contact";
+import GithubIcon from "../icons/Github-Icon";
 
 export default function Header() {
   const pathname = usePathname();
 
   return (
     <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg bg-black/20 flex justify-center">
-      <div className="w-[710px] mx-6 gap-2 flex justify-between items-center">
+      <div className="w-[720px] mx-6 gap-2 flex justify-between items-center">
         <div className="space-x-4 md:space-x-6 flex justify-start">
           <Link
             scroll={false}
@@ -48,13 +48,13 @@ export default function Header() {
           <Link
             scroll={false}
             href="#"
-            className={`transition-colors duration-500 text-zinc-400 hover:text-white flex after:content-['__↗']`}
+            className={`transition-colors duration-500 text-zinc-400 hover:text-white flex`}
           >
             blog
           </Link>
         </div>
         <div className="">
-          <Contact />
+          <GithubIcon />
         </div>
       </div>
     </nav>
