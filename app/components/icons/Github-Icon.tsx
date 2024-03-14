@@ -5,7 +5,7 @@ type Props = {
 export default function GithubIcon({ IconClass }: Props) {
   return (
     <a
-      href="https://github.com/y3sterd4y"
+      href="https://github.com/me22-a"
       target="_blank"
     >
       <span>

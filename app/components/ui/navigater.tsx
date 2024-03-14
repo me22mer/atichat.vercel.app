@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -12,7 +12,10 @@ export default function Navigater({ Href }: Props) {
     <nav className="w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0">
       <div className="p-6">
         <span>
-          <button type="button" onClick={() => router.push(`${Href}`)}>
+          <button
+            type="button"
+            onClick={() => router.push(`${Href}`, { scroll: false })}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
