@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "blog/first-blog",
+    "title": "fist post",
+    "description": "way I've developed thus far 🙌",
+    "date": "2024-03-16T17:00:00.000Z",
+    "published": true,
+    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(i){return n(e,{children:[t(\"h3\",{children:\"Hi this is my first blog post\"}),\"\\n\",t(\"p\",{children:\"I thus spent a lot of time creating a blog page. Previously, I had a projects page that used markdown (.md) files; however, I moved to MDX to give it more flexibility, and it turned out very well.\"}),\"\\n\",n(\"p\",{children:[\"I use \",t(\"strong\",{children:\"Velite\"}),\" since it simplifies QoL by defining collections. validation of the contents and schema by \",t(\"strong\",{children:\"Zod\"})]})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent()}};",
+    "slugAsParams": "first-blog"
+  },
+  {
+    "slug": "blog/second-blog",
+    "title": "",
+    "description": "",
+    "date": "1998-11-30T17:00:00.000Z",
+    "published": false,
+    "body": "const{Fragment:n,jsx:t}=arguments[0];function _createMdxContent(e){return t(n,{})}return{default:function(n={}){const{wrapper:e}=n.components||{};return e?t(e,{...n,children:t(_createMdxContent,{...n})}):_createMdxContent()}};",
+    "slugAsParams": "second-blog"
+  }
+]
