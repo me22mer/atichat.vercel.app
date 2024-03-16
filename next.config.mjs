@@ -1,5 +1,7 @@
+import { build } from 'velite'
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+export default {
   // othor next config here...
   webpack: config => {
     config.plugins.push(new VeliteWebpackPlugin())
@@ -21,7 +23,6 @@ class VeliteWebpackPlugin {
       const dev = compiler.options.mode === 'development'
       this.options.watch = this.options.watch ?? dev
       this.options.clean = this.options.clean ?? !dev
-      const { build } = await import('velite')
       await build(this.options) // start velite
     })
   }
