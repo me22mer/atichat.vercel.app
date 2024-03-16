@@ -1,9 +1,16 @@
 type ProjectPost = {
-  id: string;
+  slug: string;
   title: string;
-  subtitle: string;
+  description: string;
   date: string;
   repository: string;
   url: string;
-  tags: string[];
+};
+
+type BlogPost = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  published: boolean;
 };

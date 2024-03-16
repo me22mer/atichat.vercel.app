@@ -1,18 +1,20 @@
-import Navigater from "@/components/ui/navigater";
-import getFormattedDate from "@/lib/getFomattedDate";
-import { getSortedPosts, getProjectPost } from "@/lib/posts";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import Navigater from "@/components/ui/navigater";
+import { getFormatDate } from "@/lib/utils";
+import { getSortedPosts, getProjectPost } from "@/lib/posts";
 
 export async function generateStaticParams() {
   const { projectPosts } = await getSortedPosts();
 
   const projectSlugs = projectPosts.map((post) => ({
     params: {
-      slug: post.id,
+      slug: post.slug,
     },
   }));
 
-  return [...projectSlugs]
+  return [...projectSlugs];
 }
 
 export async function generateMetadata({
@@ -23,12 +25,10 @@ export async function generateMetadata({
   const { projectPosts } = await getSortedPosts();
   const { slug } = params;
 
-  const projectPost = projectPosts.find((post) => post.id === slug);
+  const projectPost = projectPosts.find((post) => post.slug === slug);
 
   if (!projectPost) {
-    return {
-      title: "Post Not Found",
-    };
+    return notFound();
   }
 
   return {
@@ -42,10 +42,8 @@ export default async function PostPage({
   params: { slug: string };
 }) {
   const { slug } = params;
-  const { title, date, subtitle, repository, url, contentHtml } = await getProjectPost(
-    slug
-  );
-  const pubDate = getFormattedDate(date);
+  const { title, date, description, repository, url, contentHtml } =
+    await getProjectPost(slug);
 
   return (
     <div className="min-h-screen bg-white">
@@ -53,11 +51,15 @@ export default async function PostPage({
       <div className="w-full bg-black">
         <div className="py-24 sm:py-26 flex flex-col justify-center items-center text-center bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
           <div className=" px-6 flex flex-col ">
-            <time className="mb-6 text-lg  text-zinc-300">{pubDate}</time>
+            <time className="mb-6 text-lg  text-zinc-300">
+              {getFormatDate(date)}
+            </time>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
               {title}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-zinc-300">{subtitle}</p>
+            <p className="mt-6 text-lg leading-8 text-zinc-300">
+              {description}
+            </p>
           </div>
           <div className="mt-8 font-semibold space-x-7">
             {repository && (
@@ -79,7 +81,7 @@ export default async function PostPage({
         <div className="bg-white">
           <div className="">
             <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
-              <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
+              <section dangerouslySetInnerHTML={{ __html: contentHtml }} />{" "}
             </article>
           </div>
         </div>

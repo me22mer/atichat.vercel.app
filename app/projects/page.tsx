@@ -4,7 +4,7 @@ import Section from "@/components/ui/section";
 
 export default async function ProjectsPage() {
   return (
-    <>
+    <div className="bg-gradient-to-b from-zinc-950 to-black">
       <Header />
       <div className="w-full flex justify-center ">
         <div className="m-7 w-[710px]">
@@ -18,6 +18,6 @@ export default async function ProjectsPage() {
           </Section>
         </div>
       </div>
-    </>
+    </div>
   );
 }
