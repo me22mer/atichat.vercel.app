@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "projects/atichat.com",
+    "title": "atichat.com",
+    "description": "The webpage that you are now viewing",
+    "date": "2023-11-01T17:00:00.000Z",
+    "repository": "https://github.com/y3sterd4y/y3sterd4y.github",
+    "url": "",
+    "body": "const{jsx:e}=arguments[0];function _createMdxContent(t){const n={p:\"p\",...t.components};return e(n.p,{children:\"Like so many others, all I wanted was a place to compile some of the projects that I worked on.\"})}return{default:function(t={}){const{wrapper:n}=t.components||{};return n?e(n,{...t,children:e(_createMdxContent,{...t})}):_createMdxContent(t)}};",
+    "slugAsParams": "atichat.com"
+  },
+  {
+    "slug": "projects/Tesla-clone",
+    "title": "Tesla-clone",
+    "description": "A frontend clone of Business website of Tesla.",
+    "date": "2024-02-01T17:00:00.000Z",
+    "repository": "https://github.com/y3sterd4y/tesla-clone",
+    "url": "https://tesla-clone-black-sigma.vercel.app/",
+    "body": "const{jsx:e}=arguments[0];function _createMdxContent(n){const t={p:\"p\",...n.components};return e(t.p,{children:\"I clone the landingpage from the Tesla website. The coding doesn't look great, but I'll keep working to improve it.\"})}return{default:function(n={}){const{wrapper:t}=n.components||{};return t?e(t,{...n,children:e(_createMdxContent,{...n})}):_createMdxContent(n)}};",
+    "slugAsParams": "Tesla-clone"
+  }
+]
