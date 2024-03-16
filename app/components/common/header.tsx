@@ -1,7 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import GithubIcon from "../icons/Github-Icon";
 
 export default function Header() {
@@ -47,8 +48,12 @@ export default function Header() {
           </Link>
           <Link
             scroll={false}
-            href="#"
-            className={`transition-colors duration-500 text-zinc-400 hover:text-white flex`}
+            href="/blog"
+            className={`link ${
+              pathname === "/blog"
+                ? "active transition-colors duration-500 hover:text-zinc-300"
+                : "transition-colors duration-500 text-zinc-400 hover:text-white flex"
+            }`}
           >
             blog
           </Link>

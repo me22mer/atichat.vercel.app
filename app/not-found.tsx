@@ -1,7 +1,8 @@
-"use client"; // Error components must be Client Components
+"use client"; 
+
+import { useRouter, usePathname } from "next/navigation";
 
 import Section from "@/components/ui/section";
-import { useRouter, usePathname } from "next/navigation";
 
 export default function NotFound() {
   const router = useRouter();

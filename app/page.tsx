@@ -1,13 +1,14 @@
 import Image from "next/image";
 
-import Header from "./components/common/header";
-import Footer from "./components/common/footer";
-import Section from "./components/ui/section";
+import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
+import Section from "@/components/ui/section";
+
 import profile from "public/images/DSC03307.avif";
 
 export default async function Home() {
   return (
-    <>
+    <div className="bg-gradient-to-b from-zinc-950 to-black">
       <Header />
 
       <div className="flex justify-center">
@@ -67,6 +68,6 @@ export default async function Home() {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
