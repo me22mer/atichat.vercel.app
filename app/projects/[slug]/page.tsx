@@ -1,37 +1,49 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { projects } from "#site/content";
-
 import Navigater from "@/components/ui/navigater";
-import { MDXContent } from "@/components/common/mdx-content";
 import { getFormatDate } from "@/lib/utils";
+import { getSortedPosts, getProjectPost } from "@/lib/posts";
 
-interface PostPageProps {
-  params: {
-    slug: string[];
+export async function generateStaticParams() {
+  const { projectPosts } = await getSortedPosts();
+
+  const projectSlugs = projectPosts.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+  }));
+
+  return [...projectSlugs];
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { projectPosts } = await getSortedPosts();
+  const { slug } = params;
+
+  const projectPost = projectPosts.find((post) => post.slug === slug);
+
+  if (!projectPost) {
+    return notFound();
+  }
+
+  return {
+    title: projectPost.title,
   };
 }
 
-async function getPostFromParams(params: PostPageProps["params"]) {
-  const slug = params?.slug?.join("/");
-  const post = projects.find((post) => post.slugAsParams === slug);
-
-  return post;
-}
-
-export async function generateStaticParams(): Promise<
-  PostPageProps["params"][]
-> {
-  return projects.map((post) => ({ slug: post.slugAsParams.split("/") }));
-}
-
-export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostFromParams(params);
-
-  if (!post) {
-    return notFound();
-  }
+export default async function PostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+  const { title, date, description, repository, url, contentHtml } =
+    await getProjectPost(slug);
 
   return (
     <div className="min-h-screen bg-white">
@@ -40,31 +52,27 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="py-24 sm:py-26 flex flex-col justify-center items-center text-center bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
           <div className=" px-6 flex flex-col ">
             <time className="mb-6 text-lg  text-zinc-300">
-              {getFormatDate(post.date)}
+              {getFormatDate(date)}
             </time>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
-              {post.title}
+              {title}
             </h1>
             <p className="mt-6 text-lg leading-8 text-zinc-300">
-              {post.description}
+              {description}
             </p>
           </div>
           <div className="mt-8 font-semibold space-x-7">
-            {post.repository && (
+            {repository && (
               <Link
-                href={post.repository}
+                href={repository}
                 target="_blank"
                 className="after:content-['_↗']"
               >
                 Github
               </Link>
             )}
-            {post.url && (
-              <Link
-                href={post.url}
-                target="_blank"
-                className="after:content-['_↗']"
-              >
+            {url && (
+              <Link href={url} target="_blank" className="after:content-['_↗']">
                 Website
               </Link>
             )}
@@ -73,7 +81,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="bg-white">
           <div className="">
             <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
-              <MDXContent code={post.body} />
+              <section dangerouslySetInnerHTML={{ __html: contentHtml }} />{" "}
             </article>
           </div>
         </div>

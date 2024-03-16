@@ -15,7 +15,7 @@ export default function Listproject({ slug, title, description, date }: Props) {
 
   return (
     <li className="w-full md:w-[345px] p-6 border border-zinc-600 rounded-xl">
-      <Link href={slug}>
+      <Link href={`projects/${slug}`}>
         <div className="text-zinc-400 hover:text-zinc-100 transition-colors duration-1000">
           {formattedDate ? (
             <time className="text-xs text-zinc-50">{formattedDate}</time>

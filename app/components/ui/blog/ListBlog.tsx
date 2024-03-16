@@ -38,7 +38,7 @@ export function ListBlog({ slug, title, description, date }: Props) {
   };
   return (
     <Link
-      href={slug}
+      href={`blog/${slug}`}
       className="w-full hover:bg-zinc-900 rounded-lg duration-500 border border-zinc-800"
     >
       <li className="w-full p-6">
