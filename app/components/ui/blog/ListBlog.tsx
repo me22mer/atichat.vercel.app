@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getFormatDate } from "@/lib/utils";
 
@@ -17,30 +17,25 @@ export function ListBlog({ slug, title, description, date }: Props) {
 
   const [animatedContent, setAnimatedContent] = useState(title);
 
-  const generateRandomContent = useCallback(() => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!title || title.trim().length === 0) {
+        setAnimatedContent(generateRandomContent());
+      }
+    }, 500); 
+
+    return () => clearInterval(interval);
+  }, [title]);
+
+ 
+  const generateRandomContent = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
     let randomContent = '';
     for (let i = 0; i < 21; i++) { 
       randomContent += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return randomContent;
-  }, []);
-
-  const memoizedRandomContent = useMemo(() => {
-    if (!title || title.trim().length === 0) {
-      return generateRandomContent();
-    }
-    return title;
-  }, [title, generateRandomContent]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimatedContent(memoizedRandomContent);
-    }, 1000);
-
-    return() => clearInterval(interval);
-  }, [memoizedRandomContent]);
-
+  };
   return (
     <Link
       href={slug}
