@@ -40,7 +40,7 @@ export default async function Home() {
                   <a
                     href="https://www.spu.ac.th/"
                     target="_blank"
-                    className="text-pink-500"
+                    className="hover:font-semibold duration-500"
                   >
                     Sripatum University{" "}
                   </a>
@@ -50,14 +50,14 @@ export default async function Home() {
                 </p>
                 <p>
                   I like the pixel art aesthetic and would like to make video
-                  games. In addition, I like to watch anime ⚔️, play video games
-                  🎮, and am a{" "}
+                  games. In addition, I like to watch anime, play video games,
+                  and am a{" "}
                   <a
                     href="https://www.rockstargames.com/"
                     target="_blank"
-                    className="text-[#ffc144]"
+                    className="hover:font-semibold duration-500"
                   >
-                    RockstarGames💛
+                    RockstarGames
                   </a>{" "}
                   fan.
                 </p>
