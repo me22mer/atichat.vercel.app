@@ -7,8 +7,6 @@ published: true
 
 ### Hi this is my first blog post
 
----
-
 I thus spent a lot of time creating a blog page. Previously, I had a projects page that used markdown (.md) files; however, I moved to MDX to give it more flexibility, and it turned out very well.
 
 I use **Velite** since it simplifies QoL by defining collections. validation of the contents and schema by **Zod**.

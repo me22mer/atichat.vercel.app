@@ -12,7 +12,7 @@ export default async function Home() {
       <Header />
 
       <div className="flex justify-center">
-        <div className="mt-12 mb-6 mx-7 w-[720px]">
+        <div className="mt-12 mb-6 mx-4 md:mx-6 w-[720px]">
           <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6">
             <Section
               delay={0.1}
@@ -40,7 +40,7 @@ export default async function Home() {
                   <a
                     href="https://www.spu.ac.th/"
                     target="_blank"
-                    className="text-pink-500"
+                    className="hover:font-semibold duration-500"
                   >
                     Sripatum University{" "}
                   </a>
@@ -50,14 +50,14 @@ export default async function Home() {
                 </p>
                 <p>
                   I like the pixel art aesthetic and would like to make video
-                  games. In addition, I like to watch anime ⚔️, play video games
-                  🎮, and am a{" "}
+                  games. In addition, I like to watch anime, play video games,
+                  and am a{" "}
                   <a
                     href="https://www.rockstargames.com/"
                     target="_blank"
-                    className="text-[#ffc144]"
+                    className="hover:font-semibold duration-500"
                   >
-                    RockstarGames💛
+                    RockstarGames
                   </a>{" "}
                   fan.
                 </p>

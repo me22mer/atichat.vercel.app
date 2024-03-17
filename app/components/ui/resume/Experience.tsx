@@ -4,7 +4,7 @@ export default function Experience() {
       <h3 className="mb-3 text-2xl font-semibold">Experience</h3>
       <div className="">
         <h4 className="mb-1 text-[1.1rem]">
-          <span className="font-bold text-yellow-500">
+          <span className="font-bold ">
             Volunteer<span className="text-white">,</span>
           </span>{" "}
           <span className=" text-white"> GoodGeekClub</span>{" "}
@@ -16,7 +16,7 @@ export default function Experience() {
               <a
                 href="https://dseelin.co.th/"
                 target="_blank"
-                className="font-semibold text-zinc-400 underline decoration-dotted hover:decoration-solid"
+                className="font-semibold text-lg  duration-500 underline decoration-dotted underline-offset-4 hover:decoration-solid "
               >
                 dseelin.co.th
               </a>
@@ -30,7 +30,7 @@ export default function Experience() {
               <a
                 href="https://youthplusthailand.com/"
                 target="_blank"
-                className="font-semibold text-zinc-400 underline decoration-dotted hover:decoration-solid"
+                className="font-semibold text-lg duration-500 underline decoration-dotted underline-offset-4 hover:decoration-solid"
               >
                 youthplusthailand.com
               </a>

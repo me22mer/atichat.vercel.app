@@ -46,7 +46,7 @@ export default async function PostPage({
 
   return (
     <div>
-      <Navigater Href="/blog" />
+      <Navigater />
       {published ? (
         <div className="h-auto bg-white">
           <div className="w-full ">
