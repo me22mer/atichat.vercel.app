@@ -12,7 +12,7 @@ export default async function Home() {
       <Header />
 
       <div className="flex justify-center">
-        <div className="mt-12 mb-6 mx-7 w-[720px]">
+        <div className="mt-12 mb-6 mx-4 md:mx-6 w-[720px]">
           <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6">
             <Section
               delay={0.1}

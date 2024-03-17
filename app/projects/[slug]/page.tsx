@@ -47,7 +47,7 @@ export default async function PostPage({
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigater Href="/projects" />
+      <Navigater />
       <div className="w-full bg-black">
         <div className="py-24 sm:py-26 flex flex-col justify-center items-center text-center bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
           <div className=" px-6 flex flex-col ">

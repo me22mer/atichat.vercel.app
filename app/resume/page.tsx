@@ -8,9 +8,9 @@ import Skills from "@/components/ui/resume/Skills";
 
 export default function ResumePage() {
   return (
-    <section className="w-full h-full bg-gradient-to-tl from-zinc-900 via-zinc-700/10 to-zinc-900 flex justify-center">
-      <Navigation Href="/" />
-      <div className="w-[720px] mt-32 mb-5 mx-10 ">
+    <section className="w-full h-full bg-gradient-to-tl from-zinc-900 via-zinc-700/10 to-zinc-900 flex justify-normal md:justify-center">
+      <Navigation />
+      <div className="w-[720px] mt-32 mb-5 mx-5 md:mx-10 ">
         <Profile />
         <Objective />
         <Experience />

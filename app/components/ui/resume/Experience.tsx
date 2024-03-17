@@ -16,7 +16,7 @@ export default function Experience() {
               <a
                 href="https://dseelin.co.th/"
                 target="_blank"
-                className="font-semibold text-zinc-400 underline decoration-dotted hover:decoration-solid"
+                className="font-semibold text-lg hover:text-orange-500 duration-500 underline decoration-dotted hover:decoration-solid hover:decoration-yellow-500"
               >
                 dseelin.co.th
               </a>
@@ -30,7 +30,7 @@ export default function Experience() {
               <a
                 href="https://youthplusthailand.com/"
                 target="_blank"
-                className="font-semibold text-zinc-400 underline decoration-dotted hover:decoration-solid"
+                className="font-semibold text-lg hover:text-orange-500 duration-500 underline decoration-dotted hover:decoration-solid hover:decoration-yellow-500"
               >
                 youthplusthailand.com
               </a>
