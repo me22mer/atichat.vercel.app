@@ -6,7 +6,7 @@ export default async function BlogPosts() {
 
   return (
     <div className="">
-      <ul className="my-10 w-full flex flex-wrap justify-betdween gap-5">
+      <ul className="my-16 w-full flex flex-wrap justify-betdween gap-5">
         {blogPosts.map((post) => (
           <ListBlog
             key={post.slug}

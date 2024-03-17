@@ -18,9 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.className} antialiased scrollbar-none`}>
+    <html
+      lang="en"
+      className={`${inter.className} antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950`}
+    >
       <body className=" antialiased w-full flex flex-col justify-center">
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   );

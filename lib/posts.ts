@@ -1,9 +1,15 @@
 import fs from "fs/promises";
 import path from "path";
-import matter from "gray-matter";
+
 import { remark } from "remark";
-import html from "remark-html";
 import { notFound } from "next/navigation";
+
+import matter from "gray-matter";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
+import rehypeFormat from "rehype-format";
 
 const projectsDir = path.join(process.cwd(), "/app/content/projects/");
 const blogsDir = path.join(process.cwd(), "/app/content/blog/");
@@ -15,7 +21,7 @@ export async function getSortedPosts() {
 
     const projectPosts = await Promise.all(
       projectFileNames.map(async (fileName) => {
-        const slug = fileName.replace(/\.mdx$/, "");
+        const slug = fileName.replace(/\.md$/, "");
 
         const fullPath = path.join(projectsDir, fileName);
         const fileContents = await fs.readFile(fullPath, "utf8");
@@ -37,7 +43,7 @@ export async function getSortedPosts() {
 
     const blogPosts = await Promise.all(
       blogFileNames.map(async (fileName) => {
-        const slug = fileName.replace(/\.mdx$/, "");
+        const slug = fileName.replace(/\.md$/, "");
 
         const fullPath = path.join(blogsDir, fileName);
         const fileContents = await fs.readFile(fullPath, "utf8");
@@ -68,7 +74,7 @@ export async function getSortedPosts() {
 
 export async function getProjectPost(slug: string) {
   const baseDir = projectsDir;
-  const fileExtension = ".mdx"; // Adjust the extension if needed
+  const fileExtension = ".md"; // Adjust the extension if needed
 
   const fullPath = path.join(baseDir, `${slug}${fileExtension}`);
 
@@ -77,10 +83,16 @@ export async function getProjectPost(slug: string) {
     const matterResult = matter(fileContents);
 
     const processedContent = await remark()
-      .use(html)
+      .use(remarkParse)
+      .use(remarkGfm)
+      .use(remarkRehype)
+      .use(rehypeFormat)
+      .use(rehypeStringify)
       .process(matterResult.content);
 
     const contentHtml = processedContent.toString();
+
+    console.log(contentHtml);
 
     if (!contentHtml) {
       notFound();
@@ -104,7 +116,7 @@ export async function getProjectPost(slug: string) {
 
 export async function getBlogPost(slug: string) {
   const baseDir = blogsDir;
-  const fileExtension = ".mdx"; // Adjust the extension if needed
+  const fileExtension = ".md"; // Adjust the extension if needed
 
   const fullPath = path.join(baseDir, `${slug}${fileExtension}`);
 
@@ -113,7 +125,11 @@ export async function getBlogPost(slug: string) {
     const matterResult = matter(fileContents);
 
     const processedContent = await remark()
-      .use(html)
+      .use(remarkParse)
+      .use(remarkGfm)
+      .use(remarkRehype)
+      .use(rehypeFormat)
+      .use(rehypeStringify)
       .process(matterResult.content);
 
     const contentHtml = processedContent.toString();
