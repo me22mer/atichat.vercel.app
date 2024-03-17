@@ -34,7 +34,6 @@ export async function generateMetadata({
   return {
     title: blogPost.title,
   };
-
 }
 export default async function PostPage({
   params,
@@ -46,26 +45,29 @@ export default async function PostPage({
     await getBlogPost(slug);
 
   return (
-    <>
+    <div>
       <Navigater Href="/blog" />
       {published ? (
         <div className="h-auto bg-white">
-          <div className="w-full flex justify-center bg-gradient-to-b from-zinc-900 to bg-black">
-            <div className="py-12 mt-20 ">
-              <div className="px-4 mx-auto mb-5 flex flex-col ">
-              <time className="mb-2 text-sm  text-zinc-300">
-                  {getFormatDate(date)}
-                </time>
-                <h1 className="mb-3 text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
-                  {title}
-                </h1>
-                <p className="mb-3 text-xl leading-8 text-zinc-300">
-                  {description}
-                </p>
-                
+          <div className="w-full ">
+            <div className="py-12 flex flex-col justify-center bg-gradient-to-b from-zinc-900/50 to bg-black">
+              <div className="px-4 mt-20 mb-10 flex justify-center">
+                <div className="w-[618px] flex flex-col">
+                  <time className="mb-2 text-sm  text-zinc-300">
+                    {getFormatDate(date)}
+                  </time>
+                  <h1 className="mb-3 text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
+                    {title}
+                  </h1>
+                  <p className="mb-6 text-xl leading-8 text-zinc-300">
+                    {description}
+                  </p>
+                  <hr className=" border-zinc-600" />
+                </div>
               </div>
-              <div className="">
-                <article className="px-4 mx-auto prose prose-zinc prose-invert prose-quoteless">
+
+              <div className="w-full">
+                <article className="px-4 mx-auto prose prose-zinc prose-invert prose-quoteless prose-pre:bg-zinc-800/70 prose-img:rounded-lg">
                   <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
                 </article>
               </div>
@@ -82,6 +84,6 @@ export default async function PostPage({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
