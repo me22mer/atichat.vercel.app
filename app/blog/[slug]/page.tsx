@@ -1,20 +1,19 @@
 import { notFound } from "next/navigation";
 
 import { getFormatDate } from "@/lib/utils";
-import { getBlogPost, getSortedPosts } from "@/lib/posts";
+import { getBlogPost, getBlogMeta } from "@/lib/posts";
+import "highlight.js/styles/github-dark.css";
 
 import Navigater from "@/components/ui/navigater";
 
 export async function generateStaticParams() {
-  const { blogPosts } = await getSortedPosts();
+  const posts = await getBlogMeta();
 
-  const blogSlugs = blogPosts.map((post) => ({
-    params: {
-      slug: post.slug,
-    },
+  if (!posts) return [];
+
+  return posts.map((post) => ({
+    postId: post.slug,
   }));
-
-  return [...blogSlugs];
 }
 
 export async function generateMetadata({
@@ -22,17 +21,14 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const { blogPosts } = await getSortedPosts();
-  const { slug } = params;
+  const post = await getBlogPost(params.slug);
 
-  const blogPost = blogPosts.find((post) => post.slug === slug);
-
-  if (!blogPost) {
+  if (!post) {
     return notFound();
   }
 
   return {
-    title: blogPost.title,
+    title: post.meta.title,
   };
 }
 export default async function PostPage({
@@ -40,27 +36,28 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = params;
-  const { title, date, description, published, contentHtml } =
-    await getBlogPost(slug);
+  const post = await getBlogPost(params.slug);
+  if (!post) notFound();
+
+  const { meta, content } = post;
 
   return (
     <div>
       <Navigater />
-      {published ? (
+      {meta.published ? (
         <div className="h-auto bg-white">
           <div className="w-full ">
             <div className="py-12 flex flex-col justify-center bg-gradient-to-b from-zinc-900/50 to bg-black">
               <div className="px-4 mt-20 mb-10 flex justify-center">
                 <div className="w-[618px] flex flex-col">
                   <time className="mb-2 text-sm  text-zinc-300">
-                    {getFormatDate(date)}
+                    {getFormatDate(meta.date)}
                   </time>
                   <h1 className="mb-3 text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
-                    {title}
+                    {meta.title}
                   </h1>
                   <p className="mb-6 text-xl leading-8 text-zinc-300">
-                    {description}
+                    {meta.description}
                   </p>
                   <hr className=" border-zinc-600" />
                 </div>
@@ -68,7 +65,7 @@ export default async function PostPage({
 
               <div className="w-full">
                 <article className="px-4 mx-auto prose prose-zinc prose-invert prose-quoteless prose-pre:bg-zinc-800/70 prose-img:rounded-lg">
-                  <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
+                  <section dangerouslySetInnerHTML={{ __html: content }} />
                 </article>
               </div>
             </div>

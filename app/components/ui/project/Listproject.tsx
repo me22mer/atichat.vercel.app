@@ -3,13 +3,11 @@ import Link from "next/link";
 import { getFormatDate } from "@/lib/utils";
 
 type Props = {
-  slug: string;
-  title: string;
-  description?: string;
-  date: string;
+  post: ProjectMeta;
 };
 
-export default function Listproject({ slug, title, description, date }: Props) {
+export default function Listproject({ post }: Props) {
+  const { slug, title, description, date } = post;
   const formattedDate = getFormatDate(date);
 
   return (

@@ -2,153 +2,116 @@ import fs from "fs/promises";
 import path from "path";
 
 import { remark } from "remark";
-import { notFound } from "next/navigation";
-
-import matter from "gray-matter";
-import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
+import matter from "gray-matter";
 import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
+import remarkRehype from "remark-rehype";
 import rehypeFormat from "rehype-format";
 
-const projectsDir = path.join(process.cwd(), "/app/content/projects/");
-const blogsDir = path.join(process.cwd(), "/app/content/blog/");
+const projectsDir = path.join(process.cwd(), "/app/content/(projects)/");
+const blogsDir = path.join(process.cwd(), "/app/content/(blog)/");
 
-export async function getSortedPosts() {
-  try {
-    const projectFileNames = await fs.readdir(projectsDir);
-    const blogFileNames = await fs.readdir(blogsDir);
-
-    const projectPosts = await Promise.all(
-      projectFileNames.map(async (fileName) => {
-        const slug = fileName.replace(/\.md$/, "");
-
-        const fullPath = path.join(projectsDir, fileName);
-        const fileContents = await fs.readFile(fullPath, "utf8");
-
-        const matterResult = matter(fileContents);
-
-        const projectPost: ProjectPost = {
-          slug,
-          title: matterResult.data.title,
-          description: matterResult.data.description,
-          date: matterResult.data.date,
-          repository: matterResult.data.repository,
-          url: matterResult.data.url,
-        };
-
-        return projectPost;
-      })
-    );
-
-    const blogPosts = await Promise.all(
-      blogFileNames.map(async (fileName) => {
-        const slug = fileName.replace(/\.md$/, "");
-
-        const fullPath = path.join(blogsDir, fileName);
-        const fileContents = await fs.readFile(fullPath, "utf8");
-
-        const matterResult = matter(fileContents);
-
-        const blogPost: BlogPost = {
-          slug,
-          title: matterResult.data.title,
-          description: matterResult.data.description,
-          date: matterResult.data.date,
-          published: matterResult.data.published,
-        };
-
-        return blogPost;
-      })
-    );
-
-    return {
-      projectPosts: projectPosts.sort((a, b) => (a.date < b.date ? 1 : -1)),
-      blogPosts: blogPosts.sort((a, b) => (a.date < b.date ? 1 : -1)),
-    };
-  } catch (error) {
-    console.error("Error reading or processing posts:", error);
-    throw error;
-  }
+async function processMarkdownContent(content) {
+  return await remark()
+    .use(remarkParse)
+    .use(remarkToc)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeAutolinkHeadings, { behavior: "wrap" })
+    .use(rehypeStringify)
+    .use(rehypeHighlight)
+    .use(rehypeFormat)
+    .process(content);
 }
 
-export async function getProjectPost(slug: string) {
-  const baseDir = projectsDir;
-  const fileExtension = ".md"; // Adjust the extension if needed
+export async function getBlogPost(filename: string) {
+  const slug = filename.replace(/\.md$/, "");
 
-  const fullPath = path.join(baseDir, `${slug}${fileExtension}`);
+  const fullPath = path.join(blogsDir, `${slug}.md`);
+  const fileContents = await fs.readFile(fullPath, "utf8");
 
-  try {
-    const fileContents = await fs.readFile(fullPath, "utf8");
-    const matterResult = matter(fileContents);
+  const meta = matter(fileContents);
+  const processedContent = await processMarkdownContent(meta.content);
 
-    const processedContent = await remark()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkRehype)
-      .use(rehypeFormat)
-      .use(rehypeStringify)
-      .process(matterResult.content);
+  const contentHtml = processedContent.toString();
 
-    const contentHtml = processedContent.toString();
+  const blogPost: BlogPost = {
+    meta: {
+      slug,
+      title: meta.data.title,
+      description: meta.data.description,
+      date: meta.data.date,
+      published: meta.data.published,
+    },
+    content: contentHtml,
+  };
 
-    console.log(contentHtml);
+  return blogPost;
+}
 
-    if (!contentHtml) {
-      notFound();
+export async function getBlogMeta(): Promise<BlogMeta[] | undefined> {
+  const filesArray = await fs.readdir(blogsDir);
+
+  const posts: BlogMeta[] = [];
+
+  for (const file of filesArray) {
+    if (file.endsWith(".md")) {
+      const post = await getBlogPost(file);
+      if (post) {
+        const { meta } = post;
+        posts.push(meta);
+      }
     }
-
-    const PostWithHTML: ProjectPost & { contentHtml: string } = {
-      slug,
-      title: matterResult.data.title,
-      description: matterResult.data.description,
-      date: matterResult.data.date,
-      repository: matterResult.data.repository,
-      url: matterResult.data.url,
-      contentHtml,
-    };
-    return PostWithHTML;
-  } catch (error) {
-    console.error("Error reading or processing post:", error);
-    notFound();
   }
+
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getBlogPost(slug: string) {
-  const baseDir = blogsDir;
-  const fileExtension = ".md"; // Adjust the extension if needed
+export async function getProjectPost(
+  filename: string
+): Promise<ProjectPost | undefined> {
+  const slug = filename.replace(/\.md$/, "");
 
-  const fullPath = path.join(baseDir, `${slug}${fileExtension}`);
+  const fullPath = path.join(projectsDir, `${slug}.md`);
+  const fileContents = await fs.readFile(fullPath, "utf8");
 
-  try {
-    const fileContents = await fs.readFile(fullPath, "utf8");
-    const matterResult = matter(fileContents);
+  const meta = matter(fileContents);
+  const processedContent = await processMarkdownContent(meta.content);
 
-    const processedContent = await remark()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkRehype)
-      .use(rehypeFormat)
-      .use(rehypeStringify)
-      .process(matterResult.content);
+  const contentHtml = processedContent.toString();
 
-    const contentHtml = processedContent.toString();
-
-    // if (!contentHtml) {
-    //   notFound();
-    // }
-
-    const PostWithHTML: BlogPost & { contentHtml: string } = {
+  const projectPostObj: ProjectPost = {
+    meta: {
       slug,
-      title: matterResult.data.title,
-      description: matterResult.data.description,
-      date: matterResult.data.date,
-      published: matterResult.data.published,
-      contentHtml,
-    };
-    return PostWithHTML;
-  } catch (error) {
-    console.error("Error reading or processing post:", error);
-    notFound();
+      title: meta.data.title,
+      date: meta.data.date,
+      description: meta.data.description,
+      repository: meta.data.repository,
+      url: meta.data.url,
+    },
+    content: contentHtml,
+  };
+  return projectPostObj;
+}
+
+export async function getProjectMeta(): Promise<ProjectMeta[] | undefined> {
+  const filesArray = await fs.readdir(projectsDir);
+
+  const posts: ProjectMeta[] = [];
+
+  for (const file of filesArray) {
+    if (file.endsWith(".md")) {
+      const post = await getProjectPost(file);
+      if (post) {
+        const { meta } = post;
+        posts.push(meta);
+      }
+    }
   }
+
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }

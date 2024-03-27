@@ -6,13 +6,11 @@ import { useEffect, useState } from "react";
 import { getFormatDate } from "@/lib/utils";
 
 type Props = {
-  slug: string;
-  title: string;
-  description?: string;
-  date: string;
+  post: BlogMeta;
 };
 
-export function ListBlog({ slug, title, description, date }: Props) {
+export function ListBlog({ post }: Props) {
+  const { slug, title, description, date } = post
   const formattedDate = getFormatDate(date);
 
   const [animatedContent, setAnimatedContent] = useState(title);
