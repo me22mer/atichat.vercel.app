@@ -1,4 +1,4 @@
-type ProjectPost = {
+type ProjectMeta = {
   slug: string;
   title: string;
   description: string;
@@ -7,10 +7,21 @@ type ProjectPost = {
   url: string;
 };
 
-type BlogPost = {
+type BlogMeta = {
   slug: string;
   title: string;
   description: string;
   date: string;
   published: boolean;
 };
+
+type ProjectPost = {
+  meta: ProjectMeta;
+  content: string;
+};
+
+type BlogPost = {
+  meta: BlogMeta;
+  content: string;
+};
+
