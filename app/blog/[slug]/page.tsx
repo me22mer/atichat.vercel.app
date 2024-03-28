@@ -40,7 +40,7 @@ export default async function PostPage({
 
   const { meta, content } = post;
 
-  if (!meta.published || post) {
+  if (!meta.published || !post) {
     return notFound();
   }
   return (
