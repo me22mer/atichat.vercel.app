@@ -5,6 +5,7 @@ type ProjectMeta = {
   date: string;
   repository: string;
   url: string;
+  published: boolean;
 };
 
 type BlogMeta = {
@@ -24,4 +25,3 @@ type BlogPost = {
   meta: BlogMeta;
   content: string;
 };
-

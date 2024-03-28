@@ -37,9 +37,12 @@ export default async function PostPage({
   params: { slug: string };
 }) {
   const post = await getProjectPost(params.slug);
-  if (!post || !post.meta.date) notFound();
 
   const { meta, content } = post;
+  
+  if (!meta.published || post) {
+    return notFound();
+  }
 
   return (
     <div className="min-h-screen bg-white">

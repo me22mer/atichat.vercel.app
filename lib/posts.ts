@@ -90,6 +90,7 @@ export async function getProjectPost(filename: string) {
       description: meta.data.description,
       repository: meta.data.repository,
       url: meta.data.url,
+      published: meta.data.published,
     },
     content: contentHtml,
   };

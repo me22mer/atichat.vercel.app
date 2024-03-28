@@ -4,8 +4,9 @@ import TSIcon from "@/icons/TS-Icon";
 import GitIcon from "@/icons/Git-Icon";
 import NextjsIcon from "@/icons/Nextjs-Icon";
 import ReactIcon from "@/icons/React-Icon";
+import TailwindcssIcon from "@/components/icons/Tailwindcss-Icon";
 
-const icons = [HTMLIcon, CSSIcon, TSIcon, GitIcon, NextjsIcon, ReactIcon];
+const icons = [HTMLIcon, CSSIcon, TSIcon, GitIcon, NextjsIcon, ReactIcon, TailwindcssIcon];
 export default function ListIcon() {
   return (
     <>
