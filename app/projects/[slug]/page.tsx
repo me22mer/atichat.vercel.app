@@ -37,7 +37,7 @@ export default async function PostPage({
   params: { slug: string };
 }) {
   const post = await getProjectPost(params.slug);
-  if (!post) notFound();
+  if (!post || !post.meta.date) notFound();
 
   const { meta, content } = post;
 

@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useRouter, usePathname } from "next/navigation";
 
@@ -12,7 +12,7 @@ export default function NotFound() {
     <main>
       <div className="w-full">
         <div className="h-[100vh] py-24 sm:py-32 flex items-center justify-center bg-gradient-to-tl from-zinc-900 via-zinc-700/10 to-zinc-900">
-          <Section delay={0.5} className="">
+          <Section className="">
             <div className=" px-6 flex flex-col text-center items-center">
               <h1 className="mb-16 text-2xl mb:text-4xl font-bold tracking-tight text-white sm:text-6xl ">
                 Not found : &quot;{pathName}&quot;

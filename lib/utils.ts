@@ -13,7 +13,7 @@ export function getFormatDate(input: string | number): string {
     if (!isNaN(timestamp)) {
       date = new Date(timestamp);
     } else {
-      return "Invalid date format";
+      return "";
     }
   } else if (typeof input === "number") {
     // Assuming input is a valid timestamp

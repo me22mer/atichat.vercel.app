@@ -9,7 +9,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg bg-black/20 flex justify-center">
+    <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg flex justify-center">
       <div className="w-[720px] mx-4 md:mx-6 gap-2 flex justify-between items-center">
         <div className="space-x-4 md:space-x-6 flex justify-start">
           <Link

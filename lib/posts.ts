@@ -53,7 +53,7 @@ export async function getBlogPost(filename: string) {
   return blogPost;
 }
 
-export async function getBlogMeta(): Promise<BlogMeta[] | undefined> {
+export async function getBlogMeta() {
   const filesArray = await fs.readdir(blogsDir);
 
   const posts: BlogMeta[] = [];
@@ -71,9 +71,7 @@ export async function getBlogMeta(): Promise<BlogMeta[] | undefined> {
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getProjectPost(
-  filename: string
-): Promise<ProjectPost | undefined> {
+export async function getProjectPost(filename: string) {
   const slug = filename.replace(/\.md$/, "");
 
   const fullPath = path.join(projectsDir, `${slug}.md`);
@@ -98,7 +96,7 @@ export async function getProjectPost(
   return projectPostObj;
 }
 
-export async function getProjectMeta(): Promise<ProjectMeta[] | undefined> {
+export async function getProjectMeta() {
   const filesArray = await fs.readdir(projectsDir);
 
   const posts: ProjectMeta[] = [];
