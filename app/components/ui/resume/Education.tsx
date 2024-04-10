@@ -3,10 +3,10 @@ export default function Education() {
     <div className="mb-16">
       <h3 className="mb-3 text-2xl font-semibold">Education</h3>
       <div className="leading-relaxed">
-        <time className="font-bold  text-[1.1rem]">
+        <time className="font-bold  text-[1.05rem]">
           2021 - Present
         </time>
-        <p className="text-zinc-50  text-[1.05rem]">
+        <p className="text-zinc-50  text-[1rem]">
           Bachelor of Science (Information and Communication Technology),
           <span className="text-zinc-300"> Sripatum University</span>
         </p>

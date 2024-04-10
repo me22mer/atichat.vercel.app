@@ -10,16 +10,14 @@ export default function Navigater() {
   const router = useRouter();
 
   return (
-    <nav className="w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0">
+    <nav className="w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0 ">
       <div className="px-4 py-6">
         <span>
           <button type="button" onClick={() => router.back()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              className="invert-[.45]"
+              width={40}
+              className="invert-[.45] hover:invert-0 hover:fill-white duration-500"
               viewBox="0 0 16 16"
             >
               <path

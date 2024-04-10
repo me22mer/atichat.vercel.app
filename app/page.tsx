@@ -10,9 +10,8 @@ export default async function Home() {
   return (
     <div className="bg-gradient-to-b from-zinc-950 via-zinc-950/90 to-black">
       <Header />
-
       <div className="flex justify-center">
-        <div className="mt-12 mb-6 mx-4 md:mx-6 w-[720px]">
+        <div className="mt-12 mb-6 mx-4 md:mx-6 w-[672px]">
           <div className="flex flex-col md:gap-6">
             <Section className="mb-6 aspect-h-2 md:aspect-w-7 aspect-w-4 overflow-hidden rounded-md">
               <Image

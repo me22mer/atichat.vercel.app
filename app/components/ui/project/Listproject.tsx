@@ -4,11 +4,12 @@ import { getFormatDate } from "@/lib/utils";
 
 type Props = {
   post: ProjectMeta;
+  slug: string
 };
 
-export default function Listproject({ post }: Props) {
-  const { slug, title, description, date, published } = post;
-  const formattedDate = getFormatDate(date);
+export default function Listproject({ post, slug }: Props) {
+  const { title, description, publishedAt, published } = post;
+  const formattedDate = getFormatDate(publishedAt);
 
   return (
     <>

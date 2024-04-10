@@ -1,27 +1,17 @@
 type ProjectMeta = {
-  slug: string;
   title: string;
-  description: string;
+  publishedAt: string;
   date: string;
+  description: string;
   repository: string;
   url: string;
   published: boolean;
 };
 
 type BlogMeta = {
-  slug: string;
   title: string;
+  publishedAt: string;
   description: string;
-  date: string;
+  coverImage?: string;
   published: boolean;
-};
-
-type ProjectPost = {
-  meta: ProjectMeta;
-  content: string;
-};
-
-type BlogPost = {
-  meta: BlogMeta;
-  content: string;
 };
