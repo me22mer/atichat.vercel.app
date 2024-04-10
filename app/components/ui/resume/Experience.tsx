@@ -3,15 +3,15 @@ export default function Experience() {
     <div className="mb-16">
       <h3 className="mb-3 text-2xl font-semibold">Experience</h3>
       <div className="">
-        <h4 className="mb-1 text-[1.1rem]">
+        <h4 className="mb-1 text-[1.05rem]">
           <span className="font-bold ">
-            Volunteer<span className="text-white">,</span>
+            Website Developer<span className="text-white">,</span>
           </span>{" "}
           <span className=" text-white"> GoodGeekClub</span>{" "}
           <span className=" text-zinc-300 italic">(2022 to Present)</span>
         </h4>
         <div>
-          <ul className="list-disc list-inside text-[1.05rem] space-y-1.5">
+          <ul className="pl-5 list-disc list-outside [&_ul]:list-[revert] text-[1rem] space-y-1.5">
             <li>
               <a
                 href="https://dseelin.co.th/"
@@ -21,10 +21,12 @@ export default function Experience() {
                 dseelin.co.th
               </a>
 
-              <span className="ml-2 before:content-['-'] before:mr-2">
-                Create a website with Plesk hosting and Wordpress for healthy
-                food products.{" "}
-              </span>
+              <ul className="mt-1.5 list-inside">
+                <li>
+                  Create a website with Plesk hosting and Wordpress for healthy
+                  food products.
+                </li>
+              </ul>
             </li>
             <li>
               <a
@@ -35,9 +37,9 @@ export default function Experience() {
                 youthplusthailand.com
               </a>
 
-              <span className="ml-2 before:content-['-'] before:mr-2">
-                Deploy the static web page Nextjs to Plesk hosting.
-              </span>
+              <ul className="mt-1.5 list-inside">
+                <li>Deploy the static web page Next.js to Plesk hosting.</li>
+              </ul>
             </li>
             <li>
               Using Amazon services such as S3, Cloudfront, to host a static

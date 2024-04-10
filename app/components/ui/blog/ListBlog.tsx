@@ -3,11 +3,12 @@ import { getFormatDate } from "@/lib/utils";
 
 type Props = {
   post: BlogMeta;
+  slug: string;
 };
 
-export function ListBlog({ post }: Props) {
-  const { slug, title, description, date, published } = post;
-  const formattedDate = getFormatDate(date);
+export function ListBlog({ post, slug }: Props) {
+  const { title, description, publishedAt, published } = post;
+  const formattedDate = getFormatDate(publishedAt);
 
   return (
     <>
