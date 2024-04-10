@@ -8,8 +8,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ATICHAT",
-  description: "This is my personal website.",
+  title: {
+    default: "Atichat Thongnak",
+    template: "%s | Atichat Thongnak",
+  },
+  description: "Mess Developer, student and gamer",
+  openGraph: {
+    title: "Atichat Thongank",
+    description: "Mess Developer, student and gamer",
+    url: "https://atichat.vercel.app/",
+    siteName: "Atichat Thongank",
+    locale: "en_US, th_TH",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
+
 import Header from "@/components/common/header";
 import BlogPosts from "@/components/ui/blog/blogPosts";
 import Section from "@/components/ui/section";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Take a look at my journal to help you relax and feel motivated.",
+};
 
 export default async function BlogPage() {
   return (
