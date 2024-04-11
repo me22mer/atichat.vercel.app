@@ -4,6 +4,7 @@ import { getFormatDate } from "@/lib/utils";
 import { getBlogBySlug, getBlogs } from "@/lib/posts";
 
 import Navigater from "@/components/ui/navigater";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   const posts = await getBlogs();
@@ -48,18 +49,26 @@ export default async function PostPage({
       <Navigater />
       <div className="h-auto">
         <div className="w-full">
-          <div className="py-12 flex flex-col justify-center bg-gradient-to-b from-zinc-900/50 to bg-black">
-            <div className="px-4 mt-20 mb-10 flex justify-center">
-              <div className="w-[672px] flex flex-col">
-                <div className="mb-3 font-display">
+          <div className="py-12 flex flex-col justify-center bg-gradient-to-b from-zinc-800/60 to bg-black">
+            <div className="px-4 mt-14 mb-10 flex flex-col items-center">
+              {frontmatter.coverImage ? (
+                <Image
+                  src={frontmatter.coverImage}
+                  width={920}
+                  height={460}
+                  className="mb-8 w-[920px] h-max-content md:h-[460px] rounded-xl object-contain md:object-cover shadow-lg shadow-black/50 brightness-[.8]"
+                  alt=""
+                  priority
+                  sizes="(max-width: 1024px) 100vw"
+                />
+              ) : null}
+              <div className="w-full md:max-w-[672px] flex flex-col">
+                <div className="mb-3">
                   <h1 className=" font-bold text-5xl tracking-tight text-zinc-100 sm:text-7xl">
                     {frontmatter.title}
-                    <span className="ml-3 text-2xl font-semibold leading-8 text-zinc-300/80">
-                      {frontmatter.description}
-                    </span>
                   </h1>
                 </div>
-                <time className="mb-2 text-md font-medium text-zinc-300/80">
+                <time className="mb-3 text-[1.1rem] font-medium text-zinc-300/80">
                   {getFormatDate(frontmatter.publishedAt)}
                 </time>
               </div>
