@@ -4,7 +4,7 @@ type Props = {
 
 export default function LinkedInIcon({ IconClass }: Props) {
   return (
-    <a href="https://www.linkedin.com/in/atichat-thongnak-b1334122a/" target="_blank" >
+    <a href="https://www.linkedin.com/in/atichat-thongnak-b1334122a/" target="_blank" aria-label="linkedin">
       <span>
         <svg width={26} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={`${IconClass}`}>
           <title>LinkedIn</title>

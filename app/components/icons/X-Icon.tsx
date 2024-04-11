@@ -4,7 +4,7 @@ type Props = {
 
 export default function XIcon({ IconClass }: Props) {
   return (
-    <a href="https://twitter.com/me22_real" target="_blank">
+    <a href="https://twitter.com/me22_real" target="_blank" aria-label="X">
       <span>
         <svg
           width={26}
