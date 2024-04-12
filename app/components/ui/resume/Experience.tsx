@@ -33,7 +33,7 @@ export default function Experience() {
           webpage.
         </li>
         <li>
-          Provide IT expertise as a volunteer to benefit the less fortunate.
+          Provide IT expertise as a volunteer.
         </li>
       </ul>
 
