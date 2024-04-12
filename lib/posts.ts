@@ -9,7 +9,7 @@ const projectDir = path.join(process.cwd(), "app/content/(projects)");
 // Blog
 
 export async function getBlogBySlug(slug: string) {
-  const fileName = slug + ".mdx";
+  const fileName = `${slug}.mdx`;
   const filePath = path.join(blogDir, fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { frontmatter, content } = await compileMDX<BlogMeta>({
@@ -20,7 +20,7 @@ export async function getBlogBySlug(slug: string) {
   return {
     frontmatter,
     content,
-    slug: path.parse(fileName).name,
+    slug,
   };
 }
 
@@ -35,7 +35,7 @@ export async function getBlogs() {
 // Project
 
 export async function getProjectBySlug(slug: string) {
-  const fileName = slug + ".mdx";
+  const fileName = `${slug}.mdx`;
   const filePath = path.join(projectDir, fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { frontmatter, content } = await compileMDX<ProjectMeta>({
@@ -45,7 +45,7 @@ export async function getProjectBySlug(slug: string) {
   return {
     frontmatter,
     content,
-    slug: path.parse(fileName).name,
+    slug,
   };
 }
 
