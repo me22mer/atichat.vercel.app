@@ -56,7 +56,7 @@ export default async function PostPage({
                   src={frontmatter.coverImage}
                   width={920}
                   height={460}
-                  className="mb-8 w-[920px] h-max-content md:h-[460px] rounded-xl object-contain md:object-cover shadow-lg shadow-black/50 brightness-[.8]"
+                  className="mb-8 w-[920px] h-max-content md:h-[460px] rounded-xl object-contain md:object-cover shadow-lg shadow-black/50"
                   alt=""
                   priority
                   sizes="(max-width: 1024px) 100vw"

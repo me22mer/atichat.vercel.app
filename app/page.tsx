@@ -26,38 +26,37 @@ export default async function Home() {
               />
             </Section>
 
-            <Section className="mb-8 col-span-2">
-              <h1 className="mb-8 text-[1.2rem] md:text-3xl font-bold">
-                Hi there, I&apos;m Atichat 😊
+            <Section className="mb-8 col-span-2 prose prose-invert">
+              <h1 className="text-xl md:text-3xl font-bold ">
+                👋 Hi there, I&apos;m Atichat
               </h1>
-              <div className=" sm:text-justify text-start flex flex-col gap-7 leading-relaxed text-[1rem]">
-                <p>
-                  I&apos;m currently a student at{" "}
-                  <a
-                    href="https://www.spu.ac.th/"
-                    target="_blank"
-                    className="hover:font-semibold duration-500"
-                  >
-                    Sripatum University{" "}
-                  </a>
-                  studying Information and Communication Technology. Even though
-                  I prefer to create front-end websites, I&apos;ll keep trying.
-                  I enjoy finding challenges for myself.
-                </p>
-                <p>
-                  I like the pixel art aesthetic and would like to make video
-                  games. In addition, I like to watch anime, play video games,
-                  and am a{" "}
-                  <a
-                    href="https://www.rockstargames.com/"
-                    target="_blank"
-                    className="hover:font-semibold duration-500"
-                  >
-                    RockstarGames
-                  </a>{" "}
-                  fan.
-                </p>
-              </div>
+
+              <p className="mt-0">
+                I&apos;m currently a student at{" "}
+                <a
+                  href="https://www.spu.ac.th/"
+                  target="_blank"
+                  className="no-underline"
+                >
+                  Sripatum University{" "}
+                </a>
+                studying Information and Communication Technology. Even though I
+                prefer to create front-end websites, I&apos;ll keep trying. I
+                enjoy finding challenges for myself.
+              </p>
+              <p className="">
+                I like the pixel art aesthetic and would like to make video
+                games. In addition, I like to watch anime, play video games, and
+                am a{" "}
+                <a
+                  href="https://www.rockstargames.com/"
+                  target="_blank"
+                  className="no-underline"
+                >
+                  RockstarGames
+                </a>{" "}
+                fan.
+              </p>
             </Section>
           </div>
         </div>

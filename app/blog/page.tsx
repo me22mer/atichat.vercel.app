@@ -19,7 +19,7 @@ export default async function BlogPage() {
           <div className="mb-14">
             <h2 className="text-3xl font-bold">Posts</h2>
           </div>
-          <hr className=" border-zinc-600" />
+          <hr className=" border-zinc-800" />
           <Section className="">
             <BlogPosts />
           </Section>

@@ -10,7 +10,7 @@ export default function Navigater() {
   const router = useRouter();
 
   return (
-    <nav className="w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0 ">
+    <nav className="z-50 w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0 ">
       <div className="px-4 py-6">
         <span>
           <button type="button" onClick={() => router.back()} aria-label="navigater-button">

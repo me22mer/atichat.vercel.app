@@ -21,7 +21,7 @@ export default async function ProjectsPage() {
             <h2 className="mb-2 text-3xl font-bold">Projects</h2>
             <p>I&apos;ve done some projects on my own time.</p>
           </div>
-          <hr className=" border-zinc-600" />
+          <hr className=" border-zinc-800" />
           <Section>
             <ProjectPosts />
           </Section>

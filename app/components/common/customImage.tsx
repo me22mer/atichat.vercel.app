@@ -13,7 +13,7 @@ export default function CustomImage({ src, alt }: Props) {
         className=" w-full h-full rounded-lg duration-1000 "
         src={src}
         alt={alt}
-        style={{ objectFit: "cover", objectPosition: "50% 20%" }}
+        style={{ objectFit: "cover" }}
         width={672}
         height={400}
         quality={100}
