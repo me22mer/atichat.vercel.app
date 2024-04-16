@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ViewTransitions } from "next-view-transitions";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     template: "%s | Atichat Thongnak",
   },
   description: "Mess Developer, student and gamer",
+  metadataBase: new URL("https://atichat.vercel.app/"),
   openGraph: {
     title: "Atichat Thongank",
     description: "Mess Developer, student and gamer",
@@ -22,8 +24,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/images/favicon.ico"
-  }
+    icon: "/images/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -32,13 +34,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.className} antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950`}
-    >
-      <body className=" antialiased w-full flex flex-col justify-center">
-        {children}
-      </body>
-    </html>
+    <ViewTransitions>
+      <html
+        lang="en"
+        className={`${inter.className} antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950`}
+      >
+        <body className=" antialiased w-full flex flex-col justify-center">
+          {children}
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

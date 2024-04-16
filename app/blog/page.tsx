@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import Header from "@/components/common/header";
 import BlogPosts from "@/components/ui/blog/blogPosts";
-import Section from "@/components/ui/section";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -17,12 +16,10 @@ export default async function BlogPage() {
       <div className="w-full flex justify-center ">
         <div className="m-4  md:m-7 w-[672px]">
           <div className="mb-14">
-            <h2 className="text-3xl font-bold">Posts</h2>
+            <h2 className="text-3xl font-bold">Recent Posts</h2>
           </div>
           <hr className=" border-zinc-800" />
-          <Section className="">
-            <BlogPosts />
-          </Section>
+          <BlogPosts />
         </div>
       </div>
     </div>

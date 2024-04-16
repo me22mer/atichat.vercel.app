@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
-import Section from "@/components/ui/section";
 
 import profile from "public/images/DSC03307.avif";
 
@@ -13,7 +12,7 @@ export default async function Home() {
       <div className="flex justify-center">
         <div className="mt-12 mb-6 mx-4 md:mx-6 w-[672px]">
           <div className="flex flex-col md:gap-6">
-            <Section className="mb-6 aspect-h-2 md:aspect-w-7 aspect-w-4 overflow-hidden rounded-md">
+            <div className="mb-6 aspect-h-2 md:aspect-w-7 aspect-w-4 overflow-hidden rounded-md">
               <Image
                 className=" w-full h-full rounded-md duration-1000 "
                 src={profile}
@@ -24,9 +23,9 @@ export default async function Home() {
                 placeholder="blur"
                 sizes="(max-width: 1024px) 100vw"
               />
-            </Section>
+            </div>
 
-            <Section className="mb-8 col-span-2 prose prose-invert">
+            <div className="mb-8 col-span-2 prose prose-invert">
               <h1 className="text-xl md:text-3xl font-bold ">
                 👋 Hi there, I&apos;m Atichat
               </h1>
@@ -57,7 +56,7 @@ export default async function Home() {
                 </a>{" "}
                 fan.
               </p>
-            </Section>
+            </div>
           </div>
         </div>
       </div>

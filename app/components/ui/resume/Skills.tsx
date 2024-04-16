@@ -2,10 +2,13 @@ import ListIcon from "./ListIcon";
 
 export default function Skills() {
   return (
-    <div className="mb-16">
-      <h3 className="mb-3 text-2xl font-semibold">Skills</h3>
-      <div className="flex flex-wrap gap-1.5">
-        <ListIcon />
+    <div className="overflow-hidden relative">
+      <h1 className="text-3xl">Skills</h1>
+      <div className="">
+        <div className="flex items-center space-x-[26px] animate-loop-scroll">
+          <ListIcon />
+          <ListIcon />
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,6 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { getFormatDate } from "@/lib/utils";
-import { useState } from "react";
-import { flushSync } from "react-dom";
 
 type Props = {
   post: BlogMeta;
@@ -18,9 +16,9 @@ export function ListBlog({ post, slug }: Props) {
       {published ? (
         <Link
           href={`blog/${slug}`}
-          className="w-full h-full p-4 md:p-6 overflow-hidden hover:bg-zinc-900 rounded-lg duration-500 border border-zinc-800/70"
+          className="w-full h-full p-4 overflow-hidden hover:bg-zinc-900 rounded-lg duration-500 border border-zinc-800"
         >
-          <div className="text-zinc-400 flex flex-col md:flex-row gap-5 hover:text-zinc-100 transition-colors duration-1000">
+          <div className=" text-zinc-400 flex flex-col md:flex-row gap-5 hover:text-zinc-100 transition-colors duration-1000">
             <Image
               className="w-full md:w-[252px] h-full rounded-lg duration-1000 "
               src={coverImage}
