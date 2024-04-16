@@ -10,7 +10,8 @@ type ProjectMeta = {
 
 type BlogMeta = {
   title: string;
+  description: string;
   publishedAt: string;
-  coverImage?: string;
+  coverImage: string;
   published: boolean;
 };

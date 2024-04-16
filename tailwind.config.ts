@@ -28,6 +28,16 @@ const config: Config = {
       15: "15",
       16: "16",
     },
+    extend: {
+      animation: {
+        "loop-scroll": "loop-scroll 50s linear infinite",
+      }, 
+      keyframes: {
+        "loop-scroll": {
+          to: { transform: "translateX(calc(-46px * 14.55))" },
+        },
+      },
+    },
   },
   corePlugins: {
     aspectRatio: false,
@@ -35,7 +45,7 @@ const config: Config = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
-    require('tailwind-scrollbar'),
+    require("tailwind-scrollbar"),
   ],
 };
 export default config;

@@ -5,6 +5,7 @@ import Profile from "@/components/ui/resume/Profile";
 import Objective from "@/components/ui/resume/Objective";
 import Experience from "@/components/ui/resume/Experience";
 import Education from "@/components/ui/resume/Education";
+import Skills from "@/components/ui/resume/Skills";
 // import Skills from "@/components/ui/resume/Skills";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function ResumePage() {
         <Objective />
         <Experience />
         <Education />
+        <Skills />
       </div>
     </section>
   );

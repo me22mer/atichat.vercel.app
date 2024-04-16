@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
+import Image from "next/image";
 import { getFormatDate } from "@/lib/utils";
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 };
 
 export function ListBlog({ post, slug }: Props) {
-  const { title, publishedAt, published } = post;
+  const { title, description, publishedAt, coverImage, published } = post;
   const formattedDate = getFormatDate(publishedAt);
 
   return (
@@ -15,14 +16,26 @@ export function ListBlog({ post, slug }: Props) {
       {published ? (
         <Link
           href={`blog/${slug}`}
-          className="w-full hover:bg-zinc-900 rounded-lg duration-500 border border-zinc-800"
+          className="w-full h-full p-4 overflow-hidden hover:bg-zinc-900 rounded-lg duration-500 border border-zinc-800"
         >
-          <li className="w-full p-4 md:p-6">
-            <div className="text-zinc-400 hover:text-zinc-100 transition-colors duration-1000">
+          <div className=" text-zinc-400 flex flex-col md:flex-row gap-5 hover:text-zinc-100 transition-colors duration-1000">
+            <Image
+              className="w-full md:w-[252px] h-full rounded-lg duration-1000 "
+              src={coverImage}
+              alt=""
+              style={{ objectFit: "cover" }}
+              width={372}
+              height={400}
+              quality={100}
+              sizes="(max-width: 1024px) 100vw"
+              priority
+            />
+            <div className="flex flex-col">
               <time className="text-xs text-zinc-50">{formattedDate}</time>
-              <h1 className="text-2xl  md:text-3xl font-bold">{title}</h1>
+              <h1 className="mb-6 text-2xl  md:text-3xl font-bold">{title}</h1>
+              <p className="">{description}</p>
             </div>
-          </li>
+          </div>
         </Link>
       ) : null}
     </>

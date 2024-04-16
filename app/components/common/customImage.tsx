@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Section from "../ui/section";
 
 type Props = {
   src: string;
@@ -8,18 +7,18 @@ type Props = {
 
 export default function CustomImage({ src, alt }: Props) {
   return (
-    <Section className="mb-6 overflow-hidden rounded-md w-full md:w-[672px] h-[400px]">
+    <div className="mb-6 overflow-hidden rounded-md w-full md:w-[672px] h-[400px]">
       <Image
         className=" w-full h-full rounded-lg duration-1000 "
         src={src}
         alt={alt}
-        style={{ objectFit: "cover", objectPosition: "50% 20%" }}
+        style={{ objectFit: "cover" }}
         width={672}
         height={400}
         quality={100}
         sizes="(max-width: 1024px) 100vw"
         priority
       />
-    </Section>
+    </div>
   );
 }

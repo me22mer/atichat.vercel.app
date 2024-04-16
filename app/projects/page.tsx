@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 
 import Header from "@/components/common/header";
 import ProjectPosts from "@/components/ui/project/projectPosts";
-import Section from "@/components/ui/section";
-
 
 export const metadata: Metadata = {
   title: "Projects",
   description: "This is a project of my own initiative and practice.",
 };
-
 
 export default async function ProjectsPage() {
   return (
@@ -21,10 +18,8 @@ export default async function ProjectsPage() {
             <h2 className="mb-2 text-3xl font-bold">Projects</h2>
             <p>I&apos;ve done some projects on my own time.</p>
           </div>
-          <hr className=" border-zinc-600" />
-          <Section>
-            <ProjectPosts />
-          </Section>
+          <hr className=" border-zinc-800" />
+          <ProjectPosts />
         </div>
       </div>
     </div>
