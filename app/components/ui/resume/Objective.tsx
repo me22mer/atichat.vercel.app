@@ -5,8 +5,9 @@ export default function Objective() {
       <p className="leading-9">
         Seeking a challenging role to leverage expertise in creating
         user-interactive websites and contribute to innovative projects.
-        experienced <b>front-end developer</b> proficient in HTML, CSS and Typescript (TSX), with Next.js, Astro, React, and Tailwindcss.
-        Skilled in utilizing Amazon services like Cloudfront, S3, and EC2.
+        experienced front-end developer proficient in HTML, CSS and Typescript
+        (TSX), with Next.js, Astro, React, and Tailwindcss. Skilled in utilizing
+        Amazon services like Cloudfront, S3, and EC2.
       </p>
       <hr />
     </>

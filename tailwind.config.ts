@@ -34,7 +34,8 @@ const config: Config = {
       }, 
       keyframes: {
         "loop-scroll": {
-          to: { transform: "translateX(calc(-46px * 14.55))" },
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(-100%)" },
         },
       },
     },

@@ -16,7 +16,7 @@ export default async function BlogPage() {
       <div className="w-full flex justify-center ">
         <div className="m-4  md:m-7 w-[672px]">
           <div className="mb-14">
-            <h2 className="text-3xl font-bold">Recent Posts</h2>
+            <h2 className="text-3xl font-bold">Blog</h2>
           </div>
           <hr className=" border-zinc-800" />
           <BlogPosts />

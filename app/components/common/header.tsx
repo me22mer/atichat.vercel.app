@@ -3,7 +3,7 @@
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 
-import GithubIcon from "../icons/Github-Icon";
+import Logo from "./logo";
 
 export default function Header() {
   const pathname = usePathname();
@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg flex justify-center">
       <div className="w-[672px] mx-4 md:mx-6 gap-2 flex justify-between items-center">
-        <div className="space-x-4 md:space-x-6 flex justify-start">
+        <div className="flex">
           <Link
             scroll={false}
             href="/"
@@ -21,8 +21,10 @@ export default function Header() {
                 : "transition-colors duration-500 text-zinc-400 hover:text-white"
             }`}
           >
-            home
+            <Logo />
           </Link>
+        </div>
+        <div className="flex space-x-4 md:space-x-6 ">
           <Link
             scroll={false}
             href="/projects"
@@ -57,9 +59,6 @@ export default function Header() {
           >
             blog
           </Link>
-        </div>
-        <div className="">
-          <GithubIcon />
         </div>
       </div>
     </nav>
