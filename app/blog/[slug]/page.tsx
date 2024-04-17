@@ -60,6 +60,8 @@ export default async function PostPage({
                   alt=""
                   priority
                   sizes="(max-width: 1024px) 100vw"
+                  placeholder="blur"
+                  blurDataURL="/images/blog/blur.jpg"
                 />
               ) : null}
               <div className="w-full md:max-w-[672px] flex flex-col">

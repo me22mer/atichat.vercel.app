@@ -14,7 +14,7 @@ export default async function ProjectsPage() {
       <Header />
       <div className="w-full flex justify-center ">
         <div className="m-4 md:m-7 w-[672px]">
-          <div className="mb-16">
+          <div className="mb-16 prose prose-invert">
             <h2 className="mb-2 text-3xl font-bold">Projects</h2>
             <p>I&apos;ve done some projects on my own time.</p>
           </div>
