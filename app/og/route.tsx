@@ -12,10 +12,6 @@ export async function GET() {
   const imageData = await fetch(new URL("../../public/images/og-bg.png", import.meta.url)).then(
     (res) => res.arrayBuffer()
   );
-  const font = fetch(
-    new URL("../../public/fonts/Inter-Bold.ttf", import.meta.url)
-  ).then((res) => res.arrayBuffer());
-  const fontData = await font;
 
   const base64ImageData = Buffer.from(imageData).toString('base64');
 
@@ -46,13 +42,6 @@ export async function GET() {
     {
       width: 1200,
       height: 630,
-      fonts: [
-        {
-          name: "Inter",
-          data: fontData,
-          style: "normal",
-        },
-      ],
     }
   );
 }
