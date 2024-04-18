@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     locale: "en_US, th_TH",
     type: "website",
     images: [{
-      url: "https://localhost:3000/og",
+      url: "https://atichat.vercel.app/og",
       width: 1200,
       height: 630
     }]
