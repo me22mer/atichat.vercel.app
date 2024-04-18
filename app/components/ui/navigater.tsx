@@ -13,7 +13,7 @@ export default function Navigater() {
     <nav className="z-50 w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0 ">
       <div className="px-4 py-6">
         <span>
-          <button type="button" onClick={() => router.back()} aria-label="navigater-button">
+          <button type="button" onClick={router.back} aria-label="navigater-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={40}

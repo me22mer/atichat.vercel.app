@@ -31,12 +31,21 @@ const config: Config = {
     extend: {
       animation: {
         "loop-scroll": "loop-scroll 50s linear infinite",
-      }, 
+        gradient: "animatedgradient 6s ease infinite alternate",
+      },
       keyframes: {
         "loop-scroll": {
           from: { transform: "translateX(100%)" },
           to: { transform: "translateX(-100%)" },
         },
+        animatedgradient: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+      },
+      backgroundSize: {
+        "300%": "300%",
       },
     },
   },

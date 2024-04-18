@@ -6,12 +6,13 @@ import Footer from "@/components/common/footer";
 
 import NextjsIcon from "./components/icons/Nextjs-Icon";
 import ReactIcon from "./components/icons/React-Icon";
-import GithubIcon from "./components/icons/Github-Icon";
-import FacebookIcon from "./components/icons/Facebook-Icon";
-import XIcon from "./components/icons/X-Icon";
 import TailwindcssIcon from "./components/icons/Tailwindcss-Icon";
+import { getBlogs } from "@/lib/posts";
+import { getFormatDate } from "@/lib/utils";
 
 export default async function Home() {
+  const posts = await getBlogs();
+
   return (
     <div className="relative bg-gradient-to-b from-zinc-950 via-zinc-950/90 to-black">
       <Header />
@@ -19,17 +20,20 @@ export default async function Home() {
         <div className=" pt-20 mb-6 mx-4 md:mx-6 w-[672px]">
           <div className=" flex flex-col gap-6">
             <div className="mb-10 flex md:justify-between flex-col md:flex-row-reverse gap-7 md:gap-20 ">
-              <Image
-                className="w-[75px] md:w-[90px] h-[75px] md:h-[90px] rounded-xl shadow-lg shadow-zinc-900 border border-zinc-700/70 "
-                src="/images/A-black.png"
-                alt=""
-                width={90}
-                height={90}
-              />
+              <div className="relative inline-flex group h-[90px] w-[90px]">
+                <div className="absolute w-full h-full transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#0e0725] via-[#5c03bc] to-[#e536ab] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
+                <Image
+                  className="max-w-[75px] md:max-w-[90px] max-h-[75px] md:max-h-[90px] relative inline-flex rounded-xl border border-zinc-700 "
+                  src="/images/A-black.png"
+                  alt=""
+                  width={90}
+                  height={90}
+                />
+              </div>
               <div className=" text-white text-2xl md:text-[1.9rem] leading-10 md:leading-[3rem] font-extrabold ">
                 <h1 className="tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/70">
                   I&apos;m Atichat, a front-end developer dedicated to crafting{" "}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1dbde6] to-[#f1515e]">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1dbde6] via-[#FF44EC] to-[#f1515e] ">
                     amazing
                   </span>{" "}
                   websites using React.{" "}
@@ -37,11 +41,11 @@ export default async function Home() {
               </div>
             </div>
             <div className="my-10">
-              <div className="prose prose-invert">
+              <div className="prose prose-invert prose-li:marker:text-white">
                 <h1 className="text-2xl font-bold underline decoration-4 decoration-zinc-700">
                   About Me
                 </h1>
-                <p>
+                <p className=" leading-loose">
                   I&apos;m a 21-year-old student at Sripatum University in
                   Thailand, where I&apos;m studying Information and
                   Communication Technology. Currently, I&apos;m diving into
@@ -49,8 +53,8 @@ export default async function Home() {
                   <TailwindcssIcon />. Despite my preference for front-end web
                   development, I&apos;m always keen on tackling new challenges.
                 </p>
-             
-                <p className="">
+
+                <p className=" leading-loose">
                   I like the pixel art aesthetic and would like to make video
                   games. In addition, I like to watch anime, play video games,
                   and am a{" "}
@@ -63,22 +67,58 @@ export default async function Home() {
                   </a>{" "}
                   fan.
                 </p>
-                <Link
-                  href="/resume"
-                  className="no-underline px-3.5 py-2.5 border border-zinc-800 rounded-md text-sm text-zinc-300 hover:text-zinc-100 duration-300"
-                >
-                  Explore My Profile
-                </Link>
-
+                <div className="relative inline-flex group">
+                  <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
+                  <Link
+                    href="/resume"
+                    className="no-underline relative inline-flex  px-3.5 py-2.5 border border-zinc-800 bg-zinc-950 rounded-md text-sm text-zinc-300 hover:text-zinc-100 duration-300"
+                  >
+                    Explore my profile
+                  </Link>
+                </div>
+                <div className="my-10">
+                  <h4 className="underline decoration-4 decoration-zinc-700">
+                    Latest Article
+                  </h4>
+                  {posts
+                    .sort((a, b) => {
+                      if (
+                        new Date(a.frontmatter.publishedAt) >
+                        new Date(b.frontmatter.publishedAt)
+                      ) {
+                        return 1;
+                      }
+                      return -1;
+                    })
+                    .map((post, idx) => (
+                      <ul key={idx}>
+                        {post.frontmatter.published ? (
+                          <li key={post.slug}>
+                            <Link
+                              href={`/blog/${post.slug}`}
+                              className="no-underline"
+                            >
+                              <p className="space-x-3">
+                                <span>
+                                  {getFormatDate(post.frontmatter.publishedAt)}
+                                </span>{" "}
+                                <span>{post.frontmatter.title}</span>{" "}
+                              </p>
+                            </Link>
+                          </li>
+                        ) : null}
+                      </ul>
+                    ))}
+                </div>
                 <h4 className="underline decoration-4 decoration-zinc-700">
                   Connect
                 </h4>
-                <div className="inline-flex flex-col text-sm ">
+                <div className="inline-flex flex-col text-sm space-y-1.5">
                   <a
                     href="https://github.com/me22-a"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 flex items-center no-underline hover:bg-zinc-800"
+                    className="px-3 py-2 flex items-center no-underline rounded duration-200 hover:bg-zinc-800"
                   >
                     {" "}
                     <svg
@@ -97,7 +137,7 @@ export default async function Home() {
                     href="https://web.facebook.com/atichat.thongnak.1/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 flex items-center no-underline hover:bg-zinc-800"
+                    className="px-3 py-2 flex items-center no-underline rounded duration-200 hover:bg-zinc-800"
                   >
                     {" "}
                     <svg
@@ -114,7 +154,7 @@ export default async function Home() {
                     href="https://twitter.com/me22_real"
                     target="_blank"
                     aria-label="X"
-                    className="px-3 py-2 flex items-center no-underline hover:bg-zinc-800"
+                    className="px-3 py-2 flex items-center no-underline rounded duration-200 hover:bg-zinc-800"
                   >
                     <svg
                       width={24}
