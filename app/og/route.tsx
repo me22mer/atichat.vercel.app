@@ -1,18 +1,23 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
+// @ts-check
+
 import { ImageResponse } from "next/og";
 // App router includes @vercel/og.
 // No need to install it.
 
 export const runtime = "edge";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const username = searchParams.get("me22-a");
-  if (!username) {
-    return new ImageResponse(<>Visit with &quot;?username=vercel&quot;</>, {
-      width: 1200,
-      height: 630,
-    });
-  }
+export async function GET() {
+  const imageData = await fetch(new URL("../../public/images/og-bg.png", import.meta.url)).then(
+    (res) => res.arrayBuffer()
+  );
+  const font = fetch(
+    new URL("../../public/fonts/Inter-Bold.ttf", import.meta.url)
+  ).then((res) => res.arrayBuffer());
+  const fontData = await font;
+
+  const base64ImageData = Buffer.from(imageData).toString('base64');
 
   return new ImageResponse(
     (
@@ -24,27 +29,30 @@ export async function GET(request: Request) {
           background: "#f6f6f6",
           width: "100%",
           height: "100%",
-          paddingTop: 50,
+          padding: "0px",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          fontFamily: "Inter",
         }}
       >
         <img
-          width="256"
-          height="256"
-          src={`https://github.com/${username}.png`}
-          style={{
-            borderRadius: 128,
-          }}
-          alt="og-image"
-        />
-        <p>Atichat Thongnak</p>
+          width="100%"
+          height="100%"
+          src={`data:image/png;base64,${base64ImageData}`}  // Use base64 encoded data
+          />
       </div>
     ),
     {
       width: 1200,
       height: 630,
+      fonts: [
+        {
+          name: "Inter",
+          data: fontData,
+          style: "normal",
+        },
+      ],
     }
   );
 }
