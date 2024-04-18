@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
+import { url } from "inspector";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,6 +23,11 @@ export const metadata: Metadata = {
     siteName: "Atichat Thongank",
     locale: "en_US, th_TH",
     type: "website",
+    images: [{
+      url: "https://localhost:3000/og",
+      width: 1200,
+      height: 630
+    }]
   },
   icons: {
     icon: "/images/favicon.ico",
