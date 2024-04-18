@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import { url } from "inspector";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,12 +14,11 @@ export const metadata: Metadata = {
     template: "%s | Atichat Thongnak",
   },
   description: "Mess Developer, student and gamer",
-  metadataBase: new URL("https://atichat.vercel.app/"),
   openGraph: {
-    title: "Atichat Thongank",
+    title: "Atichat Thongnak",
     description: "Mess Developer, student and gamer",
     url: "https://atichat.vercel.app/",
-    siteName: "Atichat Thongank",
+    siteName: "Atichat Thongnak",
     locale: "en_US, th_TH",
     type: "website",
     images: [{
@@ -29,6 +27,10 @@ export const metadata: Metadata = {
       height: 630
     }]
   },
+    twitter: {
+      title: 'Atichat Thongnak',
+      card: 'summary_large_image',
+    },
   icons: {
     icon: "/images/favicon.ico",
   },
