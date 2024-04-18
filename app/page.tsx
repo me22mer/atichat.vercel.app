@@ -7,8 +7,11 @@ import Footer from "@/components/common/footer";
 import NextjsIcon from "./components/icons/Nextjs-Icon";
 import ReactIcon from "./components/icons/React-Icon";
 import TailwindcssIcon from "./components/icons/Tailwindcss-Icon";
+
 import { getBlogs } from "@/lib/posts";
 import { getFormatDate } from "@/lib/utils";
+
+import Icon from "../public/images/A-black.png";
 
 export default async function Home() {
   const posts = await getBlogs();
@@ -20,14 +23,16 @@ export default async function Home() {
         <div className=" pt-20 mb-6 mx-4 md:mx-6 w-[672px]">
           <div className=" flex flex-col gap-6">
             <div className="mb-10 flex md:justify-between flex-col md:flex-row-reverse gap-7 md:gap-20 ">
-              <div className="relative inline-flex group h-[90px] w-[90px]">
+              <div className="relative inline-flex group h-[75px] md:h-[90px] w-[75px] md:w-[90px]">
                 <div className="absolute w-full h-full transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#0e0725] via-[#5c03bc] to-[#e536ab] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
                 <Image
                   className="max-w-[75px] md:max-w-[90px] max-h-[75px] md:max-h-[90px] relative inline-flex rounded-xl border border-zinc-700 "
-                  src="/images/A-black.png"
+                  src={Icon}
                   alt=""
                   width={90}
                   height={90}
+                  quality={90}
+                  placeholder="blur"
                 />
               </div>
               <div className=" text-white text-2xl md:text-[1.9rem] leading-10 md:leading-[3rem] font-extrabold ">
@@ -42,33 +47,36 @@ export default async function Home() {
             </div>
             <div className="my-10">
               <div className="prose prose-invert prose-li:marker:text-white">
-                <h1 className="text-2xl font-bold underline decoration-4 decoration-zinc-700">
-                  About Me
-                </h1>
-                <p className=" leading-loose">
-                  I&apos;m a 21-year-old student at Sripatum University in
-                  Thailand, where I&apos;m studying Information and
-                  Communication Technology. Currently, I&apos;m diving into
-                  TypeScript, <NextjsIcon />, <ReactIcon /> and{" "}
-                  <TailwindcssIcon />. Despite my preference for front-end web
-                  development, I&apos;m always keen on tackling new challenges.
-                </p>
+                <div>
+                  <h1 className="text-2xl font-bold underline decoration-4 decoration-zinc-700">
+                    About Me
+                  </h1>
+                  <p className=" leading-loose">
+                    I&apos;m a 21-year-old student at Sripatum University in
+                    Thailand, where I&apos;m studying Information and
+                    Communication Technology. Currently, I&apos;m diving into
+                    TypeScript, <NextjsIcon />, <ReactIcon /> and{" "}
+                    <TailwindcssIcon />. Despite my preference for front-end web
+                    development, I&apos;m always keen on tackling new
+                    challenges.
+                  </p>
 
-                <p className=" leading-loose">
-                  I like the pixel art aesthetic and would like to make video
-                  games. In addition, I like to watch anime, play video games,
-                  and am a{" "}
-                  <a
-                    href="https://www.rockstargames.com/"
-                    target="_blank"
-                    className="no-underline"
-                  >
-                    RockstarGames
-                  </a>{" "}
-                  fan.
-                </p>
-                <div className="relative inline-flex group">
-                  <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
+                  <p className=" leading-loose">
+                    I like the pixel art aesthetic and would like to make video
+                    games. In addition, I like to watch anime, play video games,
+                    and am a{" "}
+                    <a
+                      href="https://www.rockstargames.com/"
+                      target="_blank"
+                      className="no-underline"
+                    >
+                      RockstarGames
+                    </a>{" "}
+                    fan.
+                  </p>
+                </div>
+                <div className="relative inline-flex group my-2 h-max w-max">
+                  <div className="absolute w-full h-full transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
                   <Link
                     href="/resume"
                     className="no-underline relative inline-flex  px-3.5 py-2.5 border border-zinc-800 bg-zinc-950 rounded-md text-sm text-zinc-300 hover:text-zinc-100 duration-300"
