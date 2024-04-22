@@ -2,11 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import Navigater from "@/components/ui/navigater";
+
 import { getFormatDate } from "@/lib/utils";
-import { getProjectBySlug, getProjects } from "@/lib/posts";
+import { ProjectMeta } from "type";
+import { getPostBySlug, getPosts } from "@/lib/mdx";
 
 export async function generateStaticParams() {
-  const posts = await getProjects();
+  const posts = await getPosts<ProjectMeta>("projects");
 
   if (!posts) return [];
 
@@ -20,7 +22,9 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = (await getProjects()).find((post) => post.slug === params.slug);
+  const post = (await getPosts<ProjectMeta>("projects")).find(
+    (post) => post.slug
+  );
 
   if (!post) {
     return notFound();
@@ -36,7 +40,7 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await getProjectBySlug(params.slug);
+  const post = await getPostBySlug<ProjectMeta>(`projects/${params.slug}`);
 
   const { frontmatter, content } = post;
 

@@ -1,13 +1,15 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { getFormatDate } from "@/lib/utils";
-import { getBlogBySlug, getBlogs } from "@/lib/posts";
-
 import Navigater from "@/components/ui/navigater";
-import Image from "next/image";
+
+import { getFormatDate } from "@/lib/utils";
+import { getPostBySlug, getPosts } from "@/lib/mdx";
+
+import { BlogMeta } from "type";
 
 export async function generateStaticParams() {
-  const posts = await getBlogs();
+  const posts = await getPosts<BlogMeta>("blog");
 
   if (!posts) return [];
 
@@ -21,7 +23,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = (await getBlogs()).find((post) => post.slug === params.slug);
+  const post = (await getPosts<BlogMeta>(`blog`)).find((post) => post.slug);
 
   if (!post) {
     return notFound();
@@ -31,12 +33,13 @@ export async function generateMetadata({
     title: post.slug,
   };
 }
+
 export default async function PostPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const post = await getBlogBySlug(params.slug);
+  const post = await getPostBySlug<BlogMeta>(`blog/${params.slug}`);
 
   const { frontmatter, content } = post;
 

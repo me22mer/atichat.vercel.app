@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import Header from "@/components/common/header";
-import ProjectPosts from "@/components/ui/project/projectPosts";
+import ProjectPosts from "@/components/ui/project-card";
 
 export const metadata: Metadata = {
   title: "Projects",
