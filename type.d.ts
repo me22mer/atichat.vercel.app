@@ -1,14 +1,15 @@
-type ProjectMeta = {
+export type ProjectMeta = {
   title: string;
   publishedAt: string;
   date: string;
   description: string;
   repository: string;
   url: string;
+  tags: [];
   published: boolean;
 };
 
-type BlogMeta = {
+export type BlogMeta = {
   title: string;
   description: string;
   publishedAt: string;

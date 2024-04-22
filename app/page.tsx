@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
@@ -8,13 +8,15 @@ import NextjsIcon from "./components/icons/Nextjs-Icon";
 import ReactIcon from "./components/icons/React-Icon";
 import TailwindcssIcon from "./components/icons/Tailwindcss-Icon";
 
-import { getBlogs } from "@/lib/posts";
+import { getPosts } from "@/lib/mdx";
 import { getFormatDate } from "@/lib/utils";
 
 import Icon from "../public/images/A-black.png";
 
+import { BlogMeta } from "type";
+
 export default async function Home() {
-  const posts = await getBlogs();
+  const posts = await getPosts<BlogMeta>("blog");
 
   return (
     <div className="relative bg-gradient-to-b from-zinc-950 via-zinc-950/90 to-black">
@@ -103,7 +105,7 @@ export default async function Home() {
                         {post.frontmatter.published ? (
                           <li key={post.slug}>
                             <Link
-                              href={`/blog/${post.slug}`}
+                              href={`/${post.slug}`}
                               className="no-underline"
                             >
                               <p className="space-x-3">
