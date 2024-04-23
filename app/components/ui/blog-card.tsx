@@ -5,6 +5,8 @@ import { getPosts } from "@/lib/mdx";
 import { getFormatDate } from "@/lib/utils";
 import { BlogMeta } from "type";
 
+import notFoundImage from "../../../public/images/blog/not-found-image.jpg";
+
 type Props = {
   post: BlogMeta;
   slug: string;
@@ -35,27 +37,34 @@ const ListBlog = ({ post, slug }: Props) => {
   return (
     <Link
       href={`/${slug}`}
-      className="w-full p-4 md:w-[326px] h-full overflow-hidden rounded-lg transition-colors border border-zinc-800 group"
+      className="p-4 w-full h-full  rounded-lg transition-colors border border-zinc-800 group"
     >
-      <div className="overflow-hidden rounded-md text-zinc-400 hover:text-zinc-100 flex flex-col gap-5 transition-colors duration-1000">
+      <div className="rounded-md text-zinc-400 hover:text-zinc-100 flex flex-col sm:flex-row gap-5 transition-colors duration-1000">
         {coverImage ? (
-          <div className="w-[300px]">
+          <div className="w-full overflow-hidden rounded-md">
             <Image
-              className="w-full rounded-md duration-300 group-hover:scale-105"
+              className="w-full h-full rounded-md duration-300 group-hover:scale-105"
               src={coverImage}
               alt=""
-              style={{ objectFit: "fill" }}
-              width={300}
-              height={400}
+              width={320}
+              height={200}
               quality={100}
               sizes="(max-width: 1024px) 100vw"
               placeholder="blur"
-              blurDataURL="/images/blog/blur.jpg"
+              blurDataURL="/images/blog/blur.webp"
             />
           </div>
         ) : (
-          <div className="w-[300px] flex justify-center items-center">
-            <p>No cover image available</p>
+          <div className="w-full relative overflow-hidden rounded-md">
+            <Image
+              className="w-full sm:w-[320px] h-full sm:h-[180px] rounded-md brightness-75 object-cover blur-lg"
+              src={notFoundImage}
+              alt=""
+              width={320}
+              height={200}
+              quality={100}
+              sizes="(max-width: 1024px) 100vw"
+            />
           </div>
         )}
         <div className="flex flex-col">

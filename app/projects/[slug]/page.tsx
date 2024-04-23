@@ -31,7 +31,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: post.slug,
+    title: params.slug,
   };
 }
 
