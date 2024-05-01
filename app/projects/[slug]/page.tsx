@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 
 import Navigater from "@/components/ui/navigater";
 
-import { getFormatDate } from "@/lib/utils";
-import { ProjectMeta } from "type";
+import { getFormatDate } from "utils/useformatdate";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
+
+import { ProjectMeta } from "type";
 
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
@@ -31,7 +32,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: post.slug,
+    title: params.slug,
   };
 }
 

@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { Link } from "next-view-transitions";
 
 import { getPosts } from "@/lib/mdx";
-import { getFormatDate } from "@/lib/utils";
+import { getFormatDate } from "utils/useformatdate";
 import { BlogMeta } from "type";
 
 type Props = {
@@ -12,6 +11,16 @@ type Props = {
 
 const BlogCard = async () => {
   const posts = await getPosts<BlogMeta>("blog");
+
+  posts.sort((a, b) => {
+    if (
+      new Date(a.frontmatter.publishedAt) > new Date(b.frontmatter.publishedAt)
+    ) {
+      return 1;
+    }
+    return -1;
+  });
+
 
   return (
     <div className="">
@@ -35,33 +44,14 @@ const ListBlog = ({ post, slug }: Props) => {
   return (
     <Link
       href={`/${slug}`}
-      className="w-full p-4 md:w-[326px] h-full overflow-hidden rounded-lg transition-colors border border-zinc-800 group"
+      className="p-5 w-full h-full  rounded-xl transition-colors border border-zinc-800 group hover:bg-zinc-900 duration-500"
     >
-      <div className="overflow-hidden rounded-md text-zinc-400 hover:text-zinc-100 flex flex-col gap-5 transition-colors duration-1000">
-        {coverImage ? (
-          <div className="w-[300px]">
-            <Image
-              className="w-full rounded-md duration-300 group-hover:scale-105"
-              src={coverImage}
-              alt=""
-              style={{ objectFit: "fill" }}
-              width={300}
-              height={400}
-              quality={100}
-              sizes="(max-width: 1024px) 100vw"
-              placeholder="blur"
-              blurDataURL="/images/blog/blur.jpg"
-            />
-          </div>
-        ) : (
-          <div className="w-[300px] flex justify-center items-center">
-            <p>No cover image available</p>
-          </div>
-        )}
-        <div className="flex flex-col">
-          <h1 className="mb-3 text-2xl  md:text-3xl font-bold">{title}</h1>
-          <p className="mb-3">{description}</p>
-          <time className="text-sm text-zinc-100">{formattedDate}</time>
+      <div className="text-zinc-400 hover:text-zinc-100 flex flex-col sm:flex-row gap-5 transition-colors duration-1000">
+
+        <div className="flex flex-col prose prose-invert">
+          <time className="text-xs">{formattedDate}</time>
+          <h1 className="text-xl  md:text-3xl font-bold">{title}</h1>
+          <p className="my-0 max-sm:text-sm">{description}</p>
         </div>
       </div>
     </Link>

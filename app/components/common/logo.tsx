@@ -10,8 +10,7 @@ export default function Logo() {
       width={35}
       height={35}
       className="rounded"
-      quality={90}
-      placeholder="blur"
+      quality={100}
     />
   );
 }

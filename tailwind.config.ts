@@ -32,6 +32,7 @@ const config: Config = {
       animation: {
         "loop-scroll": "loop-scroll 50s linear infinite",
         gradient: "animatedgradient 6s ease infinite alternate",
+        blob: "blob 7s infinite",
       },
       keyframes: {
         "loop-scroll": {
