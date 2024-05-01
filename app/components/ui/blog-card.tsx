@@ -1,11 +1,8 @@
-import Image from "next/image";
 import { Link } from "next-view-transitions";
 
 import { getPosts } from "@/lib/mdx";
-import { getFormatDate } from "@/lib/utils";
+import { getFormatDate } from "utils/useformatdate";
 import { BlogMeta } from "type";
-
-import notFoundImage from "../../../public/images/blog/not-found-image.jpg";
 
 type Props = {
   post: BlogMeta;
@@ -14,6 +11,16 @@ type Props = {
 
 const BlogCard = async () => {
   const posts = await getPosts<BlogMeta>("blog");
+
+  posts.sort((a, b) => {
+    if (
+      new Date(a.frontmatter.publishedAt) > new Date(b.frontmatter.publishedAt)
+    ) {
+      return 1;
+    }
+    return -1;
+  });
+
 
   return (
     <div className="">
@@ -37,40 +44,14 @@ const ListBlog = ({ post, slug }: Props) => {
   return (
     <Link
       href={`/${slug}`}
-      className="p-4 w-full h-full  rounded-lg transition-colors border border-zinc-800 group"
+      className="p-5 w-full h-full  rounded-xl transition-colors border border-zinc-800 group hover:bg-zinc-900 duration-500"
     >
-      <div className="rounded-md text-zinc-400 hover:text-zinc-100 flex flex-col sm:flex-row gap-5 transition-colors duration-1000">
-        {coverImage ? (
-          <div className="w-full overflow-hidden rounded-md">
-            <Image
-              className="w-full h-full rounded-md duration-300 group-hover:scale-105"
-              src={coverImage}
-              alt=""
-              width={320}
-              height={200}
-              quality={100}
-              sizes="(max-width: 1024px) 100vw"
-              placeholder="blur"
-              blurDataURL="/images/blog/blur.webp"
-            />
-          </div>
-        ) : (
-          <div className="w-full relative overflow-hidden rounded-md">
-            <Image
-              className="w-full sm:w-[320px] h-full sm:h-[180px] rounded-md brightness-75 object-cover blur-lg"
-              src={notFoundImage}
-              alt=""
-              width={320}
-              height={200}
-              quality={100}
-              sizes="(max-width: 1024px) 100vw"
-            />
-          </div>
-        )}
-        <div className="flex flex-col">
-          <h1 className="mb-3 text-2xl  md:text-3xl font-bold">{title}</h1>
-          <p className="mb-3">{description}</p>
-          <time className="text-sm text-zinc-100">{formattedDate}</time>
+      <div className="text-zinc-400 hover:text-zinc-100 flex flex-col sm:flex-row gap-5 transition-colors duration-1000">
+
+        <div className="flex flex-col prose prose-invert">
+          <time className="text-xs">{formattedDate}</time>
+          <h1 className="text-xl  md:text-3xl font-bold">{title}</h1>
+          <p className="my-0 max-sm:text-sm">{description}</p>
         </div>
       </div>
     </Link>

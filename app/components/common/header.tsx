@@ -9,7 +9,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg flex justify-center">
+    <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center">
       <div className="w-[672px] mx-4 md:mx-6 gap-2 flex justify-between items-center">
         <div className="flex">
           <Link
@@ -17,8 +17,8 @@ export default function Header() {
             href="/"
             className={`link ${
               pathname === "/"
-                ? "active transition-colors duration-500 hover:text-zinc-300"
-                : "transition-colors duration-500 text-zinc-400 hover:text-white"
+                ? "active transition-colors duration-500 hover:text-zinc-100"
+                : "transition-colors duration-500 text-zinc-300 hover:text-white"
             }`}
           >
             <Logo />
@@ -30,8 +30,8 @@ export default function Header() {
             href="/projects"
             className={`link ${
               pathname === "/projects"
-                ? "active transition-colors duration-500 hover:text-zinc-300"
-                : "transition-colors duration-500 text-zinc-400 hover:text-white"
+                ? "active transition-colors duration-500 hover:text-zinc-100"
+                : "transition-colors duration-500 text-zinc-300 hover:text-white"
             }`}
           >
             projects
@@ -42,8 +42,8 @@ export default function Header() {
             href="/resume"
             className={`link ${
               pathname === "/resume"
-                ? "active transition-colors duration-500 hover:text-zinc-300"
-                : "transition-colors duration-500 text-zinc-400 hover:text-white flex"
+                ? "active transition-colors duration-500 hover:text-zinc-100"
+                : "transition-colors duration-500 text-zinc-300 hover:text-white flex"
             }`}
           >
             resume
@@ -53,8 +53,8 @@ export default function Header() {
             href="/blog"
             className={`link ${
               pathname === "/blog"
-                ? "active transition-colors duration-500 hover:text-zinc-300"
-                : "transition-colors duration-500 text-zinc-400 hover:text-white flex"
+                ? "active transition-colors duration-500 hover:text-zinc-100"
+                : "transition-colors duration-500 text-zinc-300 hover:text-white flex"
             }`}
           >
             blog

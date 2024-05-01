@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 
 import Navigater from "@/components/ui/navigater";
 
-import { getFormatDate } from "@/lib/utils";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
+import { getFormatDate } from "utils/useformatdate";
 
 import { BlogMeta } from "type";
 
@@ -50,21 +50,18 @@ export default async function PostPage({
   return (
     <div>
       <Navigater />
-      <div className="h-auto">
-        <div className="w-full">
+      <div className="h-auto w-full">
           <div className="py-12 flex flex-col justify-center bg-gradient-to-b from-zinc-800/60 to bg-black">
             <div className="px-4 mt-14 mb-10 flex flex-col items-center">
               {frontmatter.coverImage ? (
                 <Image
                   src={frontmatter.coverImage}
                   width={920}
-                  height={460}
-                  className="mb-8 w-[920px] h-max-content md:h-[460px] rounded-xl object-contain md:object-cover shadow-lg shadow-black/50"
+                  height={400}                  
+                  className="mb-[3.25rem] w-[920px] h-max md:h-[490px] rounded-xl object-contain md:object-cover shadow-lg shadow-black/50"
                   alt=""
                   priority
                   sizes="(max-width: 1024px) 100vw"
-                  placeholder="blur"
-                  blurDataURL="/images/blog/blur.jpg"
                 />
               ) : null}
               <div className="w-full md:max-w-[672px] flex flex-col">
@@ -85,7 +82,6 @@ export default async function PostPage({
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }
