@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Link } from "next-view-transitions";
 
 import Header from "@/components/common/header";
@@ -10,8 +9,6 @@ import TailwindcssIcon from "./components/icons/Tailwindcss-Icon";
 
 import { getPosts } from "@/lib/mdx";
 import { getFormatDate } from "utils/useformatdate";
-
-import Icon from "../public/images/A-black.png";
 
 import { BlogMeta } from "type";
 
