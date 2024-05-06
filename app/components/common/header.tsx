@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center">
-      <div className="w-[672px] mx-4 md:mx-6 gap-2 flex justify-between items-center">
+      <div className="w-[672px] mx-4 md:mx-6 gap-2 flex justify-between items-center text-sm sm:text-base">
         <div className="flex">
           <Link
             scroll={false}
@@ -43,7 +43,7 @@ export default function Header() {
             className={`link ${
               pathname === "/resume"
                 ? "active transition-colors duration-500 hover:text-zinc-100"
-                : "transition-colors duration-500 text-zinc-300 hover:text-white flex"
+                : "transition-colors duration-500 text-zinc-300 hover:text-white"
             }`}
           >
             resume
@@ -54,7 +54,7 @@ export default function Header() {
             className={`link ${
               pathname === "/blog"
                 ? "active transition-colors duration-500 hover:text-zinc-100"
-                : "transition-colors duration-500 text-zinc-300 hover:text-white flex"
+                : "transition-colors duration-500 text-zinc-300 hover:text-white"
             }`}
           >
             blog

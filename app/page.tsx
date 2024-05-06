@@ -33,20 +33,8 @@ export default async function Home() {
       <div className="flex justify-center">
         <div className="pt-20 mb-6 mx-4 md:mx-6 w-[672px]">
           <div className=" flex flex-col gap-6">
-            <div className="mb-10 flex md:justify-between flex-col md:flex-row-reverse gap-7 md:gap-20 ">
-              <div className="z-40 relative inline-flex group h-[75px] md:h-[90px] w-[75px] md:w-[90px] rounded-xl">
-                <div className="absolute w-full h-full transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#0e0725] via-[#5c03bc] to-[#e536ab] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
-                <Image
-                  className="max-w-[75px] md:max-w-[90px] max-h-[75px] md:max-h-[90px] relative inline-flex rounded-xl border border-zinc-700 "
-                  src={Icon}
-                  alt=""
-                  width={90}
-                  height={90}
-                  quality={90}
-                  placeholder="blur"
-                />
-              </div>
-              <div className="z-40 text-white text-2xl md:text-[1.9rem] leading-10 md:leading-[3rem] font-extrabold ">
+            <div className="mb-10 md:pr-20">
+              <div className="text-white text-2xl md:text-[1.9rem] leading-10 md:leading-[3rem] font-extrabold ">
                 <h1 className="tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/70">
                   I&apos;m Atichat, a front-end developer dedicated to crafting{" "}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1dbde6] via-[#FF44EC] to-[#f1515e] ">
@@ -86,8 +74,8 @@ export default async function Home() {
                     fan.
                   </p>
                 </div>
-                <div className="relative inline-flex group my-2 h-max w-max rounded-xl">
-                  <div className="absolute w-full h-full transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
+                <div className="relative inline-flex group my-2 h-max w-max rounded-md">
+                  <div className="absolute w-full h-full transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-md blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
                   <Link
                     href="/resume"
                     className="no-underline relative inline-flex  px-2.5 py-2.5 border border-zinc-800 bg-zinc-950 rounded-md text-sm text-zinc-300 hover:text-zinc-100 duration-300"

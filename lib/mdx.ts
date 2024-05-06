@@ -1,24 +1,30 @@
 import fs from "fs/promises";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { notFound } from "next/navigation";
+
 import CustomImage from "@/components/mdx/customImage";
 
 const RootDir = path.join(process.cwd(), "app", "content");
 
 export async function getPostBySlug<T>(slug: string) {
-  const filePost = `${slug}/page.mdx`;
-  const filePath = path.join(RootDir, filePost);
-  const fileContent = await fs.readFile(filePath, "utf8");
-  const { frontmatter, content } = await compileMDX<T>({
-    source: fileContent,
-    components: { CustomImage },
-    options: { parseFrontmatter: true },
-  });
-  return {
-    frontmatter,
-    content,
-    slug,
-  };
+  try {
+    const filePost = `${slug}/page.mdx`;
+    const filePath = path.join(RootDir, filePost);
+    const fileContent = await fs.readFile(filePath, "utf8");
+    const { frontmatter, content } = await compileMDX<T>({
+      source: fileContent,
+      components: { CustomImage },
+      options: { parseFrontmatter: true },
+    });
+    return {
+      frontmatter,
+      content,
+      slug,
+    };
+  } catch {
+    return notFound();
+  }
 }
 
 export async function getPosts<T>(directoryPath: string) {
@@ -31,5 +37,5 @@ export async function getPosts<T>(directoryPath: string) {
     })
   );
 
-  return posts
+  return posts;
 }

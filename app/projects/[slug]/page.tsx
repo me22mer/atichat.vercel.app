@@ -11,7 +11,7 @@ import { ProjectMeta } from "type";
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
 
-  if (!posts) return [];
+  if (!posts) return notFound();
 
   return posts.map((post) => ({
     postId: post.slug,
