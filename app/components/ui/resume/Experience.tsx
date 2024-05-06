@@ -5,7 +5,9 @@ export default function Experience() {
       <h2 className="mb-1 font-semibold text-xl tracking-tighter">
         GoodGeekClub
       </h2>
-      <p className="mb-1 text-base text-neutral-400">Web Developer, 2022 — Present</p>
+      <p className="mb-1 text-base text-neutral-400">
+        Web Developer, 2022 — Present
+      </p>
       <ul className="pl-5 list-disc list-outside [&_ul]:list-[revert] text-[1rem] space-y-1.5 list-">
         <li>
           <a
@@ -15,8 +17,13 @@ export default function Experience() {
           >
             dseelin.co.th
           </a>{" "}
-          Create a website with Plesk hosting and Wordpress for healthy food
-          products.
+          <ul>
+            <li>
+              {" "}
+              Create a website with Plesk hosting and Wordpress for healthy food
+              products.
+            </li>
+          </ul>
         </li>
         <li>
           <a
@@ -26,15 +33,43 @@ export default function Experience() {
           >
             youthplusthailand.com
           </a>{" "}
-          Deploy the static web page Next.js to Plesk hosting.
+          <ul>
+            <li>
+              Deploy the static web page{" "}
+              <a
+                href="https://nextjs.org/"
+                target="_blank"
+                className="no-underline"
+              >
+                Next.js
+              </a>{" "}
+              to Plesk hosting.
+            </li>
+            <li>
+              Create an Internationalization feature by using{" "}
+              <a
+                href="https://next-intl-docs.vercel.app/"
+                target="_blank"
+                className="no-underline"
+              >
+                next-intl.
+              </a>
+            </li>
+          </ul>
         </li>
         <li>
-          Using Amazon services such as S3, Cloudfront, to host a static
-          webpage.
+          Hosting static web pages with{" "}
+          <a
+            href="https://aws.amazon.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline"
+          >
+            Amazon Web Services
+          </a>{" "}
+          such as CloudFront, S3, and EC2.
         </li>
-        <li>
-          Provide IT expertise as a volunteer.
-        </li>
+        <li>Provide IT expertise as a volunteer.</li>
       </ul>
 
       <hr />
