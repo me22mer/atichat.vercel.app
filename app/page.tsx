@@ -1,19 +1,22 @@
-import { Link } from "next-view-transitions";
+import { Link } from "next-view-transitions"; 
 
 import Header from "@/components/common/header";
-import Footer from "@/components/common/footer";
+import Footer from "@/components/common/footer"; 
 
-import NextjsIcon from "./components/icons/Nextjs-Icon";
-import ReactIcon from "./components/icons/React-Icon";
-import TailwindcssIcon from "./components/icons/Tailwindcss-Icon";
+import NextjsIcon from "@/icons/Nextjs-Icon"; 
+import ReactIcon from "@/icons/React-Icon"; 
+import TailwindcssIcon from "@/icons/Tailwindcss-Icon"; 
 
-import { getPosts } from "@/lib/mdx";
-import { getFormatDate } from "utils/useformatdate";
+import { getPosts } from "@/lib/mdx"; 
+import { getFormatDate } from "@/utils/useformatdate"; 
 
-import { BlogMeta } from "type";
+import { BlogMeta } from "type"; 
+import { FlipWords } from "@/ui/flip-words"; 
 
 export default async function Home() {
-  const posts = await getPosts<BlogMeta>("blog");
+  const posts = await getPosts<BlogMeta>("blog"); 
+
+  const words = ["amazing", "beautiful", "fantastic"];
 
   posts.sort((a, b) => {
     if (
@@ -22,11 +25,11 @@ export default async function Home() {
       return 1;
     }
     return -1;
-  });
+  }); 
 
   return (
     <div className="relative bg-gradient-to-b from-zinc-950 via-zinc-950/90 to-black">
-      <Header />
+      <Header /> {/* Header section */}
       <div className="flex justify-center">
         <div className="pt-20 mb-6 mx-4 md:mx-6 w-[672px]">
           <div className=" flex flex-col gap-6">
@@ -34,13 +37,10 @@ export default async function Home() {
               <div className="text-white text-2xl md:text-[1.9rem] leading-10 md:leading-[3rem] font-extrabold ">
                 <h1 className="tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/70">
                   I&apos;m Atichat, a front-end developer dedicated to crafting{" "}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1dbde6] via-[#FF44EC] to-[#f1515e] ">
-                    amazing
-                  </span>{" "}
-                  websites using React.{" "}
+                  <FlipWords words={words} /> websites using React.{" "}
                 </h1>
               </div>
-            </div>
+            </div> {/* Introduction section */}
             <div className="my-10">
               <div className="prose prose-invert prose-li:marker:text-white">
                 <div>
@@ -70,7 +70,7 @@ export default async function Home() {
                     </a>{" "}
                     fan.
                   </p>
-                </div>
+                </div> {/* About Me section */}
                 <div className="relative inline-flex group my-2 h-max w-max rounded-md">
                   <div className="absolute w-full h-full transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-md blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-gradient bg-300%"></div>
                   <Link
@@ -79,7 +79,7 @@ export default async function Home() {
                   >
                     Explore my profile
                   </Link>
-                </div>
+                </div> {/* Link to Resume section */}
                 <div className="my-16">
                   <h4 className="underline decoration-4 decoration-zinc-700">
                     Latest Article
@@ -100,7 +100,7 @@ export default async function Home() {
                       ) : null}
                     </ul>
                   ))}
-                </div>
+                </div> {/* Latest Article section */}
                 <h4 className="underline decoration-4 decoration-zinc-700">
                   Connect
                 </h4>
@@ -159,14 +159,13 @@ export default async function Home() {
                     </svg>
                     @me22_real
                   </a>
-                </div>
+                </div> {/* Social Media Links section */}
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <Footer />
+      <Footer /> {/* Footer section */}
     </div>
   );
 }
