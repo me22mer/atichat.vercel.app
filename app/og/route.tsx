@@ -9,11 +9,11 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 export async function GET() {
-  // const imageData = await fetch(new URL("../../public/images/og-bg.png", import.meta.url)).then(
-  //   (res) => res.arrayBuffer()
-  // );
+  const imageData = await fetch(new URL("../../public/images/og-bg.png", import.meta.url)).then(
+    (res) => res.arrayBuffer()
+  );
 
-  // const base64ImageData = Buffer.from(imageData).toString('base64');
+  const base64ImageData = Buffer.from(imageData).toString('base64');
 
   return new ImageResponse(
     (
@@ -30,14 +30,14 @@ export async function GET() {
           justifyContent: "center",
           alignItems: "center",
           fontFamily: "Inter",
-          backgroundImage: "url('https://atichat.vercel.app/og')"
+          // backgroundImage: "url('https://atichat.vercel.app/og')"
         }}
       >
-        {/* <img
+        <img
           width="100%"
           height="100%"
           src={`data:image/png;base64,${base64ImageData}`}  // Use base64 encoded data
-          /> */}
+          />
       </div>
     ),
     {
