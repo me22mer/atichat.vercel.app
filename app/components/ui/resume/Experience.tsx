@@ -13,7 +13,7 @@ export default function Experience() {
           <a
             href="https://dseelin.co.th/"
             target="_blank"
-            className="font-semibold text-lg no-underline"
+            className="font-semibold text-lg no-underline hover:underline"
           >
             dseelin.co.th
           </a>{" "}
@@ -29,7 +29,7 @@ export default function Experience() {
           <a
             href="https://youthplusthailand.com/"
             target="_blank"
-            className="font-semibold text-lg no-underline"
+            className="font-semibold text-lg no-underline hover:underline"
           >
             youthplusthailand.com
           </a>{" "}
