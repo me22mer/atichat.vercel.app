@@ -15,4 +15,5 @@ export type BlogMeta = {
   publishedAt: string;
   coverImage: string;
   published: boolean;
+  tags: [];
 };

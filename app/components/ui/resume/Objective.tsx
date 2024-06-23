@@ -1,7 +1,9 @@
 export default function Objective() {
   return (
     <>
-      <h1 className="text-3xl">Objective</h1>
+      <h1 className="text-3xl underline decoration-zinc-700 decoration-4">
+        Objective
+      </h1>
       <p className="leading-9">
         Seeking a challenging role to leverage expertise in creating
         user-interactive websites and contribute to innovative projects.

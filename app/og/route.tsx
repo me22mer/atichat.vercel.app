@@ -30,7 +30,7 @@ export async function GET() {
           justifyContent: "center",
           alignItems: "center",
           fontFamily: "Inter",
-          // backgroundImage: "url('https://atichat.vercel.app/og')"
+          backgroundImage: "url('https://atichat.vercel.app/og')"
         }}
       >
         <img

@@ -1,7 +1,9 @@
 export default function Experience() {
   return (
     <>
-      <h1 className="text-3xl">Experience</h1>
+      <h1 className="text-3xl underline decoration-zinc-700 decoration-4">
+        Experience
+      </h1>
       <h2 className="mb-1 font-semibold text-xl tracking-tighter">
         GoodGeekClub
       </h2>
@@ -13,7 +15,7 @@ export default function Experience() {
           <a
             href="https://dseelin.co.th/"
             target="_blank"
-            className="font-semibold text-lg no-underline"
+            className="font-semibold text-lg no-underline hover:underline"
           >
             dseelin.co.th
           </a>{" "}
@@ -29,7 +31,7 @@ export default function Experience() {
           <a
             href="https://youthplusthailand.com/"
             target="_blank"
-            className="font-semibold text-lg no-underline"
+            className="font-semibold text-lg no-underline hover:underline"
           >
             youthplusthailand.com
           </a>{" "}
