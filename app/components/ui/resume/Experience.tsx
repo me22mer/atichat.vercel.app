@@ -1,7 +1,9 @@
 export default function Experience() {
   return (
     <>
-      <h1 className="text-3xl">Experience</h1>
+      <h1 className="text-3xl underline decoration-zinc-700 decoration-4">
+        Experience
+      </h1>
       <h2 className="mb-1 font-semibold text-xl tracking-tighter">
         GoodGeekClub
       </h2>

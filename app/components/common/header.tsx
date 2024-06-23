@@ -3,15 +3,13 @@
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 
-import Logo from "./logo";
-
 export default function Header() {
   const pathname = usePathname();
 
   return (
     <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center">
       <div className="w-[672px] mx-4 md:mx-6 gap-2 flex justify-between items-center text-sm sm:text-base">
-        <div className="flex">
+        <div className="flex space-x-4 md:space-x-6 ">
           <Link
             scroll={false}
             href="/"
@@ -21,10 +19,8 @@ export default function Header() {
                 : "transition-colors duration-500 text-zinc-300 hover:text-white"
             }`}
           >
-            <Logo />
+            home
           </Link>
-        </div>
-        <div className="flex space-x-4 md:space-x-6 ">
           <Link
             scroll={false}
             href="/projects"
