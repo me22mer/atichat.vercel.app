@@ -34,14 +34,14 @@ const ListBlog = ({ post, slug }: Props) => {
   return (
     <Link
       href={`/${slug}`}
-      className="block bg-zinc-300 border border-zinc-300 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+      className="block bg-gradient-to-br from-zinc-950 via-zinc-950 to-zinc-800 border border-zinc-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
     >
       <div className="p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-black">{title}</h2>
-          <time className="text-sm text-zinc-500">{formattedDate}</time>
+        <div className="flex flex-col md:flex-row md:justify-between mb-4">
+          <h2 className="text-2xl font-bold text-white">{title}</h2>
+          <time className="text-sm text-zinc-200">{formattedDate}</time>
         </div>
-        <p className="text-sm text-zinc-700 line-clamp-3">{description}</p>
+        <p className="text-sm text-zinc-400 line-clamp-3">{description}</p>
       </div>
     </Link>
   );

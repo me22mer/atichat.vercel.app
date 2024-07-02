@@ -4,6 +4,7 @@ export type ProjectMeta = {
   date: string;
   description: string;
   repository: string;
+  status: string;
   url: string;
   tags: [];
   published: boolean;
