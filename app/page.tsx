@@ -62,12 +62,18 @@ export default async function Home() {
                     fan.
                   </p>
                 </div>
-                <div className="my-2 inline-flex h-max w-max rounded-md">
+                <div className="my-2 inline-flex h-max w-max gap-3 rounded-md">
                   <Link
                     href="/resume"
-                    className="rounded-md border border-zinc-300 bg-zinc-300 px-2.5 py-2.5 text-sm text-zinc-950 no-underline shadow-lg transform transition-transform duration-300 hover:scale-105 "
+                    className="rounded-md bg-gradient-to-br from-zinc-950 via-zinc-950 to-zinc-800 border border-zinc-700 px-2.5 py-2.5 text-sm text-zinc-50 no-underline shadow-lg transform transition-transform duration-300 hover:scale-105 "
                   >
                     Explore my profile
+                  </Link>
+                  <Link
+                    href="/projects"
+                    className="rounded-md bg-gradient-to-br from-zinc-950 via-zinc-950 to-zinc-800 border border-zinc-700 px-2.5 py-2.5 text-sm text-zinc-50 no-underline shadow-lg transform transition-transform duration-300 hover:scale-105 "
+                  >
+                    My projects
                   </Link>
                 </div>
                 <div className="my-16">
@@ -133,7 +139,7 @@ export default async function Home() {
                     @Atichat Thongnak
                   </a>
                   <a
-                    href="https://twitter.com/me22mer"
+                    href="https://x.com/0o_asa_o0"
                     target="_blank"
                     aria-label="X"
                     className="flex items-center rounded px-3 py-2 no-underline duration-200 hover:bg-zinc-800"
@@ -148,7 +154,7 @@ export default async function Home() {
                       <title>X</title>
                       <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
                     </svg>
-                    @me22mer
+                    @Asa
                   </a>
                 </div>{" "}
                 {/* Social Media Links section */}
