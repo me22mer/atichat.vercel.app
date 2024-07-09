@@ -22,3 +22,4 @@ export default function XIcon({ IconClass }: Props) {
     </a>
   );
 }
+

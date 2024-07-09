@@ -2,10 +2,13 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
+import { cn } from "@/utils/cn";
+import { GeistSans } from "geist/font/sans";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +47,10 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
-        className={`${inter.className} antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950`}
+        className={cn(
+          `antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950`,
+          GeistSans.variable
+        )}
       >
         <body className=" antialiased w-full flex flex-col justify-center">
           {children}
