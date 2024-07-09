@@ -7,7 +7,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center">
+    <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center border-b-[1px] border-b-zinc-900">
       <div className="w-[672px] mx-4 md:mx-6 gap-2 flex justify-between items-center text-sm sm:text-base">
         <div className="flex space-x-4 md:space-x-6 ">
           <Link

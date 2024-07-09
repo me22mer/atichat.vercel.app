@@ -51,10 +51,10 @@ export default async function PostPage({
 
   return (
     <div>
-      <Navigater />
+      <Navigater pageHeading="PROJECT." />
       <div className="h-auto bg-black">
         <div className="w-full h-full bg-gradient-to-b from-zinc-900  to-black">
-          <div className="py-24 sm:py-26 flex flex-col justify-center items-center text-center">
+          <div className="py-32 sm:py-36 flex flex-col justify-center items-center text-center">
             <div className=" px-6 flex flex-col ">
               <time className="mb-6 text-lg  text-zinc-300">
                 {getFormatDate(frontmatter.publishedAt)}
