@@ -21,11 +21,15 @@ export default function ResumePage() {
           <div className="grid gap-8">
             <section className="grid gap-4">
               <div className="flex flex-wrap items-center gap-4">
-                <span className="relative flex shrink-0 overflow-hidden rounded-full h-20 w-20">
+                <span className="relative flex shrink-0 overflow-hidden rounded-full h-28 w-28">
                   <Image
-                    className="aspect-square h-full w-full object-cover object-center"
+                    className="h-full w-full object-cover object-center"
                     alt=""
                     src={profile}
+                    loading="lazy"
+                    quality={100}
+                    placeholder="blur"
+                    sizes="(max-width: 1024px) 100vw"
                   />
                 </span>
                 <div className="grid gap-1">
@@ -41,7 +45,7 @@ export default function ResumePage() {
             </section>
             <section className="grid gap-2">
               <h2 className="text-lg font-semibold"># Objective</h2>
-              <p className="text-zinc-300">
+              <p className="text-zinc-300 prose max-w-full">
                 Seeking a challenging role to leverage expertise in creating
                 user-interactive websites and contribute to innovative projects.
                 experienced front-end developer proficient in HTML, CSS and
@@ -56,57 +60,72 @@ export default function ResumePage() {
                 <div className="grid gap-2">
                   <div className="flex flex-col-reverse md:flex-row md:justify-between">
                     <div className="grid gap-1">
-                      <h3 className="text-base font-semibold">Web Developer</h3>
-                      <p className="text-muted-foreground">GoodGeekClub</p>
+                      <h3 className="text-base font-semibold">
+                        Web Developer,{" "}
+                        <span className="font-normal">GoodGeekClub</span>
+                      </h3>
                     </div>
                     <p className="text-muted-foreground">2022 - Present</p>
                   </div>
-                  <p className="text-muted-foreground text-zinc-300">
-                    I created a website with Plesk hosting and WordPress for
-                    healthy food products at{" "}
-                    <a
-                      href="https://dseelin.co.th/"
-                      target="_blank"
-                      className="no-underline font-semibold text-white"
-                    >
-                      dseelin.co.th
-                    </a>
-                    , deployed a static web page using{" "}
-                    <a
-                      href="https://nextjs.org/"
-                      target="_blank"
-                      className="no-underline font-semibold text-white"
-                    >
-                      Next.js
-                    </a>{" "}
-                    and implemented an internationalization feature with{" "}
-                    <a
-                      href="https://next-intl-docs.vercel.app/"
-                      target="_blank"
-                      className="no-underline font-semibold text-white"
-                    >
-                      next-intl
-                    </a>{" "}
-                    for{" "}
-                    <a
-                      href="https://youthplusthailand.com/"
-                      target="_blank"
-                      className="no-underline font-semibold text-white"
-                    >
-                      youthplusthailand.com
-                    </a>
-                    , hosted static web pages with{" "}
-                    <a
-                      href="https://aws.amazon.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="no-underline font-semibold text-white"
-                    >
-                      Amazon Web Services
-                    </a>{" "}
-                    (including CloudFront, S3, and EC2), and provided IT
-                    expertise as a volunteer.
-                  </p>
+                  <div className="prose max-w-full">
+                    <p className="text-muted-foreground text-zinc-300 leading-relaxed">
+                      Goodgeekclub is a club dedicated to training youth
+                      interested in IT and providing IT expertise to improve
+                      society. During my time with Goodgeekclub, I volunteered
+                      to organize numerous IT activities to contribute
+                      positively to society and develop various skills.
+                    </p>
+                    <p className="text-muted-foreground text-zinc-300 leading-relaxed">
+                      I created a website with Plesk hosting and WordPress for
+                      healthy food products at
+                      <a
+                        href="https://dseelin.co.th/"
+                        target="_blank"
+                        className="no-underline font-semibold text-white"
+                      >
+                        {" "}
+                        dseelin.co.th
+                      </a>
+                      . I also deployed a static web page using
+                      <a
+                        href="https://nextjs.org/"
+                        target="_blank"
+                        className="no-underline font-semibold text-white"
+                      >
+                        {" "}
+                        Next.js{" "}
+                      </a>
+                      and implemented an internationalization feature with
+                      <a
+                        href="https://next-intl-docs.vercel.app/"
+                        target="_blank"
+                        className="no-underline font-semibold text-white"
+                      >
+                        {" "}
+                        next-intl{" "}
+                      </a>
+                      for
+                      <a
+                        href="https://youthplusthailand.com/"
+                        target="_blank"
+                        className="no-underline font-semibold text-white"
+                      >
+                        {" "}
+                        youthplusthailand.com{" "}
+                      </a>
+                      . Additionally, I hosted static web pages with
+                      <a
+                        href="https://aws.amazon.com/"
+                        target="_blank"
+                        className="no-underline font-semibold text-white"
+                      >
+                        {" "}
+                        Amazon Web Services{" "}
+                      </a>
+                      , utilizing CloudFront, S3, and EC2, and provided IT
+                      expertise as a volunteer.
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>

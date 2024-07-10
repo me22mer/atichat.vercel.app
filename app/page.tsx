@@ -24,7 +24,7 @@ export default async function Home() {
       <div className="flex justify-center">
         <div className="mx-4 mb-6 w-[672px] pt-20 md:mx-6">
           <div className="flex flex-col gap-6">
-            <div className="mb-10 md:pr-20">
+            <div className="mb-10  sm:pr-10 md:pr-20">
               <div className="text-2xl font-extrabold leading-10 text-white md:text-[1.9rem] md:leading-[3rem]">
                 <h1 className="bg-gradient-to-b from-white via-white/90 to-white/70 bg-clip-text tracking-tight text-transparent">
                   Hi I&apos;m Atichat, a front-end developer dedicated to
