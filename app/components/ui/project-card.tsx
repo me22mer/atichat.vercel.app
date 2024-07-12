@@ -1,5 +1,4 @@
 import { Link } from "next-view-transitions";
-
 import { getFormatDate } from "utils/useformatdate";
 import { ProjectMeta } from "type";
 import { getPosts } from "@/lib/mdx";
@@ -12,19 +11,17 @@ type Props = {
 export default async function ProjectCard() {
   const posts = await getPosts<ProjectMeta>("projects");
 
-  posts.sort((a, b) => {
-    if (
-      new Date(a.frontmatter.publishedAt) > new Date(b.frontmatter.publishedAt)
-    ) {
-      return 1;
-    }
-    return -1;
-  });
+  // Sort posts by publishedAt date
+  const sortedPosts = posts.sort(
+    (b, a) =>
+      new Date(getFormatDate(a.frontmatter.publishedAt)).getTime() -
+      new Date(getFormatDate(b.frontmatter.publishedAt)).getTime()
+  );
 
   return (
-    <div className="">
-      <ul className="my-16 w-full flex flex-wrap justify-betdween gap-5">
-        {posts.map((post) => (
+    <div className=" py-16">
+      <ul className="flex flex-col gap-5">
+        {sortedPosts.map((post) => (
           <Listproject
             key={post.slug}
             post={post.frontmatter}
@@ -45,19 +42,17 @@ export function Listproject({ post, slug }: Props) {
   }
 
   return (
-    <>
-      <Link
-        href={`/${slug}`}
-        className="w-full  p-4 md:p-5 border rounded-xl hover:bg-zinc-900 duration-500  border-zinc-800"
-      >
-        <div className="text-zinc-400 prose prose-invert hover:text-zinc-100 transition-colors duration-1000">
-          <div className="flex max-sm:flex-col-reverse sm:justify-between">
-            <h1 className="text-xl md:text-3xl font-bold">{title}</h1>
-            <time className="text-xs">{formattedDate}</time>
-          </div>
-          <p className="mt-0 text-sm md:truncate">{description}</p>
+    <Link
+      href={`/${slug}`}
+      className="block bg-gradient-to-br from-zinc-950 via-zinc-950 to-zinc-800 border border-zinc-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+    >
+      <div className="p-6">
+        <div className="flex flex-col md:flex-row md:justify-between mb-4">
+          <h2 className="text-2xl font-bold text-white">{title}</h2>
+          <time className="text-sm text-zinc-200">{formattedDate}</time>
         </div>
-      </Link>
-    </>
+        <p className="text-sm text-zinc-400 line-clamp-3">{description}</p>
+      </div>
+    </Link>
   );
 }

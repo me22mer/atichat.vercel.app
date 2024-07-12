@@ -4,6 +4,7 @@ export type ProjectMeta = {
   date: string;
   description: string;
   repository: string;
+  status: string;
   url: string;
   tags: [];
   published: boolean;
@@ -15,4 +16,5 @@ export type BlogMeta = {
   publishedAt: string;
   coverImage: string;
   published: boolean;
+  tags: [];
 };

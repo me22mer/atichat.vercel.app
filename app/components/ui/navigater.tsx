@@ -1,15 +1,27 @@
 "use client";
 
+import { GeistSans } from "geist/font/sans";
 import { useRouter } from "next/navigation";
 
-export default function Navigater() {
+type Prop = {
+  pageHeading: string
+}
+
+export default function Navigater({pageHeading}: Prop) {
   const router = useRouter();
 
   return (
-    <nav className="z-50 w-full flex fixed backdrop-blur duration-200 bg-zinc-900/0 ">
-      <div className="px-4 py-6">
-        <span>
-          <button type="button" onClick={() => router.back()} aria-label="navigater-button">
+    <nav
+      className={`${GeistSans.variable} z-50 w-full flex fixed backdrop-blur-xl duration-200 border-b-[1px] border-b-zinc-800`}
+    >
+      <div className="px-4 py-6 w-full grid grid-cols-2 md:grid-cols-3">
+        {/* <span> */}
+        <div className="flex items-center">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            aria-label="navigater-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={40}
@@ -22,7 +34,13 @@ export default function Navigater() {
               />
             </svg>
           </button>
-        </span>
+        </div>
+        {/* </span> */}
+        <div className="flex justify-end md:justify-center items-center">
+          <h1 className="text-xl md:text-3xl font-extrabold">{pageHeading}</h1>
+        </div>
+        <div>
+        </div>
       </div>
     </nav>
   );
