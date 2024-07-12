@@ -1,28 +1,77 @@
-"use client";
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/4xjpw729fFY
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
 
-import { useRouter, usePathname } from "next/navigation";
+import { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "404",
+};
 
 export default function NotFound() {
-  const router = useRouter();
-  const pathName = usePathname();
-
   return (
-    <main>
-      <div className="w-full">
-        <div className="h-[100vh] py-24 sm:py-32 flex items-center justify-center bg-gradient-to-tl from-zinc-900 via-zinc-700/10 to-zinc-900">
-          <div className=" px-6 flex flex-col text-center items-center">
-            <h1 className="mb-16 text-2xl mb:text-4xl font-bold tracking-tight text-white sm:text-6xl ">
-              Not found : &quot;{pathName}&quot;
-            </h1>
-            <button
-              onClick={() => router.push("/", { scroll: false })}
-              className="w-max text-xl duration-500 text-zinc-500 hover:text-white"
-            >
-              Go back
-            </button>
-          </div>
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-md text-center">
+        <FrownIcon className="mx-auto h-12 w-12 text-primary" />
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          Oops, page not found!
+        </h1>
+        <p className="mt-4 text-muted-foreground">
+          The page you&apos;re looking for doesn&apos;t seem to exist. Let&apos;s get you back
+          on track.
+        </p>
+        <div className="mt-6">
+          <Link
+            href="/"
+            className="inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            prefetch={false}>
+            Go to Homepage
+          </Link>
         </div>
       </div>
-    </main>
+    </div>
+  );
+}
+
+function FrownIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
+      <line x1="9" x2="9.01" y1="9" y2="9" />
+      <line x1="15" x2="15.01" y1="9" y2="9" />
+    </svg>
+  );
+}
+
+function XIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round">
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
   );
 }
