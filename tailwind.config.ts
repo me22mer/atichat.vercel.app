@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -29,15 +30,17 @@ const config: Config = {
       16: "16",
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
+      },
       animation: {
-        "loop-scroll": "loop-scroll 50s linear infinite",
+        reveal: "reveal 1s ease-in-out",
         gradient: "animatedgradient 6s ease infinite alternate",
-        blob: "blob 7s infinite",
       },
       keyframes: {
-        "loop-scroll": {
-          from: { transform: "translateX(100%)" },
-          to: { transform: "translateX(-100%)" },
+        reveal: {
+          from: { clipPath: "inset(var(--from, 100% 0 0 0))" },
         },
         animatedgradient: {
           "0%": { backgroundPosition: "0% 50%" },

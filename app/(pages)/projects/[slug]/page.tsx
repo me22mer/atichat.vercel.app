@@ -51,15 +51,15 @@ export default async function PostPage({
 
   return (
     <div>
-      <Navigater pageHeading="PROJECT." />
-      <div className="h-auto bg-black">
-        <div className="w-full h-full bg-gradient-to-b from-zinc-900  to-black">
-          <div className="py-32 sm:py-36 flex flex-col justify-center items-center text-center">
-            <div className=" px-6 flex flex-col ">
+      <Navigater pageHeading="PROJECT" />
+      <div className="h-auto max-w-full  bg-black">
+        <div className="w-full h-full py-32 sm:py-36 bg-gradient-to-b from-zinc-900  to-black">
+          <div className="flex flex-col justify-center items-center text-center">
+            <div className="px-4 md:px-6 flex flex-col ">
               <time className="mb-6 text-lg  text-zinc-300">
                 {getFormatDate(frontmatter.publishedAt)}
               </time>
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
+              <h1 className="text-2xl md:text-6xl font-bold tracking-tight text-white font-display">
                 {frontmatter.title}
               </h1>
               <p className="mt-6 text-lg leading-8 text-zinc-300">
@@ -71,8 +71,7 @@ export default async function PostPage({
                 <Link
                   href={frontmatter.repository}
                   target="_blank"
-                  className="after:content-['_↗']"
-                >
+                  className="after:content-['_↗']">
                   Github
                 </Link>
               )}
@@ -80,8 +79,7 @@ export default async function PostPage({
                 <Link
                   href={frontmatter.url}
                   target="_blank"
-                  className="after:content-['_↗']"
-                >
+                  className="after:content-['_↗']">
                   Website
                 </Link>
               )}

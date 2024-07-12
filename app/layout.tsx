@@ -2,8 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
-import { cn } from "@/utils/cn";
 import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+
+import { cn } from "@/utils/cn";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,9 +51,9 @@ export default function RootLayout({
         lang="en"
         className={cn(
           `antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950`,
-          GeistSans.variable
-        )}
-      >
+          GeistSans.variable,
+          GeistMono.variable
+        )}>
         <body className=" antialiased w-full flex flex-col justify-center">
           {children}
         </body>

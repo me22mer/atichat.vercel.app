@@ -49,7 +49,7 @@ export default async function PostPage({
 
   return (
     <div>
-      <Navigater pageHeading="BLOG." />
+      <Navigater pageHeading="BLOG" />
       <div className="h-auto w-full">
         <div className="py-24 flex flex-col justify-center bg-gradient-to-b from-zinc-800/60 to bg-black">
           <div className="px-4 mt-14 mb-10 flex flex-col items-center">

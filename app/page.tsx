@@ -33,11 +33,11 @@ export default async function Home() {
               </div>
             </div>
             <div className="my-10">
-              <div>
+              <div className="prose prose-invert">
                 <h1 className="mb-5 text-2xl font-bold underline decoration-zinc-700 decoration-4">
                   About Me
                 </h1>
-                <p className="leading-loose">
+                <p className="leading-loose text-justify">
                   I&apos;m a 21-year-old student at Sripatum University in
                   Thailand, where I&apos;m studying Information and
                   Communication Technology. Currently, I&apos;m diving into
@@ -84,8 +84,7 @@ export default async function Home() {
                       <Link
                         key={post.slug}
                         href={`/${post.slug}`}
-                        className=" no-underline hover:underline"
-                      >
+                        className=" no-underline hover:underline">
                         <p className="px-4 py-2.5 mt-0 mb-2.5 rounded-lg bg-gradient-to-br from-zinc-950 to-zinc-800 flex justify-between text-sm hover:to-zinc-800 hover:from-zinc-800 ">
                           <span>{post.frontmatter.title}</span>
                           <span>

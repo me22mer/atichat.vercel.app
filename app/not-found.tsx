@@ -26,7 +26,7 @@ export default function NotFound() {
         <div className="mt-6">
           <Link
             href="/"
-            className="inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2"
             prefetch={false}>
             Go to Homepage
           </Link>

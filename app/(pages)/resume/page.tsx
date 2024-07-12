@@ -13,15 +13,14 @@ export const metadata: Metadata = {
 export default function ResumePage() {
   return (
     <section
-      className={`w-full h-full bg-gradient-to-b from-zinc-900/50 via-zinc-950 to-zinc-950 flex justify-normal md:justify-center`}
-    >
-      <Navigation pageHeading="RESUME." />
+      className={`w-full h-full bg-gradient-to-b from-zinc-900/50 via-zinc-950 to-zinc-950 flex justify-normal md:justify-center`}>
+      <Navigation pageHeading="RESUME" />
       <div className="w-full max-w-fit mt-20 mb-20 mx-4 md:mx-10 pt-16 flex justify-center gap-20 ">
         <div className="bg-background text-foreground max-w-[672px] flex flex-col">
           <div className="grid gap-8">
             <section className="grid gap-4">
               <div className="flex flex-wrap items-center gap-4">
-                <span className="relative flex shrink-0 overflow-hidden rounded-full h-28 w-28">
+                <span className="relative flex shrink-0 overflow-hidden rounded-full h-28 w-28 hover:scale-110 ease-out duration-300">
                   <Image
                     className="h-full w-full object-cover object-center"
                     alt=""
@@ -35,6 +34,9 @@ export default function ResumePage() {
                 <div className="grid gap-1">
                   <h1 className="text-2xl font-bold">Atichat Thongnak</h1>
                   <p className="text-muted-foreground">Web Developer</p>
+                  <p className="text-muted-foreground">
+                    Address: 10220 Bangkok, Thailand
+                  </p>
                   <div className="flex items-center gap-2 text-muted-foreground text-red-500">
                     <CircleCrossIcon className="h-4 w-4" />
                     <span>Not available for work</span>
@@ -61,19 +63,19 @@ export default function ResumePage() {
                   <div className="flex flex-col-reverse md:flex-row md:justify-between">
                     <div className="grid gap-1">
                       <h3 className="text-base font-semibold">
-                        Web Developer,{" "}
-                        <span className="font-normal">GoodGeekClub</span>
+                        GoodGeekClub,{" "}
+                        <span className="font-normal">Web Developer</span>
                       </h3>
                     </div>
                     <p className="text-muted-foreground">2022 - Present</p>
                   </div>
                   <div className="prose max-w-full">
                     <p className="text-muted-foreground text-zinc-300 leading-relaxed">
-                      Goodgeekclub is a club dedicated to training youth
-                      interested in IT and providing IT expertise to improve
-                      society. During my time with Goodgeekclub, I volunteered
-                      to organize numerous IT activities to contribute
-                      positively to society and develop various skills.
+                      GoodGeekClub is a group that teaches young people who are
+                      interested in technology and uses that knowledge to better
+                      society. I volunteered to plan many IT events to advance
+                      diverse skill development and have a beneficial impact on
+                      society when I was a member of GoodGeekClub.
                     </p>
                     <p className="text-muted-foreground text-zinc-300 leading-relaxed">
                       I created a website with Plesk hosting and WordPress for
@@ -81,8 +83,7 @@ export default function ResumePage() {
                       <a
                         href="https://dseelin.co.th/"
                         target="_blank"
-                        className="no-underline font-semibold text-white"
-                      >
+                        className="no-underline font-semibold text-white">
                         {" "}
                         dseelin.co.th
                       </a>
@@ -90,8 +91,7 @@ export default function ResumePage() {
                       <a
                         href="https://nextjs.org/"
                         target="_blank"
-                        className="no-underline font-semibold text-white"
-                      >
+                        className="no-underline font-semibold text-white">
                         {" "}
                         Next.js{" "}
                       </a>
@@ -99,8 +99,7 @@ export default function ResumePage() {
                       <a
                         href="https://next-intl-docs.vercel.app/"
                         target="_blank"
-                        className="no-underline font-semibold text-white"
-                      >
+                        className="no-underline font-semibold text-white">
                         {" "}
                         next-intl{" "}
                       </a>
@@ -108,8 +107,7 @@ export default function ResumePage() {
                       <a
                         href="https://youthplusthailand.com/"
                         target="_blank"
-                        className="no-underline font-semibold text-white"
-                      >
+                        className="no-underline font-semibold text-white">
                         {" "}
                         youthplusthailand.com{" "}
                       </a>
@@ -117,8 +115,7 @@ export default function ResumePage() {
                       <a
                         href="https://aws.amazon.com/"
                         target="_blank"
-                        className="no-underline font-semibold text-white"
-                      >
+                        className="no-underline font-semibold text-white">
                         {" "}
                         Amazon Web Services{" "}
                       </a>
@@ -168,8 +165,7 @@ function CircleCheckIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
       <path d="m9 12 2 2 4-4" />
     </svg>
@@ -188,8 +184,7 @@ function CircleCrossIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
       <line x1="15" y1="9" x2="9" y2="15" />
       <line x1="9" y1="9" x2="15" y2="15" />
