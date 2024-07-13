@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import Navigater from "@/components/ui/navigater";
+import Navigater from "@/ui/navigater";
 
-import { getFormatDate } from "utils/useformatdate";
+import { getFormatDate } from "@/lib/useformatdate";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 
 import { ProjectMeta } from "type";
@@ -52,8 +52,8 @@ export default async function PostPage({
   return (
     <div>
       <Navigater pageHeading="PROJECT" />
-      <div className="h-auto max-w-full  bg-black">
-        <div className="w-full h-full py-32 sm:py-36 bg-gradient-to-b from-zinc-900  to-black">
+      <div className="h-auto max-w-full  bg-zinc-950">
+        <div className="w-full h-full pt-40 pb-20  ">
           <div className="flex flex-col justify-center items-center text-center">
             <div className="px-4 md:px-6 flex flex-col ">
               <time className="mb-6 text-lg  text-zinc-300">
@@ -66,7 +66,7 @@ export default async function PostPage({
                 {frontmatter.description}
               </p>
             </div>
-            <div className="mt-8 font-semibold space-x-7">
+            <div className="mt-8 font-semibold space-x-7 text-zinc-300">
               {frontmatter.repository && (
                 <Link
                   href={frontmatter.repository}
@@ -86,8 +86,9 @@ export default async function PostPage({
             </div>
           </div>
         </div>
+        <hr className=" border-zinc-800" />
         <div className="w-full my-20 flex justify-center px-4 ">
-          <article className="max-w-full md:max-w-[672px] mx-auto prose prose-zinc prose-invert prose-quoteless prose-pre:bg-zinc-800/70 prose-img:rounded-lg">
+          <article className="max-w-full md:max-w-[620px] prose prose-zinc prose-invert prose-quoteless prose-pre:bg-zinc-800/70 prose-img:rounded-lg ">
             {content}
           </article>
         </div>

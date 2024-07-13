@@ -5,7 +5,9 @@ import { ViewTransitions } from "next-view-transitions";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
-import { cn } from "@/utils/cn";
+import Header from "./components/common/header";
+import Footer from "./components/common/footer";
+import { cn } from "@/lib/cn";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,11 +52,11 @@ export default function RootLayout({
       <html
         lang="en"
         className={cn(
-          `antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950`,
+          `antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950 bg-zinc-950`,
           GeistSans.variable,
           GeistMono.variable
         )}>
-        <body className=" antialiased w-full flex flex-col justify-center">
+        <body className="dark antialiased w-full flex flex-col justify-center">
           {children}
         </body>
       </html>

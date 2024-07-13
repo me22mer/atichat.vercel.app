@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/cn";
 
 type Prop = {
   pageHeading: string;
@@ -14,12 +14,7 @@ export default function Navigater({ pageHeading }: Prop) {
   return (
     <nav
       className={`z-50 w-full flex fixed backdrop-blur-xl duration-200 border-b-[1px] border-b-zinc-800`}>
-      <div
-        className={cn(
-          `px-4 py-6 w-full flex justify-between`,
-          // pathname === "/resume" ? "grid-cols-3" : "grid-cols-2 md:grid-cols-3"
-        )}>
-        {/* <span> */}
+      <div className={cn(`px-4 py-6 w-full flex justify-between`)}>
         <div className="flex items-center">
           <button
             type="button"
@@ -37,22 +32,11 @@ export default function Navigater({ pageHeading }: Prop) {
             </svg>
           </button>
         </div>
-        <div
-          className={cn(
-            `flex justify-end md:justify-center items-center`,
-            pathname === "/resume" ? " justify-center" : ""
-          )}>
-          <h1 className="text-xl md:text-3xl font-extrabold">{pageHeading}</h1>
+        <div className={cn(`flex justify-end md:justify-center items-center`)}>
+          <h1 className="text-xl md:text-3xl font-extrabold text-white">
+            {pageHeading}
+          </h1>
         </div>
-        {pathname === "/resume" && (
-          <div className="flex justify-end items-center">
-            <a
-              className="inline-flex items-center rounded-md bg-white px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2"
-              href="mailto:atichatbusiness@gmail.com">
-              EMAIL ME
-            </a>
-          </div>
-        )}
       </div>
     </nav>
   );

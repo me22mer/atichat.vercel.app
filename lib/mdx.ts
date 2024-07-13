@@ -3,8 +3,8 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { ReactElement } from "react";
+import CustomImage from "app/components/mdx/customImage";
 
-import CustomImage from "@/components/mdx/customImage";
 
 const RootDir = path.join(process.cwd(), "app", "content");
 
