@@ -8,15 +8,46 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Briefcase, EqualIcon, FileText, HouseIcon, Mail, TextIcon, User } from "lucide-react";
+import { cn } from "@/lib/cn";
+import {
+  Briefcase,
+  EqualIcon,
+  FileText,
+  HouseIcon,
+  Mail,
+  TextIcon,
+  User,
+} from "lucide-react";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [showBorder, setShowBorder] = useState(false);
+
   const pathname = usePathname();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setShowBorder(true);
+      } else {
+        setShowBorder(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center border-b-[1px] border-b-zinc-900">
+    <nav
+      className={cn(
+        `sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center`,
+        showBorder ? "border-b-[1px] border-b-zinc-900/80" : "border-b-0 "
+      )}>
       <div className="w-[672px] h-10 mx-4 md:mx-6 flex justify-between items-center">
         <div className="gap-2 flex justify-between items-center text-base">
           <div className="max-sm:hidden flex space-x-4 md:space-x-6 ">
