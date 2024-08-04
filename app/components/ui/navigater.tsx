@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
 import { cn } from "@/lib/cn";
 
 type Prop = {
@@ -8,8 +8,7 @@ type Prop = {
 };
 
 export default function Navigater({ pageHeading }: Prop) {
-  const pathname = usePathname();
-  const router = useRouter();
+  const router = useTransitionRouter();
 
   return (
     <nav
