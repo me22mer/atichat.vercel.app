@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
-
-import Image from "next/image";
-
-import profile from "public/images/profile.jpeg";
-import Header from "@/common/header";
 import { CircleXIcon } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -15,7 +10,6 @@ export const metadata: Metadata = {
 export default function ResumePage() {
   return (
     <>
-      <Header />
       <section
         className={`w-full h-full bg-zinc-950 flex flex-col justify-normal md:justify-center items-center `}>
         <div className="w-full max-w-fit h-full mt-5 mb-20 mx-4 md:mx-10 pt-16 flex justify-center gap-20 ">

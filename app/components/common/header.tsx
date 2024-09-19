@@ -1,147 +1,72 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import { cn } from "@/lib/cn";
-import {
-  Briefcase,
-  EqualIcon,
-  FileText,
-  HouseIcon,
-  Mail,
-  TextIcon,
-  User,
-} from "lucide-react";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export default function Header() {
   const [showBorder, setShowBorder] = useState(false);
-
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setShowBorder(true);
-      } else {
-        setShowBorder(false);
-      }
-    };
+  const handleScroll = useCallback(() => {
+    setShowBorder(window.scrollY > 0);
+  }, []);
 
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
+
+  const generateLinkClass = (path) =>
+    cn(
+      "transition-colors duration-500 hover:text-white",
+      pathname === path ? "text-white" : "text-zinc-300"
+    );
 
   return (
     <nav
       className={cn(
-        `sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center`,
-        showBorder ? "border-b-[1px] border-b-zinc-900/80" : "border-b-0 "
+        "sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center",
+        showBorder ? "border-b-[1px] border-b-zinc-900/80" : "border-b-0"
       )}>
-      <div className="w-[672px] h-10 mx-4 md:mx-6 flex justify-between items-center">
+      <div className="w-[672px] h-10 mx-4 md:mx-6 flex justify-center items-center">
         <div className="gap-2 flex justify-between items-center text-base">
-          <div className="max-sm:hidden flex space-x-4 md:space-x-6 ">
+          <div className="flex space-x-4 md:space-x-10">
             <Link
               scroll={false}
-              href="/"
-              className={`link ${
-                pathname === "/"
-                  ? "active transition-colors duration-500 text-white hover:text-zinc-100"
-                  : "transition-colors duration-500 text-zinc-300 hover:text-white"
-              }`}>
+              href="/home"
+              className={generateLinkClass("/home")}>
               home
             </Link>
             <Link
               scroll={false}
+              href="/about"
+              className={generateLinkClass("/about")}>
+              about
+            </Link>
+            <Link
+              scroll={false}
               href="/projects"
-              className={`link ${
-                pathname === "/projects"
-                  ? "active transition-colors duration-500 text-white hover:text-zinc-100"
-                  : "transition-colors duration-500 text-zinc-300 hover:text-white"
-              }`}>
+              className={generateLinkClass("/projects")}>
               projects
             </Link>
-
             <Link
               scroll={false}
               href="/resume"
-              className={`link ${
-                pathname === "/resume"
-                  ? "active transition-colors duration-500 text-white hover:text-zinc-100"
-                  : "transition-colors duration-500 text-zinc-300 hover:text-white"
-              }`}>
+              className={generateLinkClass("/resume")}>
               resume
             </Link>
             <Link
               scroll={false}
               href="/blog"
-              className={`link ${
-                pathname === "/blog"
-                  ? "active transition-colors duration-500 text-white hover:text-zinc-100"
-                  : "transition-colors duration-500 text-zinc-300 hover:text-white"
-              }`}>
+              className={generateLinkClass("/blog")}>
               blog
             </Link>
           </div>
-          <Drawer>
-            <DrawerTrigger asChild className="sm:hidden">
-              {/* <Button variant="default" className="px-3 py-0"><EqualIcon className=""/></Button> */}
-              <TextIcon className="h-8 w-8" />
-            </DrawerTrigger>
-            <DrawerContent>
-              <DrawerHeader>
-                <DrawerTitle className="my-3.5">Pages</DrawerTitle>
-              </DrawerHeader>
-              <div className="mx-2 sm:mx-4 mb-4 w-[95dvw] flex flex-col">
-                <Link
-                  scroll={false}
-                  href="/"
-                  className="py-3.5 px-2 flex items-center hover:bg-zinc-800 rounded-lg">
-                  <HouseIcon className="mr-2" />
-                  home
-                </Link>
-                <Link
-                  scroll={false}
-                  href="/projects"
-                  className="py-3.5 px-2 flex items-center hover:bg-zinc-800 rounded-lg">
-                  <Briefcase className="mr-2" />
-                  projects
-                </Link>
-                <Link
-                  scroll={false}
-                  href="/resume"
-                  className="py-3.5 px-2 flex items-center hover:bg-zinc-800 rounded-lg">
-                  <User className="mr-2" />
-                  resume
-                </Link>
-                <Link
-                  scroll={false}
-                  href="/blog"
-                  className="py-3.5 px-2 flex items-center hover:bg-zinc-800 rounded-lg">
-                  <FileText className="mr-2" />
-                  blog
-                </Link>
-              </div>
-            </DrawerContent>
-          </Drawer>
         </div>
-        {pathname === "/resume" && (
-          <Button size="sm">
-            {" "}
-            <Mail className="mr-2 h-4 w-4" />
-            <a href="mailto:atichatbusiness@gmail.com">EMAIL ME</a>
-          </Button>
-        )}
       </div>
     </nav>
   );

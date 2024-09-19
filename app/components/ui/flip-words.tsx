@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/cn";
@@ -12,54 +13,41 @@ export const FlipWords = ({
   duration?: number;
   className?: string;
 }) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length); // Loop through words
     setIsAnimating(true);
-  }, [currentWord, words]);
+  }, [words.length]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!isAnimating) {
+      const timer = setTimeout(() => {
         startAnimation();
       }, duration);
+      return () => clearTimeout(timer); // Clear timeout on unmount or re-render
+    }
   }, [isAnimating, duration, startAnimation]);
+
+  const currentWord = words[currentIndex];
 
   return (
     <AnimatePresence
-      onExitComplete={() => {
-        setIsAnimating(false);
-      }}
+      onExitComplete={() => setIsAnimating(false)}
+      initial={false} // Optimize initial render by skipping initial animation
     >
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.4,
-        }}
-        exit={{
-          opacity: 0,
-          y: -10,
-          filter: "blur(8px)",
-          position: "absolute",
-        }}
+        key={currentWord}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10, filter: "blur(8px)", position: "absolute" }}
+        transition={{ duration: 0.4 }}
         className={cn(
           "z-10 inline-block relative",
           "bg-clip-text text-transparent bg-gradient-to-r from-[#1dbde6] via-[#FF44EC] to-[#f1515e]",
           className
-        )}
-        key={currentWord}
-      >
+        )}>
         {currentWord}
       </motion.div>
     </AnimatePresence>

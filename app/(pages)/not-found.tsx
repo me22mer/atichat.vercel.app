@@ -1,9 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/4xjpw729fFY
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -53,25 +47,6 @@ function FrownIcon(props) {
       <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
       <line x1="9" x2="9.01" y1="9" y2="9" />
       <line x1="15" x2="15.01" y1="9" y2="9" />
-    </svg>
-  );
-}
-
-function XIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
     </svg>
   );
 }

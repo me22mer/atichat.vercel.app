@@ -12,7 +12,7 @@ export default function Navigater({ pageHeading }: Prop) {
 
   return (
     <nav
-      className={`z-50 w-full flex fixed backdrop-blur-xl duration-200 border-b-[1px] border-b-zinc-800`}>
+      className={`z-50 w-full flex fixed backdrop-blur-xl duration-200 `}>
       <div className={cn(`px-4 py-6 w-full flex justify-between`)}>
         <div className="flex items-center">
           <button

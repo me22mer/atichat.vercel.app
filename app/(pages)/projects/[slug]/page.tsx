@@ -7,6 +7,7 @@ import { getFormatDate } from "@/lib/useformatdate";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 
 import { ProjectMeta } from "type";
+import { ArrowUpRight } from "lucide-react";
 
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
@@ -56,31 +57,30 @@ export default async function PostPage({
         <div className="w-full h-full pt-40 pb-20  ">
           <div className="flex flex-col justify-center items-center text-center">
             <div className="px-4 md:px-6 flex flex-col ">
-              <time className="mb-6 text-lg  text-zinc-300">
+              <time className="mb-6 text-base md:text-lg  text-zinc-300">
                 {getFormatDate(frontmatter.publishedAt)}
               </time>
-              <h1 className="text-2xl md:text-6xl font-bold tracking-tight text-white font-display">
+              <h1 className="text-3xl md:text-6xl font-bold tracking-tight text-white font-display">
                 {frontmatter.title}
               </h1>
-              <p className="mt-6 text-lg leading-8 text-zinc-300">
+              <p className="mt-6 text-base md:text-lg leading-8 text-zinc-300">
                 {frontmatter.description}
               </p>
             </div>
-            <div className="mt-8 font-semibold space-x-7 text-zinc-300">
+            <div className="mt-8 font-semibold space-x-7 text-zinc-300 flex">
               {frontmatter.repository && (
                 <Link
                   href={frontmatter.repository}
                   target="_blank"
-                  className="after:content-['_↗']">
+                  className="flex">
                   Github
+                  <ArrowUpRight />
                 </Link>
               )}
               {frontmatter.url && (
-                <Link
-                  href={frontmatter.url}
-                  target="_blank"
-                  className="after:content-['_↗']">
+                <Link href={frontmatter.url} target="_blank" className="flex">
                   Website
+                  <ArrowUpRight />
                 </Link>
               )}
             </div>
