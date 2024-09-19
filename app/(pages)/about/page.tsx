@@ -3,6 +3,13 @@ import NextjsIcon from "@/icons/Nextjs-Icon";
 import ReactIcon from "@/icons/React-Icon";
 import TailwindcssIcon from "@/icons/Tailwindcss-Icon";
 import TwitterIcon from "@/icons/Twitter-Icon";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Who am i",
+};
+
 
 export default function AboutPage() {
   return (

@@ -1,5 +1,3 @@
-import Footer from "@/common/footer";
-
 import { FlipWords } from "@/ui/flip-words";
 
 export default async function Home() {
