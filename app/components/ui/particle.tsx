@@ -19,61 +19,63 @@ export default function Particle() {
   );
 
   return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={{
-        fpsLimit: 120,
-        fullScreen: { enable: true, zIndex: -1 },
-        particles: {
-          number: {
-            value: 65,
-            density: {
+    <div className="absolute top-0 left-0 w-full h-full">
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={{
+          fpsLimit: 120,
+          fullScreen: { enable: true, zIndex: -1 },
+          particles: {
+            number: {
+              value: 65,
+              density: {
+                enable: true,
+                area: 800,
+              },
+            },
+            color: {
+              value: ["#ffffff"],
+            },
+            shape: {
+              type: "circle",
+            },
+            opacity: {
+              value: 1,
+              random: true,
+              animation: {
+                enable: true,
+                speed: 1,
+                minimumValue: 0.3,
+                sync: false,
+              },
+            },
+            size: {
+              value: { min: 1, max: 1.5 },
+              random: true,
+              animation: {
+                enable: true,
+                speed: 0.7,
+                minimumValue: 0.5,
+                sync: false,
+              },
+            },
+            move: {
+              enable: false,
+            },
+            shadow: {
               enable: true,
-              area: 800,
+              blur: 15,
+              color: "#ffffff",
             },
           },
-          color: {
-            value: ["#ffffff"],
+          background: {
+            color: "#09090b",
           },
-          shape: {
-            type: "circle",
-          },
-          opacity: {
-            value: 1,
-            random: true,
-            animation: {
-              enable: true,
-              speed: 1,
-              minimumValue: 0.3,
-              sync: false,
-            },
-          },
-          size: {
-            value: { min: 1, max: 2 },
-            random: true,
-            animation: {
-              enable: true,
-              speed: 0.7,
-              minimumValue: 0.5,
-              sync: false,
-            },
-          },
-          move: {
-            enable: false,
-          },
-          shadow: {
-            enable: true,
-            blur: 15,
-            color: "#ffffff",
-          },
-        },
-        background: {
-          color: "#09090b",
-        },
-        detectRetina: true,
-      }}
-    />
+          detectRetina: true,
+        }}
+      />
+    </div>
   );
 }
