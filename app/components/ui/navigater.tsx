@@ -3,17 +3,14 @@
 import { useTransitionRouter } from "next-view-transitions";
 import { cn } from "@/lib/cn";
 
-type Prop = {
-  pageHeading: string;
-};
 
-export default function Navigater({ pageHeading }: Prop) {
+export default function Navigater() {
   const router = useTransitionRouter();
 
   return (
     <nav
       className={`z-50 w-full flex fixed backdrop-blur-xl duration-200 `}>
-      <div className={cn(`px-4 py-6 w-full flex justify-between`)}>
+      <div className={cn(`px-4 py-6 w-full flex`)}>
         <div className="flex items-center">
           <button
             type="button"
@@ -30,11 +27,6 @@ export default function Navigater({ pageHeading }: Prop) {
               />
             </svg>
           </button>
-        </div>
-        <div className={cn(`flex justify-end md:justify-center items-center`)}>
-          <h1 className="text-xl md:text-3xl font-extrabold text-white">
-            {pageHeading}
-          </h1>
         </div>
       </div>
     </nav>

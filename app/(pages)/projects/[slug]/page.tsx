@@ -51,10 +51,10 @@ export default async function PostPage({
   }
 
   return (
-    <div>
-      <Navigater pageHeading="PROJECT" />
-      <div className="h-auto max-w-full  bg-zinc-950">
-        <div className="w-full h-full pt-40 pb-20  ">
+    <div className="h-[100dvh] bg-zinc-100">
+      <Navigater />
+      <div className="h-auto max-w-full ">
+        <div className="w-full h-full pt-40 pb-20  bg-zinc-950">
           <div className="flex flex-col justify-center items-center text-center">
             <div className="px-4 md:px-6 flex flex-col ">
               <time className="mb-6 text-base md:text-lg  text-zinc-300">
@@ -87,11 +87,11 @@ export default async function PostPage({
           </div>
         </div>
         <hr className=" border-zinc-800" />
-        <div className="w-full my-20 flex justify-center px-4 ">
-          <article className="max-w-full md:max-w-[620px] prose prose-zinc prose-invert prose-quoteless prose-pre:bg-zinc-800/70 prose-img:rounded-lg ">
-            {content}
-          </article>
-        </div>
+      </div>
+      <div className="w-full py-20 flex justify-center px-4 bg-zinc-100">
+        <article className="max-w-full md:max-w-[620px] prose prose-zinc prose-quoteless prose-pre:bg-zinc-800/70 prose-img:rounded-lg ">
+          {content}
+        </article>
       </div>
     </div>
   );
