@@ -29,7 +29,7 @@ export default function Header() {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-50 py-8 backdrop-blur-xl flex justify-center",
+        "sticky top-0 z-50 py-8 backdrop-blur flex justify-center",
         showBorder ? "border-b-[1px] border-b-zinc-900/80" : "border-b-0"
       )}>
       <div className="w-[672px] h-10 mx-4 md:mx-6 flex justify-center items-center">

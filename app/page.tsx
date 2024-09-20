@@ -1,5 +1,6 @@
 import AnimatedName from "@/ui/animated-name";
 import { FlipWords } from "@/ui/flip-words";
+import Particle from "@/ui/particle";
 
 export default async function Home() {
   const words = ["amazing", "beautiful", "fantastic"];
@@ -9,8 +10,10 @@ export default async function Home() {
     "bg-gradient-to-r from-red-500 via-pink-500 to-purple-500",
   ];
 
+
   return (
     <div className="relative">
+      <Particle />
       <div className="flex justify-center">
         <div className="mx-4 w-[672px] h-[75dvh] md:mx-6 grid place-items-center">
           <div className="text-2xl font-extrabold leading-10 text-white md:text-[1.9rem] md:leading-[3rem] text-center">

@@ -46,7 +46,7 @@ export default function RootLayout({
       <html
         lang="en"
         className={cn(
-          `antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950 bg-zinc-950`,
+          `antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950 `,
           GeistSans.variable,
           GeistMono.variable
         )}>

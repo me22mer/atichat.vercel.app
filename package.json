@@ -12,6 +12,7 @@
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@tsparticles/engine": "^3.5.0",
     "@vercel/speed-insights": "^1.0.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -23,10 +24,12 @@
     "next-view-transitions": "^0.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-tsparticles": "^2.12.2",
     "sharp": "^0.33.2",
     "simple-icons": "^13.10.0",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tsparticles-slim": "^2.12.0"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
