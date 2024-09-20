@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <>
       <section
-        className={`w-full h-[75dvh] bg-zinc-950 flex justify-normal md:justify-center items-center `}>
+        className={`w-full h-full md:h-[75dvh] bg-zinc-950 flex justify-normal md:justify-center items-center `}>
         <div className="w-full max-w-fit h-full mt-5 mb-20 mx-4 md:mx-10 pt-16 flex flex-col justify-center gap-20 ">
           <div className="prose prose-invert">
             <h1 className="mb-5 text-2xl font-bold">about me</h1>
