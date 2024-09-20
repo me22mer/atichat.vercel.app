@@ -37,8 +37,8 @@ export default function Header() {
           <div className="flex space-x-4 md:space-x-10">
             <Link
               scroll={false}
-              href="/home"
-              className={generateLinkClass("/home")}>
+              href="/"
+              className={generateLinkClass("/")}>
               home
             </Link>
             <Link

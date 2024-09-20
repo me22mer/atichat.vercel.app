@@ -6,10 +6,12 @@ import { cn } from "@/lib/cn";
 
 export const FlipWords = ({
   words,
+  gradients,
   duration = 3000,
   className,
 }: {
   words: string[];
+  gradients: string[];
   duration?: number;
   className?: string;
 }) => {
@@ -17,7 +19,7 @@ export const FlipWords = ({
   const [isAnimating, setIsAnimating] = useState(false);
 
   const startAnimation = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length); // Loop through words
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
     setIsAnimating(true);
   }, [words.length]);
 
@@ -26,17 +28,17 @@ export const FlipWords = ({
       const timer = setTimeout(() => {
         startAnimation();
       }, duration);
-      return () => clearTimeout(timer); // Clear timeout on unmount or re-render
+      return () => clearTimeout(timer);
     }
   }, [isAnimating, duration, startAnimation]);
 
   const currentWord = words[currentIndex];
+  const currentGradient = gradients[currentIndex % gradients.length];
 
   return (
     <AnimatePresence
       onExitComplete={() => setIsAnimating(false)}
-      initial={false} // Optimize initial render by skipping initial animation
-    >
+      initial={false}>
       <motion.div
         key={currentWord}
         initial={{ opacity: 0, y: 10 }}
@@ -45,7 +47,8 @@ export const FlipWords = ({
         transition={{ duration: 0.4 }}
         className={cn(
           "z-10 inline-block relative",
-          "bg-clip-text text-transparent bg-gradient-to-r from-[#1dbde6] via-[#FF44EC] to-[#f1515e]",
+          "bg-clip-text text-transparent",
+          currentGradient,
           className
         )}>
         {currentWord}

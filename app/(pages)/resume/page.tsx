@@ -12,7 +12,7 @@ export default function ResumePage() {
     <>
       <section
         className={`w-full h-full bg-zinc-950 flex flex-col justify-normal md:justify-center items-center `}>
-        <div className="w-full max-w-fit h-full mt-5 mb-20 mx-4 md:mx-10 pt-16 flex justify-center gap-20 ">
+        <div className="max-w-[672px] h-full mt-5 mb-20 mx-4 md:mx-10 pt-16 flex justify-center gap-20 ">
           <div className="bg-transparent text-white max-w-[672px] flex flex-col ">
             <div className="grid gap-8">
               <section className="grid gap-4">
@@ -26,7 +26,7 @@ export default function ResumePage() {
                   </Avatar>
                   <div className="grid gap-1">
                     <h1 className="text-2xl font-bold">Atichat Thongnak</h1>
-                    <p className="text-muted-foreground">Web Developer</p>
+                    <p className="text-muted-foreground">Frontend Developer</p>
                     <p className="text-muted-foreground">
                       Address: 10220 Bangkok, Thailand
                     </p>
