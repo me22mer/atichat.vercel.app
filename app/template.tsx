@@ -12,7 +12,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     !(pathname.startsWith("/blog/") && pathname !== "/blog");
 
   return (
-    <div>
+    <div className="z-10">  
       {showHeader && <Header />}
       {children}
       {showHeader && <Footer />}

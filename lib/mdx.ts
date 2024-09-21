@@ -56,7 +56,6 @@ export async function getPostBySlug<T>(slug: string): Promise<Post<T>> {
   } catch (error) {
     console.error(`Error getting post by slug: ${slug}`, error);
     notFound();
-    throw new Error("Post not found");
   }
 }
 

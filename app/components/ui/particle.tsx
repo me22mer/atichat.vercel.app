@@ -19,60 +19,47 @@ export default function Particle() {
   );
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full">
+    <div className="absolute top-0 left-0 w-full h-full ">
       <Particles
         id="tsparticles"
         init={particlesInit}
-        loaded={particlesLoaded}
         options={{
           fpsLimit: 120,
           fullScreen: { enable: true, zIndex: -1 },
           particles: {
-            number: {
-              value: 65,
-              density: {
-                enable: true,
-                area: 800,
-              },
-            },
-            color: {
-              value: ["#ffffff"],
-            },
-            shape: {
-              type: "circle",
-            },
+            number: { value: 19, density: { enable: true, area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
             opacity: {
-              value: 1,
+              value: 0.5,
               random: true,
               animation: {
                 enable: true,
                 speed: 1,
-                minimumValue: 0.3,
+                minimumValue: 0.1,
                 sync: false,
               },
             },
             size: {
-              value: { min: 1, max: 1.5 },
+              value: { min: 1, max: 3 },
               random: true,
               animation: {
                 enable: true,
-                speed: 0.7,
-                minimumValue: 0.5,
+                speed: 2,
+                minimumValue: 0.1,
                 sync: false,
               },
             },
             move: {
-              enable: false,
-            },
-            shadow: {
               enable: true,
-              blur: 15,
-              color: "#ffffff",
+              speed: 0.5,
+              direction: "none",
+              random: false,
+              straight: false,
+              outModes: "out",
             },
           },
-          background: {
-            color: "#09090b",
-          },
+          background: { color: "#09090b" },
           detectRetina: true,
         }}
       />

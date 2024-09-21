@@ -1,33 +1,23 @@
 "use client";
 
-import { useTransitionRouter } from "next-view-transitions";
-import { cn } from "@/lib/cn";
+import { Button } from "@/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-
-export default function Navigater() {
-  const router = useTransitionRouter();
+export default function Navigation() {
+  const router = useRouter();
 
   return (
-    <nav
-      className={`z-50 w-full flex fixed backdrop-blur-xl duration-200 `}>
-      <div className={cn(`px-4 py-6 w-full flex`)}>
-        <div className="flex items-center">
-          <button
-            type="button"
-            onClick={() => router.back()}
-            aria-label="navigater-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={40}
-              className="invert-[.45] hover:invert-0 hover:fill-white duration-500"
-              viewBox="0 0 16 16">
-              <path
-                fillRule="evenodd"
-                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
-              />
-            </svg>
-          </button>
-        </div>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-900 backdrop-blur-xl shadow-sm">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => router.back()}
+          className="flex items-center">
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back
+        </Button>
       </div>
     </nav>
   );

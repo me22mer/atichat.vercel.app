@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { ViewTransitions } from "next-view-transitions";
+import Particle from "@/ui/particle";
 
 export const metadata: Metadata = {
   title: {
@@ -48,6 +49,7 @@ export default function RootLayout({
           GeistMono.variable
         )}>
         <body className="dark antialiased w-full flex flex-col justify-center">
+          <Particle />
           {children}
         </body>
       </html>

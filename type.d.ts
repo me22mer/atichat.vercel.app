@@ -17,4 +17,5 @@ export type BlogMeta = {
   coverImage: string;
   published: boolean;
   tags: [];
+  readingTime: string;
 };

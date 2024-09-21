@@ -1,21 +1,18 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-
-import Navigater from "@/ui/navigater";
-
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 import { getFormatDate } from "@/lib/useformatdate";
-
 import { BlogMeta } from "type";
+import { Card, CardContent } from "@/ui/card";
+import { Badge } from "@/ui/badge";
+import { CalendarIcon, ClockIcon, TagIcon } from "lucide-react";
+import Navigation from "@/ui/navigater";
+import AnimatedSection from "@/ui/animated-section";
 
 export async function generateStaticParams() {
   const posts = await getPosts<BlogMeta>("blog");
-
   if (!posts) return notFound();
-
-  return posts.map((post) => ({
-    postId: post.slug,
-  }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -23,15 +20,18 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = (await getPosts<BlogMeta>(`blog`)).find((post) => post.slug);
+  const post = (await getPosts<BlogMeta>("blog")).find((post) => post.slug);
+  if (!post) return notFound();
+  return { title: params.slug };
+}
 
-  if (!post) {
-    return notFound();
-  }
-
-  return {
-    title: params.slug,
-  };
+function generateRandomColor() {
+  return (
+    "#" +
+    Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, "0")
+  );
 }
 
 export default async function PostPage({
@@ -39,49 +39,93 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<BlogMeta>(`blog/${params.slug}`);
+  const post = await getPostBySlug<BlogMeta>(`/blog/${params.slug}`);
+  if (!post || !post.frontmatter.published) return notFound();
 
   const { frontmatter, content } = post;
-
-  if (!frontmatter.published || !post) {
-    return notFound();
-  }
+  const gradientStart = generateRandomColor();
+  const gradientEnd = generateRandomColor();
 
   return (
-    <div>
-      <Navigater />
-      <div className="h-auto w-full bg-zinc-950">
-        <div className="py-24 flex flex-col justify-center">
-          <div className="px-4 mt-14 mb-10 flex flex-col items-center">
-            {frontmatter.coverImage ? (
-              <Image
-                src={frontmatter.coverImage}
-                width={920}
-                height={400}
-                className="mb-[3.25rem] w-[920px] h-max md:h-[490px] rounded-xl object-contain md:object-cover shadow-lg shadow-black/50"
-                alt=""
-                priority
-                sizes="(max-width: 1024px) 100vw"
-              />
-            ) : null}
-            <div className="w-full md:max-w-[720px] flex flex-col">
-              <div className="mb-3">
-                <h1 className=" font-bold text-5xl tracking-tight text-zinc-100 sm:text-7xl">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-zinc-100">
+      <Navigation />
+      <main className="container mx-auto px-4 py-24 max-w-4xl">
+        <article>
+          <header className="mb-16">
+            {/* Title with delay 0 */}
+            <AnimatedSection delay={0}>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+                <h1
+                  className="text-4xl md:text-5xl font-bold mb-4 md:mb-0 bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`,
+                  }}>
                   {frontmatter.title}
                 </h1>
               </div>
-              <time className="mb-3 text-[1.1rem] font-medium text-zinc-300/80">
-                {getFormatDate(frontmatter.publishedAt)}
-              </time>
-            </div>
-          </div>
-          <div className="mb-20 w-full flex justify-center px-4">
-            <article className="max-w-full md:max-w-[720px] mx-auto prose prose-invert prose-black prose-quoteless prose-pre:bg-zinc-800/70   prose-img:rounded-lg">
-              {content}
-            </article>
-          </div>
-        </div>
-      </div>
+            </AnimatedSection>
+
+            {/* Date and readingTime with delay 0.2 */}
+            <AnimatedSection delay={0.2}>
+              <div className="flex items-center space-x-4 text-zinc-400">
+                <div className="flex items-center">
+                  <CalendarIcon className="w-4 h-4 mr-2" />
+                  <time>{getFormatDate(frontmatter.publishedAt)}</time>
+                </div>
+                {frontmatter.readingTime && (
+                  <div className="flex items-center">
+                    <ClockIcon className="w-4 h-4 mr-2" />
+                    <span>{frontmatter.readingTime} min read</span>
+                  </div>
+                )}
+              </div>
+            </AnimatedSection>
+
+            {/* Cover Image with delay 0.4 */}
+            {frontmatter.coverImage && (
+              <AnimatedSection delay={0.4}>
+                <div className="mb-8 relative h-[300px] md:h-[400px] rounded-xl overflow-hidden">
+                  <Image
+                    src={frontmatter.coverImage}
+                    fill
+                    alt={frontmatter.title}
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </AnimatedSection>
+            )}
+
+            {/* Tags with delay 0.6 */}
+            {frontmatter.tags && (
+              <AnimatedSection delay={0.6}>
+                <div className="flex items-center flex-wrap gap-2">
+                  <TagIcon className="w-4 h-4 mr-2 text-zinc-400" />
+                  {frontmatter.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="bg-zinc-800 text-zinc-200">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </AnimatedSection>
+            )}
+          </header>
+
+          {/* Content with delay 0.8 */}
+          <AnimatedSection delay={0.8}>
+            <Card className="bg-zinc-800/50 border-zinc-700 backdrop-blur-sm">
+              <CardContent className="p-6 md:p-10">
+                <div className="prose prose-invert prose-zinc max-w-none">
+                  {content}
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
+        </article>
+      </main>
     </div>
   );
 }
