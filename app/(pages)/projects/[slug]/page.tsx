@@ -12,7 +12,7 @@ import AnimatedSection from "@/ui/animated-section";
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
   if (!posts) return notFound();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map((post) => ({ postId: post.slug }));
 }
 
 export async function generateMetadata({
@@ -32,7 +32,8 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<ProjectMeta>(`/projects/${params.slug}`);
+  const post = await getPostBySlug<ProjectMeta>(`projects/${params.slug}`);
+
   if (!post || !post.frontmatter.published) return notFound();
 
   const { frontmatter, content } = post;

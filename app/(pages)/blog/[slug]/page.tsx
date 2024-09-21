@@ -12,7 +12,7 @@ import AnimatedSection from "@/ui/animated-section";
 export async function generateStaticParams() {
   const posts = await getPosts<BlogMeta>("blog");
   if (!posts) return notFound();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map((post) => ({ postId: post.slug }));
 }
 
 export async function generateMetadata({
@@ -25,26 +25,16 @@ export async function generateMetadata({
   return { title: params.slug };
 }
 
-function generateRandomColor() {
-  return (
-    "#" +
-    Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, "0")
-  );
-}
-
 export default async function PostPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<BlogMeta>(`/blog/${params.slug}`);
+  const post = await getPostBySlug<BlogMeta>(`blog/${params.slug}`);
+
   if (!post || !post.frontmatter.published) return notFound();
 
   const { frontmatter, content } = post;
-  const gradientStart = generateRandomColor();
-  const gradientEnd = generateRandomColor();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-zinc-100">
@@ -55,11 +45,7 @@ export default async function PostPage({
             {/* Title with delay 0 */}
             <AnimatedSection delay={0}>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-                <h1
-                  className="text-4xl md:text-5xl font-bold mb-4 md:mb-0 bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`,
-                  }}>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 md:mb-0">
                   {frontmatter.title}
                 </h1>
               </div>
