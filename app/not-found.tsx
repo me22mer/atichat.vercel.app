@@ -1,29 +1,32 @@
+"use client"
+
+import { Button } from "@/ui/button";
 import { Metadata } from "next";
-import Link from "next/link";
+import { useTransitionRouter } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "404",
 };
 
 export default function NotFound() {
+  const router = useTransitionRouter();
   return (
-    <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+    <div className="flex min-h-screen w-screen absolute top-0 flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8 z-50">
       <div className="mx-auto max-w-md text-center">
         <FrownIcon className="mx-auto h-12 w-12 text-primary" />
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Oops, page not found!
         </h1>
         <p className="mt-4 text-muted-foreground">
-          The page you&apos;re looking for doesn&apos;t seem to exist. Let&apos;s get you back
-          on track.
+          The page you&apos;re looking for doesn&apos;t seem to exist.
+          Let&apos;s get you back on track.
         </p>
         <div className="mt-6">
-          <Link
-            href="/"
-            className="inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2"
-            prefetch={false}>
+          <Button
+            onClick={() => router.push("/")}
+            className="inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2">
             Go to Homepage
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

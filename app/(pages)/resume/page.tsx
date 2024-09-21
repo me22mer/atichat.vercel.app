@@ -21,13 +21,13 @@ export default function ResumePage() {
                   Atichat Thongnak
                 </h1>
                 <p className="text-xl text-gray-400">Frontend Developer</p>
-                <div className="flex items-center justify-center text-sm text-gray-500">
+                <div className="flex items-center justify-center text-sm text-gray-400">
                   <MapPin className="w-4 h-4 mr-1" />
                   <span>10220 Bangkok, Thailand</span>
                 </div>
                 <Badge
-                  variant="secondary"
-                  className="mt-2 bg-zinc-800 text-zinc-300">
+                  variant="destructive"
+                  className="mt-2 ">
                   Not available for work
                 </Badge>
               </header>
@@ -61,7 +61,7 @@ export default function ResumePage() {
                     <p className="text-sm text-gray-400">
                       GoodGeekClub | 2022 - Present
                     </p>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-300">
+                    <ul className="list-disc list-inside ml-2.5 mt-2 space-y-1 text-gray-300 marker:m-0">
                       <li>
                         Volunteered to plan many IT events to advance diverse
                         skill development and have a beneficial impact on
