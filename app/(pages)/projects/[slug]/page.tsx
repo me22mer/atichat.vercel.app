@@ -10,6 +10,9 @@ import Navigation from "@/ui/navigater";
 import AnimatedSection from "@/ui/animated-section";
 import ScrollUpButton from "@/ui/scrollup-button";
 
+export const revalidate = 60;
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
   if (!posts) return notFound();
@@ -51,7 +54,9 @@ export default async function PostPage({
       <div className="min-h-screen bg-zinc-100 flex flex-col items-center justify-center">
         <div className="text-center">
           <AnimatedSection delay={0}>
-            <h1 className="text-4xl font-bold mb-4 text-zinc-950">Coming Soon</h1>
+            <h1 className="text-4xl font-bold mb-4 text-zinc-950">
+              Coming Soon
+            </h1>
             <p className="text-lg text-zinc-500 mb-8">
               This project will be available on{" "}
               {getFormatDate(frontmatter.publishedAt)}.

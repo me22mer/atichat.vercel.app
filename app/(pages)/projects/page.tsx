@@ -22,10 +22,12 @@ export const metadata: Metadata = {
   description: "Explore my personal projects and initiatives.",
 };
 
+export const revalidate = 60;
+
 function isProjectPublished(publishedAt: string | number): boolean {
   const publishDate = new Date(publishedAt);
   const currentDate = new Date();
-  return publishDate <= currentDate;
+  return publishDate.getTime() <= currentDate.getTime();
 }
 
 function isProjectComingSoon(publishedAt: string | number): boolean {
@@ -34,7 +36,10 @@ function isProjectComingSoon(publishedAt: string | number): boolean {
   const threeDaysFromNow = new Date(
     currentDate.getTime() + 3 * 24 * 60 * 60 * 1000
   );
-  return publishDate > currentDate && publishDate <= threeDaysFromNow;
+  return (
+    publishDate.getTime() > currentDate.getTime() &&
+    publishDate.getTime() <= threeDaysFromNow.getTime()
+  );
 }
 
 function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
@@ -67,9 +72,8 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
         <Image
           src={thumbnail || "/placeholder.svg?height=192&width=384"}
           alt={title}
-          layout="fill"
-          objectFit="cover"
-          className={`transition-transform duration-300 hover:scale-105 ${
+          fill
+          className={`transition-transform duration-300 hover:scale-105 object-cover ${
             isComingSoon ? "filter blur-lg" : ""
           }`}
         />
@@ -92,19 +96,6 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
       </CardHeader>
       <CardContent className="flex-grow">
         <p className="text-sm text-zinc-400 mb-4">{description}</p>
-        {!isComingSoon && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {tags &&
-              tags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="secondary"
-                  className="bg-zinc-800 text-zinc-300">
-                  {tag}
-                </Badge>
-              ))}
-          </div>
-        )}
         <div className="flex items-center text-sm text-zinc-500">
           {isComingSoon ? (
             <>
