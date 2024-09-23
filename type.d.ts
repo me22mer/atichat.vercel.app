@@ -3,11 +3,12 @@ export type ProjectMeta = {
   publishedAt: string;
   date: string;
   description: string;
+  thumbnail: string;
   repository: string;
   status: string;
   url: string;
+  status: "string"
   tags: [];
-  published: boolean;
 };
 
 export type BlogMeta = {

@@ -27,7 +27,7 @@ export default function ResumePage() {
                 </div>
                 <Badge
                   variant="destructive"
-                  className="mt-2 ">
+                  className="mt-2 rounded-sm">
                   Not available for work
                 </Badge>
               </header>

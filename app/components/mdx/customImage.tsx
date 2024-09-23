@@ -3,6 +3,7 @@
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/cn";
 
 type Props = {
   src: string;
@@ -26,16 +27,16 @@ const CustomImage: React.FC<Props> = ({ src, alt, caption }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center backdrop-blur-lg"
+            className={cn(`fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center backdrop-blur-lg`)}
             onClick={toggleFullScreen}>
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative max-w-[80%] max-h-auto">
+              className="relative max-w-[80%] max-h-auto ">
               <Image
-                className="w-full h-auto object-contain rounded-xl shadow-lg cursor-zoom-out"
+                className="w-full h-auto object-contain rounded-xl shadow-lg border cursor-zoom-out"
                 src={src}
                 alt={alt}
                 width={1200}
@@ -54,7 +55,7 @@ const CustomImage: React.FC<Props> = ({ src, alt, caption }) => {
         transition={{ duration: 0.3 }}
         onClick={toggleFullScreen}>
         <Image
-          className="w-full h-auto object-cover shadow-lg rounded-xl transition-transform duration-300"
+          className="w-full h-auto object-cover drop-shadow-lg rounded-xl transition-transform duration-300"
           src={src}
           alt={alt}
           width={800}

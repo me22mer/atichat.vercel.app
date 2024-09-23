@@ -8,6 +8,7 @@ import { Button } from "@/ui/button";
 import { Badge } from "@/ui/badge";
 import Navigation from "@/ui/navigater";
 import AnimatedSection from "@/ui/animated-section";
+import ScrollUpButton from "@/ui/scrollup-button";
 
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
@@ -27,6 +28,12 @@ export async function generateMetadata({
   return { title: params.slug };
 }
 
+function isProjectPublished(publishedAt: string | number): boolean {
+  const publishDate = new Date(publishedAt);
+  const currentDate = new Date();
+  return publishDate <= currentDate;
+}
+
 export default async function PostPage({
   params,
 }: {
@@ -34,15 +41,37 @@ export default async function PostPage({
 }) {
   const post = await getPostBySlug<ProjectMeta>(`projects/${params.slug}`);
 
-  if (!post || !post.frontmatter.published) return notFound();
+  if (!post) return notFound();
 
   const { frontmatter, content } = post;
+  const isPublished = isProjectPublished(frontmatter.publishedAt);
+
+  if (!isPublished) {
+    return (
+      <div className="min-h-screen bg-zinc-100 flex flex-col items-center justify-center">
+        <div className="text-center">
+          <AnimatedSection delay={0}>
+            <h1 className="text-4xl font-bold mb-4 text-zinc-950">Coming Soon</h1>
+            <p className="text-lg text-zinc-500 mb-8">
+              This project will be available on{" "}
+              {getFormatDate(frontmatter.publishedAt)}.
+            </p>
+            <Button asChild variant="outline">
+              <Link href="/projects" className="flex items-center">
+                Back to Projects
+                <ArrowUpRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </AnimatedSection>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-zinc-100">
       <Navigation />
 
-      {/* Header section */}
       <header className="bg-zinc-900 text-white pt-24 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
@@ -56,21 +85,18 @@ export default async function PostPage({
               </div>
             </AnimatedSection>
 
-            {/* Title with delay 0.2 */}
             <AnimatedSection delay={0.2}>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 {frontmatter.title}
               </h1>
             </AnimatedSection>
 
-            {/* Description with delay 0.4 */}
             <AnimatedSection delay={0.4}>
               <p className="text-xl text-zinc-300 mb-8">
                 {frontmatter.description}
               </p>
             </AnimatedSection>
 
-            {/* Tags with delay 0.6 */}
             <AnimatedSection delay={0.6}>
               <div className="flex flex-wrap justify-center gap-4 mb-8">
                 {frontmatter.tags &&
@@ -85,7 +111,6 @@ export default async function PostPage({
               </div>
             </AnimatedSection>
 
-            {/* Repository and URL with delay 0.8 */}
             <AnimatedSection delay={0.8}>
               <div className="flex justify-center space-x-4">
                 {frontmatter.repository && (
@@ -118,7 +143,6 @@ export default async function PostPage({
         </div>
       </header>
 
-      {/* Main content with delay 1.0 */}
       <AnimatedSection delay={1.0}>
         <main className="container mx-auto px-4 py-16">
           <article className="max-w-3xl mx-auto prose prose-zinc prose-lg prose-img:rounded-xl prose-headings:font-bold prose-a:text-blue-600">
@@ -126,6 +150,8 @@ export default async function PostPage({
           </article>
         </main>
       </AnimatedSection>
+
+      <ScrollUpButton />
     </div>
   );
 }
