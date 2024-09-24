@@ -16,7 +16,7 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
   if (!posts) return notFound();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map((post) => ({ postId: post.slug }));
 }
 
 export async function generateMetadata({
@@ -24,11 +24,11 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<ProjectMeta>(`projects/${params.slug}`);
+  const post = (await getPosts<ProjectMeta>("projects")).find((post) => post.slug);
   if (!post) return notFound();
 
   return {
-    title: post.frontmatter.title,
+    title: params.slug,
   };
 }
 

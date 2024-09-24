@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { Badge } from "@/ui/badge";
 import AnimatedSection from "@/ui/animated-section";
+import { LoaderIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About",
