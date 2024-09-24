@@ -48,7 +48,7 @@ export default function RootLayout({
           GeistSans.variable,
           GeistMono.variable
         )}>
-        <body className="dark antialiased w-full flex flex-col justify-center">
+        <body className="dark antialiased w-full flex flex-col justify-center overflow-x-hidden">
           <Particle />
           {children}
         </body>

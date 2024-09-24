@@ -3,7 +3,8 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { ReactElement } from "react";
-import CustomImage from "app/components/mdx/customImage";
+import { MDXImage } from "app/components/mdx/image";
+import { MDXCarousel } from "app/components/mdx/carousel";
 
 // Memoize the root directory to avoid multiple path joins
 const RootDir = path.join(process.cwd(), "app", "content");
@@ -36,7 +37,7 @@ async function parseMDX<T>(
   try {
     const { frontmatter, content } = await compileMDX<T>({
       source: fileContent,
-      components: { CustomImage },
+      components: { MDXImage, MDXCarousel },
       options: { parseFrontmatter: true },
     });
     return { frontmatter, content };

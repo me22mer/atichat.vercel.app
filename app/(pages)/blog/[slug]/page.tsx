@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
-import { getFormatDate } from "@/lib/useformatdate";
 import { BlogMeta } from "type";
 import { Card, CardContent } from "@/ui/card";
 import { Badge } from "@/ui/badge";
 import { CalendarIcon, ClockIcon, TagIcon } from "lucide-react";
 import Navigation from "@/ui/navigater";
 import AnimatedSection from "@/ui/animated-section";
+import { getFormatDate } from "@/lib/post-utils";
 
 export async function generateStaticParams() {
   const posts = await getPosts<BlogMeta>("blog");
@@ -42,7 +42,6 @@ export default async function PostPage({
       <main className="container mx-auto px-4 py-24 max-w-4xl">
         <article>
           <header className="mb-16">
-            {/* Title with delay 0 */}
             <AnimatedSection delay={0}>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 md:mb-0">
@@ -51,7 +50,6 @@ export default async function PostPage({
               </div>
             </AnimatedSection>
 
-            {/* Date and readingTime with delay 0.2 */}
             <AnimatedSection delay={0.2}>
               <div className="flex items-center space-x-4 text-zinc-400">
                 <div className="flex items-center">
@@ -67,7 +65,6 @@ export default async function PostPage({
               </div>
             </AnimatedSection>
 
-            {/* Cover Image with delay 0.4 */}
             {frontmatter.coverImage && (
               <AnimatedSection delay={0.4}>
                 <div className="mb-8 relative h-[300px] md:h-[400px] rounded-xl overflow-hidden">
@@ -82,7 +79,6 @@ export default async function PostPage({
               </AnimatedSection>
             )}
 
-            {/* Tags with delay 0.6 */}
             {frontmatter.tags && (
               <AnimatedSection delay={0.6}>
                 <div className="flex items-center flex-wrap gap-2">
@@ -100,7 +96,6 @@ export default async function PostPage({
             )}
           </header>
 
-          {/* Content with delay 0.8 */}
           <AnimatedSection delay={0.8}>
             <Card className="bg-zinc-800/50 border-zinc-700 backdrop-blur-sm">
               <CardContent className="p-6 md:p-10">

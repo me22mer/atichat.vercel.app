@@ -11,7 +11,7 @@ type Props = {
   caption?: string;
 };
 
-const CustomImage: React.FC<Props> = ({ src, alt, caption }) => {
+export function MDXImage({ src, alt, caption }: Props) {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const toggleFullScreen = useCallback(() => {
@@ -27,7 +27,9 @@ const CustomImage: React.FC<Props> = ({ src, alt, caption }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className={cn(`fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center backdrop-blur-lg`)}
+            className={cn(
+              `fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center backdrop-blur-lg`
+            )}
             onClick={toggleFullScreen}>
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -64,14 +66,12 @@ const CustomImage: React.FC<Props> = ({ src, alt, caption }) => {
           sizes="(min-width: 1024px) 800px, 100vw"
           priority
         />
+        {caption && (
+          <figcaption className="mt-2 text-center text-sm text-gray-600 italic">
+            {caption}
+          </figcaption>
+        )}
       </motion.div>
-      {caption && (
-        <figcaption className="mt-2 text-center text-sm text-gray-600 italic">
-          {caption}
-        </figcaption>
-      )}
     </figure>
   );
-};
-
-export default CustomImage;
+}

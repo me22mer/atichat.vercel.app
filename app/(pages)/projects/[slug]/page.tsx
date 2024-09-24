@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { Link } from "next-view-transitions";
+import { notFound, redirect } from "next/navigation";
 import { ArrowUpRight, Calendar, Github, Globe } from "lucide-react";
-import { getFormatDate } from "@/lib/useformatdate";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 import { ProjectMeta } from "type";
 import { Button } from "@/ui/button";
@@ -9,6 +8,7 @@ import { Badge } from "@/ui/badge";
 import Navigation from "@/ui/navigater";
 import AnimatedSection from "@/ui/animated-section";
 import ScrollUpButton from "@/ui/scrollup-button";
+import { getFormatDate } from "@/lib/post-utils";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -16,7 +16,7 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
   if (!posts) return notFound();
-  return posts.map((post) => ({ postId: post.slug }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -24,11 +24,12 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = (await getPosts<ProjectMeta>("projects")).find(
-    (post) => post.slug
-  );
+  const post = await getPostBySlug<ProjectMeta>(`projects/${params.slug}`);
   if (!post) return notFound();
-  return { title: params.slug };
+
+  return {
+    title: post.frontmatter.title,
+  };
 }
 
 function isProjectPublished(publishedAt: string | number): boolean {
@@ -50,27 +51,8 @@ export default async function PostPage({
   const isPublished = isProjectPublished(frontmatter.publishedAt);
 
   if (!isPublished) {
-    return (
-      <div className="min-h-screen bg-zinc-100 flex flex-col items-center justify-center">
-        <div className="text-center">
-          <AnimatedSection delay={0}>
-            <h1 className="text-4xl font-bold mb-4 text-zinc-950">
-              Coming Soon
-            </h1>
-            <p className="text-lg text-zinc-500 mb-8">
-              This project will be available on{" "}
-              {getFormatDate(frontmatter.publishedAt)}.
-            </p>
-            <Button asChild variant="outline">
-              <Link href="/projects" className="flex items-center">
-                Back to Projects
-                <ArrowUpRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </AnimatedSection>
-        </div>
-      </div>
-    );
+    // Redirect to the coming-soon page
+    redirect("/coming-soon");
   }
 
   return (
@@ -80,7 +62,6 @@ export default async function PostPage({
       <header className="bg-zinc-900 text-white pt-24 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            {/* Time with delay 0 */}
             <AnimatedSection delay={0}>
               <div className="flex items-center justify-center mb-4">
                 <Calendar className="mr-2 h-5 w-5" />

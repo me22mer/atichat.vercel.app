@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getPosts } from "@/lib/mdx";
-import { sortPosts } from "@/lib/sortposts";
+import { sortPosts } from "@/lib/post-utils";
 import { BlogMeta } from "type";
 import {
   Card,
@@ -13,6 +13,7 @@ import { Badge } from "@/ui/badge";
 import { Link } from "next-view-transitions";
 import { CalendarIcon, ArrowRightIcon, BookOpenIcon } from "lucide-react";
 import AnimatedSection from "@/ui/animated-section";
+import { getFormatDate } from "@/lib/post-utils";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -21,17 +22,13 @@ export const metadata: Metadata = {
 };
 
 function BlogCard({ post, slug }: { post: BlogMeta; slug: string }) {
-  const { title, description, publishedAt, published, tags, readingTime } =
-    post;
-  const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const { title, description, publishedAt, published, tags, readingTime } = post;
 
   if (!published) {
     return null;
   }
+
+  const formattedDate = getFormatDate(publishedAt);
 
   return (
     <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300">
