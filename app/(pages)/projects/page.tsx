@@ -83,7 +83,7 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
       </div>
       <CardHeader>
         <CardTitle className="text-xl font-bold text-white flex justify-between">
-          {title}
+          {isComingSoon ? "Soon™" : `${title}`}
           {status && !isComingSoon && (
             <Badge
               variant="status"
@@ -95,12 +95,16 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-sm text-zinc-400 mb-4">{description}</p>
+        {!isComingSoon && (
+          <p className="text-sm text-zinc-400 mb-4">{description}</p>
+        )}
         <div className="flex items-center text-sm text-zinc-500">
           {isComingSoon ? (
             <>
-              <ClockIcon className="mr-2 h-4 w-4" />
-              <span>Publishing on {formattedDate}</span>
+              <ClockIcon className="mr-2 h-4 w-4 text-zinc-400" />
+              <span className="text-zinc-400">
+                Publishing on {formattedDate}
+              </span>
             </>
           ) : (
             <>
@@ -137,7 +141,7 @@ export default async function ProjectsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen text-white">
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         <AnimatedSection>
           <header className="mb-12 text-center">
