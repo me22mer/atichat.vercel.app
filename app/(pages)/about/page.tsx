@@ -119,13 +119,13 @@ export default function AboutPage() {
                 <span className="text-sm">@me22mer</span>
               </a>
               <a
-                href="https://x.com/0o_asa_o0"
+                href="https://x.com/lm_A2a"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X"
                 className="flex items-center rounded w-fit px-4 py-3 gap-3 no-underline duration-200 hover:bg-zinc-800">
                 <TwitterIcon />
-                <span className="text-sm">@Asa</span>
+                <span className="text-sm">@Im_A2a</span>
               </a>
             </div>
           </section>
