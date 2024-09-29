@@ -1,6 +1,5 @@
-import { Link } from "next-view-transitions";
-import { notFound, redirect } from "next/navigation";
-import { ArrowUpRight, Calendar, Github, Globe } from "lucide-react";
+import { notFound } from "next/navigation";
+import { Calendar, Github, Globe, ArrowUpRight } from "lucide-react";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 import { ProjectMeta } from "type";
 import { Button } from "@/ui/button";
@@ -28,7 +27,7 @@ export async function generateMetadata({
   if (!post) return notFound();
 
   return {
-    title: params.slug,
+    title: post.frontmatter.title,
   };
 }
 
@@ -50,11 +49,8 @@ export default async function PostPage({
   const { frontmatter, content } = post;
   const isPublished = isProjectPublished(frontmatter.publishedAt);
 
-  if (!isPublished) {
-    // Redirect to the coming-soon page
-    redirect("/coming-soon");
-  }
-
+  if (!isPublished) return notFound()
+    
   return (
     <div className="min-h-screen bg-zinc-100">
       <Navigation />
@@ -101,26 +97,28 @@ export default async function PostPage({
               <div className="flex justify-center space-x-4">
                 {frontmatter.repository && (
                   <Button asChild variant="outline">
-                    <Link
+                    <a
                       href={frontmatter.repository}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center">
                       <Github className="mr-2 h-4 w-4" />
                       GitHub
                       <ArrowUpRight className="ml-2 h-4 w-4" />
-                    </Link>
+                    </a>
                   </Button>
                 )}
                 {frontmatter.url && (
                   <Button asChild variant="outline">
-                    <Link
+                    <a
                       href={frontmatter.url}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center">
                       <Globe className="mr-2 h-4 w-4" />
                       Website
                       <ArrowUpRight className="ml-2 h-4 w-4" />
-                    </Link>
+                    </a>
                   </Button>
                 )}
               </div>

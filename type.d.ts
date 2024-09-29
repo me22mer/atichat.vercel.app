@@ -1,7 +1,6 @@
 export type ProjectMeta = {
   title: string;
   publishedAt: string;
-  date: string;
   description: string;
   thumbnail: string;
   repository: string;

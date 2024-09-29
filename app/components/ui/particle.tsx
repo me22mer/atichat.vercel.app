@@ -7,16 +7,8 @@ import { loadSlim } from "tsparticles-slim";
 
 export default function Particle() {
   const particlesInit = useCallback(async (engine: Engine) => {
-    console.log(engine);
     await loadSlim(engine);
   }, []);
-
-  const particlesLoaded = useCallback(
-    async (container: Container | undefined) => {
-      await console.log(container);
-    },
-    []
-  );
 
   return (
     <div className="absolute top-0 left-0 w-full h-full ">

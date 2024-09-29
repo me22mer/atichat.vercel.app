@@ -9,8 +9,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   const showHeader =
     !(pathname.startsWith("/projects/") && pathname !== "/projects") &&
-    !(pathname.startsWith("/blog/") && pathname !== "/blog") &&
-    !pathname.startsWith("/coming-soon");
+    !(pathname.startsWith("/blog/") && pathname !== "/blog");
 
   return (
     <div className="z-10">

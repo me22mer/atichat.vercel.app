@@ -10,16 +10,11 @@ import {
 } from "@/ui/card";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
-import { Link } from "next-view-transitions";
-import { CalendarIcon, ArrowRightIcon, ClockIcon } from "lucide-react";
+import Link from "next/link";
+import { CalendarIcon, ArrowRightIcon } from "lucide-react";
 import AnimatedSection from "@/ui/animated-section";
 import Image from "next/image";
-import {
-  getFormatDate,
-  isComingSoon,
-  isPublished,
-  sortPosts,
-} from "@/lib/post-utils";
+import { getFormatDate, isPublished, sortPosts } from "@/lib/post-utils";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -31,13 +26,7 @@ export const revalidate = 60;
 function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
   const { title, description, publishedAt, thumbnail, status } = post;
 
-  const isProjectPublished = isPublished(publishedAt);
-  const isProjectComingSoon = isComingSoon(publishedAt);
   const formattedDate = getFormatDate(publishedAt);
-
-  if (!isProjectPublished && !isProjectComingSoon) {
-    return null;
-  }
 
   const getStatusVariant = (status) => {
     const statusMap = {
@@ -51,26 +40,19 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
 
   return (
     <Card
-      className={`overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-950 to-zinc-800 border-zinc-800 hover:border-zinc-700 transition-all duration-300 flex flex-col h-full relative ${
-        isProjectComingSoon ? "opacity-75" : ""
-      }`}>
+      className={`overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-950 to-zinc-800 border-zinc-800 hover:border-zinc-700 transition-all duration-300 flex flex-col h-full relative`}>
       <div className="relative w-full pt-[56.25%]">
         <Image
           src={thumbnail || "/placeholder.svg?height=192&width=384"}
           alt={title}
           fill
-          className={`transition-transform duration-300 hover:scale-105 object-cover ${
-            isProjectComingSoon ? "filter blur-lg" : ""
-          }`}
+          className={`transition-transform duration-300 hover:scale-105 object-cover`}
         />
-        {isProjectComingSoon && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50"></div>
-        )}
       </div>
       <CardHeader>
         <CardTitle className="text-xl font-bold text-white flex justify-between">
-          {isProjectComingSoon ? "Soon™" : `${title}`}
-          {status && !isProjectComingSoon && (
+          {title}
+          {status && (
             <Badge
               variant="status"
               status={getStatusVariant(status)}
@@ -81,42 +63,20 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        {!isProjectComingSoon && (
-          <p className="text-sm text-zinc-400 mb-4">{description}</p>
-        )}
+        <p className="text-sm text-zinc-400 mb-4">{description}</p>
         <div className="flex items-center text-sm text-zinc-500">
-          {isProjectComingSoon ? (
-            <>
-              <ClockIcon className="mr-2 h-4 w-4 text-zinc-400" />
-              <span className="text-zinc-400">
-                Publishing on {formattedDate}
-              </span>
-            </>
-          ) : (
-            <>
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              <time>{formattedDate}</time>
-            </>
-          )}
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          <time>{formattedDate}</time>
         </div>
       </CardContent>
       <CardFooter>
         <Button
           asChild
           variant="ghost"
-          className="w-full justify-center text-blue-400 hover:text-blue-300 hover:bg-zinc-900"
-          disabled={isProjectComingSoon}>
-          <Link
-            href={
-              isProjectComingSoon
-                ? `/coming-soon?date=${encodeURIComponent(publishedAt)}`
-                : `/${slug}`
-            }
-            passHref>
-            {isProjectComingSoon ? "Coming Soon" : "View Project"}
-            {!isProjectComingSoon && (
-              <ArrowRightIcon className="ml-2 h-4 w-4" />
-            )}
+          className="w-full justify-center text-blue-400 hover:text-blue-300 hover:bg-zinc-900">
+          <Link href={`${slug}`}>
+            <p>View Project</p>
+            <ArrowRightIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </CardFooter>
@@ -128,10 +88,8 @@ export default async function ProjectsPage() {
   const posts = await getPosts<ProjectMeta>("projects");
   const sortedPosts = sortPosts(posts);
 
-  const visiblePosts = sortedPosts.filter(
-    (post) =>
-      isPublished(post.frontmatter.publishedAt) ||
-      isComingSoon(post.frontmatter.publishedAt)
+  const visiblePosts = sortedPosts.filter((post) =>
+    isPublished(post.frontmatter.publishedAt)
   );
 
   return (
