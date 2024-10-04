@@ -5,12 +5,12 @@ import { MDXImage } from "app/components/mdx/image";
 import { MDXCarousel } from "app/components/mdx/carousel";
 import { Octokit } from '@octokit/rest';
 
-if (!process.env.NEXT_PUBLIC_GITHUB_TOKEN) {
+if (!process.env.GITHUB_TOKEN) {
   console.error('GITHUB_TOKEN is not set in the environment variables');
   process.exit(1);
 }
 
-const octokit = new Octokit({ auth: process.env.NEXT_PUBLIC_GITHUB_TOKEN });
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 const OWNER = 'me22mer';
 const REPO = 'atichat.vercel.app';
