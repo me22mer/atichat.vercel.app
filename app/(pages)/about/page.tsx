@@ -53,9 +53,9 @@ export default function AboutPage() {
             <h2 className="text-2xl font-semibold mb-4">About Me</h2>
             <div className="space-y-4 text-zinc-300">
               <p>
-                I'm a 21-year-old student at Sripatum University in Thailand,
-                where I'm studying Information and Communication Technology.
-                Despite my preference for front-end web development, I'm always
+                I&apos;m a 21-year-old student at Sripatum University in Thailand,
+                where I&apos;m studying Information and Communication Technology.
+                Despite my preference for front-end web development, I&apos;m always
                 keen on tackling new challenges.
               </p>
               <p>
@@ -116,9 +116,9 @@ export default function AboutPage() {
               <GamepadIcon className="mr-2" /> Hobbies
             </h2>
             <p className="text-zinc-300 mb-4">
-              When I'm not coding, you can find me immersed in the world of
+              When I&apos;m not coding, you can find me immersed in the world of
               video games, watching anime, or exploring new pixel art creations.
-              I'm particularly passionate about game development and hope to
+              I&apos;m particularly passionate about game development and hope to
               create my own games in the future.
             </p>
           </section>
