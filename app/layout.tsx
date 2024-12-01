@@ -1,11 +1,10 @@
 import "./globals.css";
-
 import type { Metadata } from "next";
-import { cn } from "@/lib/cn";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { ViewTransitions } from "next-view-transitions";
 import Particle from "@/ui/particle";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = {
   title: {
@@ -44,10 +43,11 @@ export default function RootLayout({
       <html
         lang="en"
         className={cn(
-          `antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950 `,
+          "antialiased scrollbar-thin scrollbar-corner-black scrollbar-thumb-zinc-300 scrollbar-track-zinc-950",
           GeistSans.variable,
           GeistMono.variable
-        )}>
+        )}
+      >
         <body className="dark antialiased w-full flex flex-col justify-center overflow-x-hidden">
           <Particle />
           {children}
@@ -56,3 +56,4 @@ export default function RootLayout({
     </ViewTransitions>
   );
 }
+

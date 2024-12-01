@@ -1,12 +1,7 @@
 "use client"
 
 import { Button } from "@/ui/button";
-import { Metadata } from "next";
 import { useTransitionRouter } from "next-view-transitions";
-
-export const metadata: Metadata = {
-  title: "404",
-};
 
 export default function NotFound() {
   const router = useTransitionRouter();
@@ -24,7 +19,8 @@ export default function NotFound() {
         <div className="mt-6">
           <Button
             onClick={() => router.push("/")}
-            className="inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2">
+            className="inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition-colors hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
             Go to Homepage
           </Button>
         </div>
@@ -45,7 +41,8 @@ function FrownIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
+      strokeLinejoin="round"
+    >
       <circle cx="12" cy="12" r="10" />
       <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
       <line x1="9" x2="9.01" y1="9" y2="9" />

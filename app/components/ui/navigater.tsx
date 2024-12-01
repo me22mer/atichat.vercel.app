@@ -8,7 +8,7 @@ export default function Navigation() {
   const router = useTransitionRouter()
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-900 backdrop-blur-xl shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-xl shadow-sm">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Button
           variant="ghost"

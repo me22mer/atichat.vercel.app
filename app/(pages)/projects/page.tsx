@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
 import { getPosts } from "@/lib/mdx";
 import { ProjectMeta } from "type";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/ui/card";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import Link from "next/link";
-import { CalendarIcon, ArrowRightIcon } from "lucide-react";
+import { CalendarIcon, ArrowRightIcon } from 'lucide-react';
 import AnimatedSection from "@/ui/animated-section";
 import Image from "next/image";
 import { getFormatDate, isPublished, sortPosts } from "@/lib/post-utils";
@@ -21,32 +15,37 @@ export const metadata: Metadata = {
   description: "Explore my personal projects and initiatives.",
 };
 
-export const revalidate = 60;
+
+type StatusVariant = "in-progress" | "complete" | "on-hold" | "planned";
+
+function getStatusVariant(status: string): StatusVariant {
+  switch (status) {
+    case "In Progress":
+      return "in-progress";
+    case "Complete":
+      return "complete";
+    case "On Hold":
+      return "on-hold";
+    case "Planned":
+      return "planned";
+    default:
+      return "in-progress";
+  }
+}
 
 function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
   const { title, description, publishedAt, thumbnail, status } = post;
-
   const formattedDate = getFormatDate(publishedAt);
-
-  const getStatusVariant = (status) => {
-    const statusMap = {
-      "In Progress": "in-progress",
-      Complete: "complete",
-      "On Hold": "on-hold",
-      Planned: "planned",
-    };
-    return statusMap[status];
-  };
+  const statusVariant = getStatusVariant(status);
 
   return (
-    <Card
-      className={`overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-950 to-zinc-800 border-zinc-800 hover:border-zinc-700 transition-all duration-300 flex flex-col h-full relative`}>
+    <Card className="overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-950 to-zinc-800 border-zinc-800 hover:border-zinc-700 transition-all duration-300 flex flex-col h-full relative">
       <div className="relative w-full pt-[56.25%]">
         <Image
           src={thumbnail || "/placeholder.svg?height=192&width=384"}
           alt={title}
           fill
-          className={`transition-transform duration-300 hover:scale-105 object-cover`}
+          className="transition-transform duration-300 hover:scale-105 object-cover"
         />
       </div>
       <CardHeader>
@@ -55,8 +54,9 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
           {status && (
             <Badge
               variant="status"
-              status={getStatusVariant(status)}
-              className="z-10 w-max px-2 py-1 text-xs font-semibold rounded-sm">
+              status={statusVariant}
+              className="z-10 w-max px-2 py-1 text-xs font-semibold rounded-sm"
+            >
               {status}
             </Badge>
           )}
@@ -73,7 +73,8 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
         <Button
           asChild
           variant="ghost"
-          className="w-full justify-center text-blue-400 hover:text-blue-300 hover:bg-zinc-900">
+          className="w-full justify-center text-blue-400 hover:text-blue-300 hover:bg-zinc-900"
+        >
           <Link href={`${slug}`}>
             <p>View Project</p>
             <ArrowRightIcon className="ml-2 h-4 w-4" />
@@ -86,9 +87,7 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
 
 export default async function ProjectsPage() {
   const posts = await getPosts<ProjectMeta>("projects");
-  const sortedPosts = sortPosts(posts);
-
-  const visiblePosts = sortedPosts.filter((post) =>
+  const visiblePosts = sortPosts(posts).filter((post) =>
     isPublished(post.frontmatter.publishedAt)
   );
 
@@ -126,3 +125,4 @@ export default async function ProjectsPage() {
     </div>
   );
 }
+

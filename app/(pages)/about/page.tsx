@@ -1,13 +1,21 @@
 import AnimatedName from "@/ui/animated-name";
 import { Metadata } from "next";
-import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { Badge } from "@/ui/badge";
 import AnimatedSection from "@/ui/animated-section";
-import { GithubIcon, TwitterIcon } from "lucide-react";
+import {
+  GithubIcon,
+  TwitterIcon,
+  HeadphonesIcon,
+  CodeIcon,
+  GamepadIcon,
+} from "lucide-react";
+import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Who am I",
+  title: "About | Atichat Thongnak",
+  description:
+    "Learn more about Atichat Thongnak, a frontend developer and student.",
 };
 
 export default function AboutPage() {
@@ -22,11 +30,15 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen text-white">
-      <main className="container mx-auto my-16 max-w-4xl ">
+    <div className="min-h-screen  text-zinc-100 py-16 px-4 sm:px-6 lg:px-8">
+      <main className="container mx-auto max-w-4xl">
         <AnimatedSection>
           <header className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">
+            <Avatar className="mx-auto mb-10 w-32 h-32">
+              <AvatarImage src="https://github.com/me22mer.png" />
+              <AvatarFallback>A</AvatarFallback>
+            </Avatar>
+            <h1 className="text-4xl font-bold mb-2">
               about{" "}
               <span className="inline-flex font-bold">
                 <AnimatedName words={["atichat", "art"]} delayMultiplier={25} />
@@ -37,15 +49,16 @@ export default function AboutPage() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <Card className="border-none">
-            <CardContent className="prose prose-invert max-w-none">
-              <p className="leading-relaxed">
-                I&apos;m a 21-year-old student at Sripatum University in
-                Thailand, where I&apos;m studying Information and Communication
-                Technology. Despite my preference for front-end web development,
-                I&apos;m always keen on tackling new challenges.
+          <section className="mb-12  p-6 rounded-lg">
+            <h2 className="text-2xl font-semibold mb-4">About Me</h2>
+            <div className="space-y-4 text-zinc-300">
+              <p>
+                I'm a 21-year-old student at Sripatum University in Thailand,
+                where I'm studying Information and Communication Technology.
+                Despite my preference for front-end web development, I'm always
+                keen on tackling new challenges.
               </p>
-              <p className="leading-relaxed">
+              <p>
                 I like the pixel art aesthetic and would like to make video
                 games. In addition, I like to watch anime, play video games, and
                 am a{" "}
@@ -53,77 +66,84 @@ export default function AboutPage() {
                   href="https://www.rockstargames.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 no-underline">
+                  className="text-blue-400 hover:text-blue-300 hover:underline">
                   RockstarGames
                 </a>{" "}
                 fan.
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </section>
         </AnimatedSection>
 
-        <div className="grid mb-6">
+        <div className="grid gap-8 md:grid-cols-2">
           <AnimatedSection delay={0.4}>
-            <Card className="border-none">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  Music I Like
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {musicList.map((genre) => (
-                    <Badge key={genre} variant="secondary">
-                      {genre}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <section className=" px-6 rounded-lg">
+              <h2 className="text-2xl font-semibold mb-4 flex items-center">
+                <HeadphonesIcon className="mr-2" /> Music I Like
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {musicList.map((genre) => (
+                  <Badge
+                    key={genre}
+                    variant="secondary"
+                    className="bg-zinc-700">
+                    {genre}
+                  </Badge>
+                ))}
+              </div>
+            </section>
           </AnimatedSection>
 
           <AnimatedSection delay={0.6}>
-            <Card className="border-none">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  Tech Stack
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {techStack.map((tech) => (
-                    <Badge key={tech} variant="secondary">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <section className=" px-6 rounded-lg">
+              <h2 className="text-2xl font-semibold mb-4 flex items-center">
+                <CodeIcon className="mr-2" /> Tech Stack
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {techStack.map((tech) => (
+                  <Badge key={tech} variant="secondary" className="bg-zinc-700">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </section>
           </AnimatedSection>
         </div>
 
         <AnimatedSection delay={0.8}>
-          <section className="px-6">
-            <h2 className="text-2xl font-bold mb-4 items-center gap-2">
-              Connect
+          <section className="mt-12  px-6 rounded-lg">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center">
+              <GamepadIcon className="mr-2" /> Hobbies
             </h2>
-            <div className="grid gap-1 grid-row-2">
+            <p className="text-zinc-300 mb-4">
+              When I'm not coding, you can find me immersed in the world of
+              video games, watching anime, or exploring new pixel art creations.
+              I'm particularly passionate about game development and hope to
+              create my own games in the future.
+            </p>
+          </section>
+        </AnimatedSection>
+
+        <AnimatedSection delay={1.0}>
+          <section className="mt-12 px-6">
+            <h2 className="text-2xl font-semibold mb-4">Connect</h2>
+            <div className="flex flex-wrap gap-4">
               <a
                 href="https://github.com/me22mer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center rounded w-fit px-4 py-3 gap-3 no-underline duration-200 hover:bg-zinc-800">
-                <GithubIcon />
-                <span className="text-sm">@me22mer</span>
+                className="flex items-center  rounded-lg px-4 py-2 hover:bg-zinc-700 transition-colors duration-200">
+                <GithubIcon className="mr-2" />
+                <span>@me22mer</span>
               </a>
               <a
                 href="https://x.com/lm_A2a"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X"
-                className="flex items-center rounded w-fit px-4 py-3 gap-3 no-underline duration-200 hover:bg-zinc-800">
-                <TwitterIcon />
-                <span className="text-sm">@Im_A2a</span>
+                className="flex items-center  rounded-lg px-4 py-2 hover:bg-zinc-700 transition-colors duration-200">
+                <TwitterIcon className="mr-2" />
+                <span>@Im_A2a</span>
               </a>
             </div>
           </section>

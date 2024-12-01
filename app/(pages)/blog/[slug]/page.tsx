@@ -2,17 +2,18 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 import { BlogMeta } from "type";
-import { Card, CardContent } from "@/ui/card";
 import { Badge } from "@/ui/badge";
-import { CalendarIcon, ClockIcon, TagIcon } from "lucide-react";
+import { CalendarIcon, ClockIcon, TagIcon, ArrowLeft } from 'lucide-react';
 import Navigation from "@/ui/navigater";
 import AnimatedSection from "@/ui/animated-section";
 import { getFormatDate } from "@/lib/post-utils";
+import Link from "next/link";
+import { Button } from "@/ui/button";
 
 export async function generateStaticParams() {
   const posts = await getPosts<BlogMeta>("blog");
   if (!posts) return notFound();
-  return posts.map((post) => ({ postId: post.slug }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -20,9 +21,18 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = (await getPosts<BlogMeta>("blog")).find((post) => post.slug);
+  const post = await getPostBySlug<BlogMeta>(`blog/${params.slug}`);
   if (!post) return notFound();
-  return { title: params.slug };
+  
+  return { 
+    title: post.frontmatter.title,
+    description: post.frontmatter.description,
+    openGraph: {
+      title: post.frontmatter.title,
+      description: post.frontmatter.description,
+      images: [{ url: post.frontmatter.coverImage }],
+    },
+  };
 }
 
 export default async function PostPage({
@@ -38,36 +48,57 @@ export default async function PostPage({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-zinc-100">
-      <Navigation />
-      <main className="container mx-auto px-4 py-24 max-w-4xl">
-        <article>
-          <header className="mb-16">
-            <AnimatedSection delay={0}>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 md:mb-0">
-                  {frontmatter.title}
-                </h1>
-              </div>
+      <main className="container mx-auto px-4 py-12 max-w-4xl">
+        <AnimatedSection>
+          <Link href="/blog" className="inline-flex items-center text-zinc-400 hover:text-zinc-200 transition-colors mb-8">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Blog
+          </Link>
+        </AnimatedSection>
+
+        <article className="my-24">
+          <header className="mb-12">
+            <AnimatedSection delay={0.1}>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                {frontmatter.title}
+              </h1>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="flex items-center space-x-4 text-zinc-400">
+              <div className="flex flex-wrap items-center gap-4 text-zinc-400 mb-6">
                 <div className="flex items-center">
-                  <CalendarIcon className="w-4 h-4 mr-2" />
+                  <CalendarIcon className="w-5 h-5 mr-2" />
                   <time>{getFormatDate(frontmatter.publishedAt)}</time>
                 </div>
                 {frontmatter.readingTime && (
                   <div className="flex items-center">
-                    <ClockIcon className="w-4 h-4 mr-2" />
+                    <ClockIcon className="w-5 h-5 mr-2" />
                     <span>{frontmatter.readingTime} min read</span>
                   </div>
                 )}
               </div>
             </AnimatedSection>
 
+            {frontmatter.tags && (
+              <AnimatedSection delay={0.3}>
+                <div className="flex items-center flex-wrap gap-2 mb-8">
+                  <TagIcon className="w-5 h-5 mr-2 text-zinc-400" />
+                  {frontmatter.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="bg-zinc-800 text-zinc-200 px-3 py-1 rounded-full"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </AnimatedSection>
+            )}
+
             {frontmatter.coverImage && (
               <AnimatedSection delay={0.4}>
-                <div className="mb-8 relative h-[300px] md:h-[400px] rounded-xl overflow-hidden">
+                <div className="mb-12 relative h-[300px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                   <Image
                     src={frontmatter.coverImage}
                     fill
@@ -78,35 +109,18 @@ export default async function PostPage({
                 </div>
               </AnimatedSection>
             )}
-
-            {frontmatter.tags && (
-              <AnimatedSection delay={0.6}>
-                <div className="flex items-center flex-wrap gap-2">
-                  <TagIcon className="w-4 h-4 mr-2 text-zinc-400" />
-                  {frontmatter.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="bg-zinc-800 text-zinc-200">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </AnimatedSection>
-            )}
           </header>
 
-          <AnimatedSection delay={0.8}>
-            <Card className="bg-zinc-800/50 border-zinc-700 backdrop-blur-sm">
-              <CardContent className="p-6 md:p-10">
-                <div className="prose prose-invert prose-zinc max-w-none">
-                  {content}
-                </div>
-              </CardContent>
-            </Card>
+          <AnimatedSection delay={0.5}>
+            <div className="prose prose-lg prose-invert prose-zinc max-w-none">
+              {content}
+            </div>
           </AnimatedSection>
         </article>
+
+        
       </main>
     </div>
   );
 }
+

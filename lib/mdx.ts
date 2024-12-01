@@ -6,7 +6,6 @@ import { ReactElement } from "react";
 import { MDXImage } from '@/mdx/image';
 import { MDXCarousel } from '@/mdx/carousel';
 
-
 const RootDir = path.join(process.cwd(), "app", "content");
 
 interface Post<T> {
@@ -28,16 +27,13 @@ async function readFileContent(filePath: string): Promise<string> {
   }
 }
 
-async function parseMDX<T>(
-  fileContent: string
-): Promise<{ frontmatter: T; content: ReactElement }> {
+async function parseMDX<T>(fileContent: string): Promise<{ frontmatter: T; content: ReactElement }> {
   try {
-    const { frontmatter, content } = await compileMDX<T>({
+    return await compileMDX<T>({
       source: fileContent,
       components: { MDXImage, MDXCarousel },
       options: { parseFrontmatter: true },
     });
-    return { frontmatter, content };
   } catch (error) {
     console.error("Error parsing MDX content:", error);
     throw new Error("MDX parsing error");
