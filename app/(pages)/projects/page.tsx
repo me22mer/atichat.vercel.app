@@ -75,7 +75,7 @@ function ProjectCard({ post, slug }: { post: ProjectMeta; slug: string }) {
           variant="ghost"
           className="w-full justify-center text-blue-400 hover:text-blue-300 hover:bg-zinc-900"
         >
-          <Link href={`${slug}`}>
+          <Link href={`projects/${slug}`}>
             <p>View Project</p>
             <ArrowRightIcon className="ml-2 h-4 w-4" />
           </Link>

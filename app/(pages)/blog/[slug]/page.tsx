@@ -3,16 +3,13 @@ import { notFound } from "next/navigation";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 import { BlogMeta } from "type";
 import { Badge } from "@/ui/badge";
-import { CalendarIcon, ClockIcon, TagIcon, ArrowLeft } from 'lucide-react';
-import Navigation from "@/ui/navigater";
+import { CalendarIcon, ClockIcon, TagIcon, ArrowLeft } from "lucide-react";
 import AnimatedSection from "@/ui/animated-section";
 import { getFormatDate } from "@/lib/post-utils";
 import Link from "next/link";
-import { Button } from "@/ui/button";
 
 export async function generateStaticParams() {
   const posts = await getPosts<BlogMeta>("blog");
-  if (!posts) return notFound();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
@@ -21,18 +18,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<BlogMeta>(`blog/${params.slug}`);
+  const post = await getPostBySlug<BlogMeta>("blog", params.slug);
   if (!post) return notFound();
-  
-  return { 
-    title: post.frontmatter.title,
-    description: post.frontmatter.description,
-    openGraph: {
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      images: [{ url: post.frontmatter.coverImage }],
-    },
-  };
 }
 
 export default async function PostPage({
@@ -40,7 +27,7 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<BlogMeta>(`blog/${params.slug}`);
+  const post = await getPostBySlug<BlogMeta>("blog", params.slug);
 
   if (!post || !post.frontmatter.published) return notFound();
 
@@ -50,7 +37,9 @@ export default async function PostPage({
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 text-zinc-100">
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <AnimatedSection>
-          <Link href="/blog" className="inline-flex items-center text-zinc-400 hover:text-zinc-200 transition-colors mb-8">
+          <Link
+            href="/blog"
+            className="inline-flex items-center text-zinc-400 hover:text-zinc-200 transition-colors mb-8">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
           </Link>
@@ -87,8 +76,7 @@ export default async function PostPage({
                     <Badge
                       key={tag}
                       variant="secondary"
-                      className="bg-zinc-800 text-zinc-200 px-3 py-1 rounded-full"
-                    >
+                      className="bg-zinc-800 text-zinc-200 px-3 py-1 rounded-full">
                       {tag}
                     </Badge>
                   ))}
@@ -117,10 +105,7 @@ export default async function PostPage({
             </div>
           </AnimatedSection>
         </article>
-
-        
       </main>
     </div>
   );
 }
-

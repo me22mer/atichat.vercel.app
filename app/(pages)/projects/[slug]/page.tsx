@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Calendar, Github, Globe, ArrowUpRight, Tag } from 'lucide-react';
+import { Calendar, Github, Globe, ArrowUpRight, Tag } from "lucide-react";
 import { getPostBySlug, getPosts } from "@/lib/mdx";
 import { ProjectMeta } from "type";
 import { Button } from "@/ui/button";
@@ -10,12 +10,8 @@ import ScrollUpButton from "@/ui/scrollup-button";
 import { getFormatDate } from "@/lib/post-utils";
 import Image from "next/image";
 
-export const revalidate = 60;
-export const dynamicParams = true;
-
 export async function generateStaticParams() {
   const posts = await getPosts<ProjectMeta>("projects");
-  if (!posts) return notFound();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
@@ -24,18 +20,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<ProjectMeta>(`projects/${params.slug}`);
+  const post = await getPostBySlug<ProjectMeta>("projects", params.slug);
   if (!post) return notFound();
-
-  return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.description,
-    openGraph: {
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      images: [{ url: post.frontmatter.thumbnail }],
-    },
-  };
 }
 
 function isProjectPublished(publishedAt: string | number): boolean {
@@ -47,7 +33,7 @@ export default async function ProjectPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPostBySlug<ProjectMeta>(`projects/${params.slug}`);
+  const post = await getPostBySlug<ProjectMeta>("projects", params.slug);
 
   if (!post) return notFound();
 
@@ -55,7 +41,7 @@ export default async function ProjectPage({
   const isPublished = isProjectPublished(frontmatter.publishedAt);
 
   if (!isPublished) return notFound();
-    
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-950 to-zinc-950 text-zinc-100">
       <Navigation />
@@ -66,7 +52,7 @@ export default async function ProjectPage({
             <AnimatedSection delay={0}>
               <div className="relative w-full aspect-video mb-8 rounded-xl overflow-hidden shadow-2xl shadow-zinc-900">
                 <Image
-                  src={frontmatter.thumbnail || ""}
+                  src={frontmatter.thumbnail || "/placeholder.svg"}
                   alt={frontmatter.title}
                   fill
                   className="object-cover"
@@ -101,8 +87,7 @@ export default async function ProjectPage({
                         <Badge
                           key={tag}
                           variant="secondary"
-                          className="bg-zinc-800 text-zinc-200"
-                        >
+                          className="bg-zinc-800 text-zinc-200">
                           {tag}
                         </Badge>
                       ))}
@@ -119,8 +104,7 @@ export default async function ProjectPage({
                       href={frontmatter.repository}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
+                      className="flex items-center">
                       <Github className="mr-2 h-4 w-4" />
                       View on GitHub
                       <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -133,8 +117,7 @@ export default async function ProjectPage({
                       href={frontmatter.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
+                      className="flex items-center">
                       <Globe className="mr-2 h-4 w-4" />
                       Visit Website
                       <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -159,4 +142,3 @@ export default async function ProjectPage({
     </div>
   );
 }
-

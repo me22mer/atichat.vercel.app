@@ -63,7 +63,7 @@ function BlogCard({ post, slug }: { post: BlogMeta; slug: string }) {
       </CardContent>
       <CardFooter>
         <Link
-          href={`/${slug}`}
+          href={`blog/${slug}`}
           className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-200">
           Read More
           <ArrowRightIcon className="ml-2 h-4 w-4" />
