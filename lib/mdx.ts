@@ -1,20 +1,13 @@
+import fs from "fs/promises";
+import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { ReactElement } from "react";
-import { MDXImage } from "app/components/mdx/image";
-import { MDXCarousel } from "app/components/mdx/carousel";
-import { Octokit } from '@octokit/rest';
+import { MDXImage } from '@/mdx/image';
+import { MDXCarousel } from '@/mdx/carousel';
 
-if (!process.env.GITHUB_TOKEN) {
-  console.error('GITHUB_TOKEN is not set in the environment variables');
-  process.exit(1);
-}
 
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
-const OWNER = 'me22mer';
-const REPO = 'atichat.vercel.app';
-const BASE_PATH = 'app/content';
+const RootDir = path.join(process.cwd(), "app", "content");
 
 interface Post<T> {
   frontmatter: T;
@@ -22,22 +15,16 @@ interface Post<T> {
   slug: string;
 }
 
-async function getFileContent(path: string): Promise<string> {
-  try {
-    const response = await octokit.repos.getContent({
-      owner: OWNER,
-      repo: REPO,
-      path: `${BASE_PATH}/${path}`,
-    });
+async function getFilePath(slug: string): Promise<string> {
+  return path.join(RootDir, slug, "page.mdx");
+}
 
-    if (Array.isArray(response.data) || !('content' in response.data)) {
-      throw new Error('Unexpected response format');
-    }
-    
-    return Buffer.from(response.data.content, 'base64').toString('utf-8');
+async function readFileContent(filePath: string): Promise<string> {
+  try {
+    return await fs.readFile(filePath, "utf8");
   } catch (error) {
-    console.error(`Error fetching file content from GitHub: ${path}`, error);
-    throw new Error('Error fetching file content');
+    console.error(`Error reading file ${filePath}:`, error);
+    throw new Error("File reading error");
   }
 }
 
@@ -59,43 +46,28 @@ async function parseMDX<T>(
 
 export async function getPostBySlug<T>(slug: string): Promise<Post<T>> {
   try {
-    const fileContent = await getFileContent(`${slug}/page.mdx`);
+    const filePath = await getFilePath(slug);
+    const fileContent = await readFileContent(filePath);
     const { frontmatter, content } = await parseMDX<T>(fileContent);
     return { frontmatter, content, slug };
   } catch (error) {
-    console.error(`Error getting post by slug: ${slug}`, error);
     notFound();
   }
 }
 
 export async function getPosts<T>(directoryPath: string): Promise<Post<T>[]> {
   try {
-    const response = await octokit.repos.getContent({
-      owner: OWNER,
-      repo: REPO,
-      path: `${BASE_PATH}/${directoryPath}`,
-    });
-
-    if (!Array.isArray(response.data)) {
-      throw new Error('Unexpected response format');
-    }
-
+    const folderPath = path.join(RootDir, directoryPath);
+    const files = await fs.readdir(folderPath);
     const posts = await Promise.all(
-      response.data
-        .filter(item => item.type === 'dir')
-        .map(async (item) => {
-          try {
-            return await getPostBySlug<T>(`${directoryPath}/${item.name}`);
-          } catch (error) {
-            console.error(`Error getting post: ${item.name}`, error);
-            return null;
-          }
-        })
+      files.map(async (file) => {
+        const fileName = path.parse(file).name;
+        return await getPostBySlug<T>(path.join(directoryPath, fileName));
+      })
     );
-
-    return posts.filter((post): post is Post<T> => post !== null);
+    return posts.filter(Boolean) as Post<T>[];
   } catch (error) {
-    console.error(`Error retrieving posts from directory: ${directoryPath}`, error);
+    console.error("Error getting posts:", error);
     throw new Error("Error retrieving posts");
   }
 }

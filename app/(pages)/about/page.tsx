@@ -1,11 +1,9 @@
-import GitHubIcon from "@/icons/Github-Icon";
-import TwitterIcon from "@/icons/Twitter-Icon";
 import AnimatedName from "@/ui/animated-name";
 import { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { Badge } from "@/ui/badge";
 import AnimatedSection from "@/ui/animated-section";
-import { LoaderIcon } from "lucide-react";
+import { GithubIcon, TwitterIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About",
@@ -115,7 +113,7 @@ export default function AboutPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center rounded w-fit px-4 py-3 gap-3 no-underline duration-200 hover:bg-zinc-800">
-                <GitHubIcon />
+                <GithubIcon />
                 <span className="text-sm">@me22mer</span>
               </a>
               <a
